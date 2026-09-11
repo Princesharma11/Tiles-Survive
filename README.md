@@ -71,6 +71,36 @@ Every animation flows through `lib/animations/variants.ts`:
 `staggerContainer`, `menuItem`, `pulseRing`, plus `EASE_OUT_EXPO`,
 `springSoft` and `springSnappy` transitions. Reuse them — don't inline magic numbers.
 
+## Arcadian War Room (live feature)
+
+The flagship tool at `/war-room` — a real-time command center for alliance
+coordination, implementing the full operational blueprint:
+
+- **Phase 1 — Viral lobby:** deploy a room with an alliance name → get a
+  shareable `/war/<Code>` link (e.g. `/war/Arcadia-Alpha-77`, 24h TTL).
+  Members join with zero accounts: username, power, strongest troop type.
+- **Phase 2 — Tactical map:** Arcadia center + four corner towers with
+  friendly/enemy control toggles per structure.
+- **Phase 3 — Assignments:** roster drawer with draggable member cards →
+  rally/filler slots on the map (drag-and-drop + tap-to-assign for touch),
+  role badges, live roster sync.
+- **Phase 4 — Live execution:** synchronized conquest timers (shield drops,
+  buff rotations, tower lockouts — server-clock aligned), a broadcast
+  command ticker with full-screen alert flashes, and radar-ping ripples.
+
+### Realtime architecture
+
+| Layer     | Dev / Preview                     | Production (Vercel)              |
+| --------- | --------------------------------- | -------------------------------- |
+| Store     | JSON files in OS temp dir          | **Upstash Redis** via REST       |
+| Sync      | BroadcastChannel (instant, same browser) + 2 s smart polling (`?v=` delta) | same + Upstash-backed |
+
+The Upstash store activates automatically when `KV_REST_API_URL` +
+`KV_REST_API_TOKEN` (or `UPSTASH_REDIS_REST_*`) env vars exist — add the
+**Upstash integration** in the Vercel dashboard and rooms become shared
+across all visitors serverless-wide. The leader's command token lives only
+in their own browser's sessionStorage and every API action re-validates it.
+
 ## Develop
 
 ```bash
