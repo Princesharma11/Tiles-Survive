@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useWarRoom, useNow, warIdentity } from "@/lib/warroom/client";
 import type { Control, StructureId, WarRole } from "@/lib/warroom/types";
 import { slotById } from "@/lib/warroom/types";
+import { copyText } from "@/lib/utils/clipboard";
 import { popIn } from "@/lib/animations/variants";
 import JoinPanel from "./JoinPanel";
 import TacticalMap from "./TacticalMap";
@@ -26,7 +27,8 @@ export default function WarConsole({ code }: { code: string }) {
   const [isLeader, setIsLeader] = useState(false);
   const [myMemberId, setMyMemberId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  const inviteRef = useRef<HTMLInputElement>(null);
 
   /* Resolve local identity once the session arrives */
   useEffect(() => {
@@ -46,14 +48,16 @@ export default function WarConsole({ code }: { code: string }) {
   const needsJoin =
     status === "ready" && session !== null && !isLeader && myMember === null;
 
+  const inviteUrl =
+    typeof window !== "undefined" && session
+      ? `${window.location.origin}/war/${encodeURIComponent(session.code)}`
+      : "";
+
   const copyInvite = async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      /* clipboard unavailable */
-    }
+    const ok = await copyText(inviteUrl);
+    setCopyState(ok ? "copied" : "failed");
+    if (ok) setTimeout(() => setCopyState("idle"), 2500);
+    else setTimeout(() => inviteRef.current?.select(), 50);
   };
 
   /* --------------------------- states ----------------------------- */
@@ -165,9 +169,40 @@ export default function WarConsole({ code }: { code: string }) {
           onClick={copyInvite}
           className="rounded-2xl border-[3px] border-ink bg-gradient-to-b from-gold to-flame px-4 py-2 font-display text-xs font-extrabold uppercase tracking-wide text-ink shadow-[0_3px_0_0_#2d2a26] transition-all hover:-translate-y-0.5"
         >
-          {copied ? "✓ Link copied!" : "🔗 Copy invite link"}
+          {copyState === "copied"
+            ? "✓ Link copied!"
+            : "🔗 Copy invite link"}
         </button>
       </motion.header>
+
+      {/* Manual-copy fallback (iframe / permission-blocked browsers) */}
+      {copyState === "failed" && (
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-5 flex flex-wrap items-center gap-2 rounded-2xl border-[3px] border-ink bg-berry/10 p-3"
+        >
+          <p className="w-full font-display text-xs font-extrabold uppercase tracking-[0.14em] text-berry">
+            ⚠ One-tap copy blocked here — select the link &amp; press Ctrl/Cmd + C
+          </p>
+          <input
+            ref={inviteRef}
+            readOnly
+            value={inviteUrl}
+            onFocus={(e) => e.target.select()}
+            aria-label="War Room invite link"
+            className="min-w-0 flex-1 rounded-xl border-2 border-ink bg-white px-3 py-2 font-mono text-sm font-bold text-ink"
+          />
+          <button
+            type="button"
+            onClick={() => setCopyState("idle")}
+            aria-label="Dismiss"
+            className="grid size-8 shrink-0 place-items-center rounded-lg border-2 border-ink bg-white text-xs font-black text-ink-soft hover:bg-paper"
+          >
+            ✕
+          </button>
+        </motion.div>
+      )}
 
       {/* Personal orders (members) */}
       {myMember && myMember.slot && (

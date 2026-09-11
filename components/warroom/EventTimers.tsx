@@ -111,9 +111,10 @@ export default function EventTimers({
           variants={popIn}
           type="button"
           onClick={onEndLive}
-          className="ml-auto self-center rounded-xl border-[3px] border-ink/20 bg-white/70 px-3 py-2 font-display text-[10px] font-extrabold uppercase tracking-[0.18em] text-ink-faint transition-colors hover:border-ink hover:text-ink"
+          title="Reset the room back to planning phase"
+          className="ml-auto flex items-center gap-2 self-center rounded-2xl border-[3px] border-ink bg-gradient-to-b from-white to-paper px-4 py-2.5 font-display text-xs font-extrabold uppercase tracking-[0.14em] text-ink shadow-[0_3px_0_0_#2d2a26] transition-all hover:-translate-y-0.5 hover:shadow-[0_5px_0_0_#2d2a26]"
         >
-          End war (back to planning)
+          <span aria-hidden>⏹</span> End War
         </motion.button>
       )}
     </motion.div>
