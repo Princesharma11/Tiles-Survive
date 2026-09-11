@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  TitanTilesSurvive — Design Tokens (Tailwind v4 @theme)             */
+/*  Dark "war-room ops console" aesthetic: void blues + command gold.  */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  /* Surfaces */
+  --color-void: #04060c;
+  --color-abyss: #080d18;
+  --color-panel: #0b1220;
+  --color-panel-2: #111b30;
+
+  /* Steel (neutral text / lines) */
+  --color-steel-100: #e8edf6;
+  --color-steel-200: #c9d3e4;
+  --color-steel-300: #9dacc6;
+  --color-steel-400: #6f7f9c;
+  --color-steel-500: #47566f;
+
+  /* Command gold (primary accent) */
+  --color-gold-300: #ffe1a1;
+  --color-gold-400: #f9ca72;
+  --color-gold-500: #f5b942;
+  --color-gold-600: #cf9524;
+
+  /* Ember (secondary / danger-heat accent) */
+  --color-ember-400: #ff8a5e;
+  --color-ember-500: #ff5c33;
+  --color-crimson-500: #ff3b5c;
+  --color-mint-400: #57e6c5;
+
+  /* Typography (self-hosted via Fontsource) */
+  --font-display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace,
+    "SFMono-Regular", monospace;
+
+  /* Shadows */
+  --shadow-glow: 0 0 32px rgba(245, 185, 66, 0.16), 0 0 6px rgba(245, 185, 66, 0.28);
+  --shadow-ember: 0 0 32px rgba(255, 92, 51, 0.14);
+  --shadow-card: 0 24px 70px rgba(2, 4, 10, 0.6);
+
+  /* Keyframe-driven utilities */
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-blip: blip 2.4s ease-in-out infinite;
+  --animate-breathe: breathe 5s ease-in-out infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes blip {
+    0%,
+    100% {
+      opacity: 0.25;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+  @keyframes breathe {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-steel-200);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(245, 185, 66, 0.28);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(245, 185, 66, 0.65);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Slim command-console scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: #1b2740;
+  border-radius: 8px;
+  border: 2px solid var(--color-void);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 185, 66, 0.45);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Signature utilities                                                */
+/* ------------------------------------------------------------------ */
+
+/* Gold metal text gradient */
+.text-gradient-gold {
+  background: linear-gradient(
+    100deg,
+    #ffe1a1 0%,
+    #f5b942 38%,
+    #cf9524 62%,
+    #f9ca72 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Shimmering display headline */
+.text-shimmer {
+  background: linear-gradient(
+    110deg,
+    #ffe1a1 20%,
+    #f5b942 40%,
+    #fff6dd 50%,
+    #f5b942 60%,
+    #cf9524 80%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Tactical grid backdrop */
+.bg-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(151, 170, 199, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(151, 170, 199, 0.07) 1px, transparent 1px);
+  background-size: 54px 54px;
+}
+
+/* Film-grain noise (inline SVG turbulence) */
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Static fallback stage behind the 3D hero (shown pre-hydration / no-WebGL) */
+.hero-fallback {
+  background:
+    radial-gradient(60% 48% at 50% 40%, rgba(245, 185, 66, 0.13), transparent 70%),
+    radial-gradient(42% 36% at 72% 62%, rgba(255, 92, 51, 0.08), transparent 72%),
+    radial-gradient(50% 40% at 22% 66%, rgba(87, 230, 197, 0.05), transparent 70%),
+    var(--color-void);
+}
+
+/* Radar sweep (module boot screens) */
+.radar-sweep {
+  background: conic-gradient(
+    from 0deg,
+    rgba(245, 185, 66, 0) 0deg,
+    rgba(245, 185, 66, 0.05) 300deg,
+    rgba(245, 185, 66, 0.45) 355deg,
+    rgba(245, 185, 66, 0) 360deg
+  );
+  border-radius: 9999px;
+  animation: rot 3.8s linear infinite;
+}
+@keyframes rot {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hide scrollbars on horizontal scrollers */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Edge fade mask for carousels */
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+}
+
+/* Hairline gradient border helper */
+.border-hairline {
+  border: 1px solid rgba(151, 170, 199, 0.14);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Accessibility                                                      */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-blip,
+  .animate-breathe,
+  .radar-sweep,
+  .text-shimmer {
+    animation: none !important;
+  }
+}
