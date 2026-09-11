@@ -5,8 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 /* ------------------------------------------------------------------ */
-/*  EmberField — cheap additive-blended points drifting upward         */
-/*  like sparks over a furnace. Single draw call.                      */
+/*  EmberField — warm furnace sparks drifting upward. Single draw call.*/
 /* ------------------------------------------------------------------ */
 
 const SPREAD_XZ = 18;
@@ -53,10 +52,10 @@ export default function EmberField({ count = 240 }: { count?: number }) {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.06}
-        color="#ffb347"
+        size={0.07}
+        color="#ffd27a"
         transparent
-        opacity={0.7}
+        opacity={0.85}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
         sizeAttenuation

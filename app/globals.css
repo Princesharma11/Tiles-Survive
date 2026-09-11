@@ -1,75 +1,76 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/*  TitanTilesSurvive — Design Tokens (Tailwind v4 @theme)             */
-/*  Dark "war-room ops console" aesthetic: void blues + command gold.  */
+/*  TitanTilesSurvive — "Adventure HUD" design system                  */
+/*  Matched to the real Tiles Survive! world: sunset skies, lush       */
+/*  greens, ember furnaces, chunky friendly game-UI.                   */
 /* ------------------------------------------------------------------ */
 
 @theme {
-  /* Surfaces */
-  --color-void: #04060c;
-  --color-abyss: #080d18;
-  --color-panel: #0b1220;
-  --color-panel-2: #111b30;
+  /* Sky & paper */
+  --color-cream: #fff9f0;
+  --color-paper: #fdf1dc;
+  --color-sand: #f6e3bd;
 
-  /* Steel (neutral text / lines) */
-  --color-steel-100: #e8edf6;
-  --color-steel-200: #c9d3e4;
-  --color-steel-300: #9dacc6;
-  --color-steel-400: #6f7f9c;
-  --color-steel-500: #47566f;
+  /* Warm ink (text / outlines) */
+  --color-ink: #2d2a26;
+  --color-ink-soft: #6b6157;
+  --color-ink-faint: #a39585;
 
-  /* Command gold (primary accent) */
-  --color-gold-300: #ffe1a1;
-  --color-gold-400: #f9ca72;
-  --color-gold-500: #f5b942;
-  --color-gold-600: #cf9524;
+  /* Nature */
+  --color-leaf: #6fae3e;
+  --color-leaf-deep: #47892f;
+  --color-pine: #1e4638;
+  --color-pine-deep: #14352b;
 
-  /* Ember (secondary / danger-heat accent) */
-  --color-ember-400: #ff8a5e;
-  --color-ember-500: #ff5c33;
-  --color-crimson-500: #ff3b5c;
-  --color-mint-400: #57e6c5;
+  /* Forge */
+  --color-ember: #f07d2e;
+  --color-ember-deep: #d9631e;
+  --color-flame: #ffb03a;
+  --color-gold: #f6c445;
 
-  /* Typography (self-hosted via Fontsource) */
-  --font-display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace,
-    "SFMono-Regular", monospace;
+  /* Accents */
+  --color-berry: #ed5ca8;
+  --color-river: #3d9bd1;
+  --color-teal: #2fa39b;
 
-  /* Shadows */
-  --shadow-glow: 0 0 32px rgba(245, 185, 66, 0.16), 0 0 6px rgba(245, 185, 66, 0.28);
-  --shadow-ember: 0 0 32px rgba(255, 92, 51, 0.14);
-  --shadow-card: 0 24px 70px rgba(2, 4, 10, 0.6);
+  /* Typography */
+  --font-display: "Baloo 2", "Comic Sans MS", system-ui, sans-serif;
+  --font-body: "Nunito Variable", "Nunito", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
 
-  /* Keyframe-driven utilities */
-  --animate-marquee: marquee 38s linear infinite;
-  --animate-blip: blip 2.4s ease-in-out infinite;
-  --animate-breathe: breathe 5s ease-in-out infinite;
+  /* Game shadows */
+  --shadow-sticker: 0 3px 0 0 rgba(45, 42, 38, 0.9), 0 10px 24px -10px rgba(45, 42, 38, 0.35);
+  --shadow-sticker-lg: 0 6px 0 0 rgba(45, 42, 38, 0.9), 0 22px 40px -14px rgba(45, 42, 38, 0.4);
+  --shadow-pop: 0 18px 40px -12px rgba(217, 99, 30, 0.45);
+
+  /* Keyframe utilities */
+  --animate-marquee: marquee 36s linear infinite;
+  --animate-bob: bob 4.2s ease-in-out infinite;
+  --animate-bob-slow: bob 6.5s ease-in-out infinite;
+  --animate-drift: drift 26s ease-in-out infinite alternate;
+  --animate-spin-slow: spin 14s linear infinite;
 
   @keyframes marquee {
     to {
       transform: translateX(-50%);
     }
   }
-  @keyframes blip {
+  @keyframes bob {
     0%,
     100% {
-      opacity: 0.25;
-      transform: scale(0.8);
+      transform: translateY(0);
     }
     50% {
-      opacity: 1;
-      transform: scale(1.15);
+      transform: translateY(-12px);
     }
   }
-  @keyframes breathe {
-    0%,
-    100% {
-      opacity: 0.55;
+  @keyframes drift {
+    from {
+      transform: translateX(-4%);
     }
-    50% {
-      opacity: 1;
+    to {
+      transform: translateX(4%);
     }
   }
 }
@@ -88,133 +89,86 @@ body {
 }
 
 body {
-  background-color: var(--color-void);
-  color: var(--color-steel-200);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: rgba(245, 185, 66, 0.28);
-  color: #ffffff;
+  background: rgba(240, 125, 46, 0.3);
+  color: var(--color-ink);
 }
 
 :focus-visible {
-  outline: 2px solid rgba(245, 185, 66, 0.65);
+  outline: 3px solid rgba(240, 125, 46, 0.7);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
-/* Slim command-console scrollbar */
+/* Playful scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-void);
+  background: var(--color-paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1b2740;
-  border-radius: 8px;
-  border: 2px solid var(--color-void);
+  background: var(--color-ember);
+  border-radius: 999px;
+  border: 3px solid var(--color-paper);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 185, 66, 0.45);
+  background: var(--color-ember-deep);
 }
 
 /* ------------------------------------------------------------------ */
 /*  Signature utilities                                                */
 /* ------------------------------------------------------------------ */
 
-/* Gold metal text gradient */
-.text-gradient-gold {
-  background: linear-gradient(
-    100deg,
-    #ffe1a1 0%,
-    #f5b942 38%,
-    #cf9524 62%,
-    #f9ca72 100%
-  );
+/* Chunky sticker card: white face + ink outline + hard edge */
+.sticker {
+  background: #ffffff;
+  border: 3px solid var(--color-ink);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 0 0 var(--color-ink), 0 16px 30px -14px rgba(45, 42, 38, 0.35);
+}
+
+/* Sunset gradient text */
+.text-sunset {
+  background: linear-gradient(95deg, #f07d2e 10%, #ffb03a 45%, #ed5ca8 90%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Shimmering display headline */
-.text-shimmer {
-  background: linear-gradient(
-    110deg,
-    #ffe1a1 20%,
-    #f5b942 40%,
-    #fff6dd 50%,
-    #f5b942 60%,
-    #cf9524 80%
-  );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 6s ease-in-out infinite;
-}
-@keyframes shimmer {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+/* Outlined display text (sticker lettering) */
+.text-stroked {
+  -webkit-text-stroke: 2.5px var(--color-ink);
+  paint-order: stroke fill;
+  text-shadow: 0 4px 0 rgba(45, 42, 38, 0.18);
 }
 
-/* Tactical grid backdrop */
-.bg-grid {
-  background-image: linear-gradient(
-      to right,
-      rgba(151, 170, 199, 0.07) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgba(151, 170, 199, 0.07) 1px, transparent 1px);
-  background-size: 54px 54px;
+/* Soft tile grid on paper */
+.bg-tilegrid {
+  background-image: linear-gradient(to right, rgba(45, 42, 38, 0.05) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(45, 42, 38, 0.05) 1.5px, transparent 1.5px);
+  background-size: 44px 44px;
+  border-radius: inherit;
 }
 
-/* Film-grain noise (inline SVG turbulence) */
-.noise::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Cloud puff (drift) */
+.cloud {
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
 }
 
-/* Static fallback stage behind the 3D hero (shown pre-hydration / no-WebGL) */
-.hero-fallback {
-  background:
-    radial-gradient(60% 48% at 50% 40%, rgba(245, 185, 66, 0.13), transparent 70%),
-    radial-gradient(42% 36% at 72% 62%, rgba(255, 92, 51, 0.08), transparent 72%),
-    radial-gradient(50% 40% at 22% 66%, rgba(87, 230, 197, 0.05), transparent 70%),
-    var(--color-void);
+/* Fade mask for horizontal rails */
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
 }
 
-/* Radar sweep (module boot screens) */
-.radar-sweep {
-  background: conic-gradient(
-    from 0deg,
-    rgba(245, 185, 66, 0) 0deg,
-    rgba(245, 185, 66, 0.05) 300deg,
-    rgba(245, 185, 66, 0.45) 355deg,
-    rgba(245, 185, 66, 0) 360deg
-  );
-  border-radius: 9999px;
-  animation: rot 3.8s linear infinite;
-}
-@keyframes rot {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Hide scrollbars on horizontal scrollers */
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -223,27 +177,13 @@ body {
   display: none;
 }
 
-/* Edge fade mask for carousels */
-.mask-fade-x {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 5%,
-    black 95%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 5%,
-    black 95%,
-    transparent
-  );
-}
-
-/* Hairline gradient border helper */
-.border-hairline {
-  border: 1px solid rgba(151, 170, 199, 0.14);
+/* Dotted adventure trail divider */
+.trail-dots {
+  background-image: radial-gradient(circle, var(--color-ink-faint) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  background-repeat: repeat-x;
+  background-position: center;
+  height: 3px;
 }
 
 /* ------------------------------------------------------------------ */
@@ -255,10 +195,11 @@ body {
     scroll-behavior: auto;
   }
   .animate-marquee,
-  .animate-blip,
-  .animate-breathe,
-  .radar-sweep,
-  .text-shimmer {
+  .animate-bob,
+  .animate-bob-slow,
+  .animate-drift,
+  .animate-spin-slow,
+  .radar-sweep {
     animation: none !important;
   }
 }

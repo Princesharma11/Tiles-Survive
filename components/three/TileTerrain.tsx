@@ -5,14 +5,13 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 /* ------------------------------------------------------------------ */
-/*  TileTerrain — an instanced grid of map tiles breathing in waves.   */
-/*  A handful of "hot" tactical tiles rise and glow command-gold.      */
-/*  Single InstancedMesh = one draw call per layer.                    */
+/*  TileTerrain — instanced grass-topped island tiles breathing in     */
+/*  waves; "hot" tactical tiles glow like furnace vents.               */
+/*  Two InstancedMeshes = two draw calls for the whole field.          */
 /* ------------------------------------------------------------------ */
 
 const dummy = new THREE.Object3D();
 
-/** Deterministic hash → [0, 1). Keeps the layout stable across renders. */
 const rand = (n: number) => {
   const x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
   return x - Math.floor(x);
@@ -56,22 +55,20 @@ export default function TileTerrain({ isMobile = false }: { isMobile?: boolean }
   const baseMat = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: "#111b30",
-        metalness: 0.55,
-        roughness: 0.45,
-        emissive: new THREE.Color("#0a1428"),
-        emissiveIntensity: 0.35,
+        color: "#5d9c3f", // grass top
+        metalness: 0.05,
+        roughness: 0.85,
       }),
     []
   );
   const hotMat = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: "#221906",
-        metalness: 0.4,
-        roughness: 0.35,
-        emissive: new THREE.Color("#f5b942"),
-        emissiveIntensity: 1.4,
+        color: "#a03f10", // scorched earth
+        metalness: 0.15,
+        roughness: 0.55,
+        emissive: new THREE.Color("#ffb03a"),
+        emissiveIntensity: 1.3,
       }),
     []
   );
@@ -97,10 +94,14 @@ export default function TileTerrain({ isMobile = false }: { isMobile?: boolean }
     }
 
     if (hot && hotIndices.length > 0) {
-      hotMat.emissiveIntensity = 1.15 + Math.sin(t * 2.2) * 0.55;
+      hotMat.emissiveIntensity = 1.1 + Math.sin(t * 2.2) * 0.5;
       for (let k = 0; k < hotIndices.length; k++) {
         const { x, z } = positions[hotIndices[k]];
-        dummy.position.set(x, 0.3 + Math.sin(t * 1.4 + phases[hotIndices[k]] * 3) * 0.3, z);
+        dummy.position.set(
+          x,
+          0.3 + Math.sin(t * 1.4 + phases[hotIndices[k]] * 3) * 0.3,
+          z
+        );
         dummy.rotation.set(0, 0, 0);
         dummy.updateMatrix();
         hot.setMatrixAt(k, dummy.matrix);

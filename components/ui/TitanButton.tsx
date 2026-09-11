@@ -2,22 +2,17 @@
 
 import Link from "next/link";
 import { useRef, type MouseEventHandler, type ReactNode } from "react";
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-} from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { springSnappy } from "@/lib/animations/variants";
 
 /* ------------------------------------------------------------------ */
-/*  TitanButton — magnetic, shining, spring-loaded command button.     */
-/*  UI primitive: renders a <Link> when `href` is given, else button.  */
+/*  TitanButton — chunky mobile-game button: hard ink edge, 3D press,  */
+/*  shine sweep, magnetic hover. The signature CTA of the site.        */
 /* ------------------------------------------------------------------ */
 
-type Variant = "primary" | "outline" | "ghost";
-type Size = "md" | "lg";
+type Variant = "primary" | "sun" | "paper" | "pine";
+type Size = "md" | "lg" | "xl";
 
 export interface TitanButtonProps {
   href?: string;
@@ -30,109 +25,96 @@ export interface TitanButtonProps {
   ariaLabel?: string;
 }
 
-const variantStyles: Record<Variant, string> = {
-  primary:
-    "bg-gradient-to-b from-gold-300 via-gold-500 to-gold-600 text-void font-semibold shadow-glow hover:brightness-110",
-  outline:
-    "border border-gold-500/40 text-gold-300 bg-gold-500/5 backdrop-blur-sm hover:border-gold-500/80 hover:bg-gold-500/10 hover:shadow-glow",
-  ghost:
-    "border border-steel-500/40 text-steel-200 hover:border-steel-300/60 hover:text-white",
+/** Face + edge colors per variant. Edge = the "depth" under the button. */
+const variantStyles: Record<Variant, { face: string; edge: string; text: string }> = {
+  primary: {
+    face: "bg-gradient-to-b from-flame to-ember",
+    edge: "#a03f10",
+    text: "text-white",
+  },
+  sun: {
+    face: "bg-gradient-to-b from-gold to-flame",
+    edge: "#a03f10",
+    text: "text-ink",
+  },
+  paper: {
+    face: "bg-gradient-to-b from-white to-paper",
+    edge: "#2d2a26",
+    text: "text-ink",
+  },
+  pine: {
+    face: "bg-gradient-to-b from-leaf to-leaf-deep",
+    edge: "#25511c",
+    text: "text-white",
+  },
 };
 
 const sizeStyles: Record<Size, string> = {
-  md: "h-11 px-5 text-[13px] tracking-[0.14em]",
-  lg: "h-14 px-8 text-sm tracking-[0.16em]",
+  md: "h-11 px-5 text-sm",
+  lg: "h-14 px-7 text-base",
+  xl: "h-16 px-9 text-lg",
 };
 
 export function TitanButton({
   href,
   onClick,
   variant = "primary",
-  size = "md",
+  size = "lg",
   icon,
   children,
   className,
   ariaLabel,
 }: TitanButtonProps) {
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
-
-  // Magnetic pull — button leans toward the cursor.
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const x = useSpring(mx, springSnappy);
-  const y = useSpring(my, springSnappy);
-
-  const handleMove: MouseEventHandler = (e) => {
-    if (reduce || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    mx.set((e.clientX - rect.left - rect.width / 2) * 0.18);
-    my.set((e.clientY - rect.top - rect.height / 2) * 0.3);
-  };
-
-  const reset = () => {
-    mx.set(0);
-    my.set(0);
-  };
+  const { face, edge, text } = variantStyles[variant];
 
   const inner = (
-    <span
+    <motion.span
+      whileHover={reduce ? undefined : { y: -3 }}
+      whileTap={reduce ? undefined : { y: 3 }}
+      transition={springSnappy}
       className={cn(
-        "group/btn relative inline-flex h-full w-full items-center justify-center gap-2.5 overflow-hidden rounded-lg font-display uppercase transition-colors duration-300",
-        variantStyles[variant],
+        "group/btn relative inline-flex h-full w-full cursor-pointer items-center justify-center gap-2.5 overflow-hidden rounded-2xl border-[3px] border-ink font-display font-extrabold tracking-wide select-none",
+        face,
+        text,
         sizeStyles[size]
       )}
+      style={{ boxShadow: `0 5px 0 0 ${edge}, 0 14px 26px -12px ${edge}` }}
     >
       {/* Shine sweep */}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/25 blur-sm transition-transform duration-700 ease-out group-hover/btn:translate-x-[420%]"
+        className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/40 blur-sm transition-transform duration-700 ease-out group-hover/btn:translate-x-[420%]"
       />
-      {/* HUD corner ticks (primary only) */}
-      {variant === "primary" && (
-        <>
-          <span
-            aria-hidden
-            className="absolute left-1.5 top-1.5 size-2 border-l border-t border-void/50"
-          />
-          <span
-            aria-hidden
-            className="absolute bottom-1.5 right-1.5 size-2 border-b border-r border-void/50"
-          />
-        </>
-      )}
-      {icon && <span className="relative size-[18px] shrink-0">{icon}</span>}
-      <span className="relative">{children}</span>
-    </span>
+      {/* Top gloss */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-2 top-1 h-[38%] rounded-full bg-white/25"
+      />
+      {icon && <span className="relative size-5 shrink-0">{icon}</span>}
+      <span className="relative drop-shadow-[0_1px_0_rgba(0,0,0,0.15)]">
+        {children}
+      </span>
+    </motion.span>
   );
 
-  const shell = cn("inline-block rounded-lg", className);
-
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMove}
-      onMouseLeave={reset}
-      whileHover={reduce ? undefined : { scale: 1.03 }}
-      whileTap={reduce ? undefined : { scale: 0.96 }}
-      transition={springSnappy}
-      style={reduce ? undefined : { x, y }}
-      className={shell}
-    >
+    <span className={cn("inline-block", className)}>
       {href ? (
-        <Link
-          href={href}
+        <Link href={href} aria-label={ariaLabel} className="block h-full w-full">
+          {inner}
+        </Link>
+      ) : (
+        <button
+          type="button"
+          onClick={onClick}
           aria-label={ariaLabel}
           className="block h-full w-full"
         >
           {inner}
-        </Link>
-      ) : (
-        <button type="button" onClick={onClick} aria-label={ariaLabel} className="block h-full w-full">
-          {inner}
         </button>
       )}
-    </motion.div>
+    </span>
   );
 }
 

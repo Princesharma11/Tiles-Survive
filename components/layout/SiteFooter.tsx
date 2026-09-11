@@ -1,9 +1,9 @@
 import Link from "next/link";
-import Logo from "./Logo";
+import { TitanMark } from "./Logo";
 import { site } from "@/data/site";
 
 /* ------------------------------------------------------------------ */
-/*  SiteFooter — comms console + fan-project disclaimer.               */
+/*  SiteFooter — night camp: deep pine, warm lanterns.                 */
 /* ------------------------------------------------------------------ */
 
 const columns = [
@@ -26,7 +26,7 @@ const columns = [
     ],
   },
   {
-    heading: "NETWORK",
+    heading: "CAMP",
     links: [
       { label: "Discord Uplink", href: "#" },
       { label: "YouTube Briefings", href: "#" },
@@ -40,25 +40,45 @@ export default function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/5 bg-abyss/60">
-      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+    <footer className="relative overflow-hidden border-t-[3px] border-ink bg-pine-deep text-cream">
+      {/* Warm campfire glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-40 left-1/2 size-[560px] -translate-x-1/2 rounded-full bg-ember/15 blur-[120px]"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <Logo />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-steel-400">
+            <Link
+              href="/"
+              className="group flex w-fit items-center gap-2.5"
+              aria-label="TitanTilesSurvive — home"
+            >
+              <span className="grid size-11 shrink-0 place-items-center rounded-2xl border-[3px] border-cream/80 bg-gradient-to-b from-leaf to-leaf-deep shadow-[0_3px_0_0_rgba(255,249,240,0.85)] transition-transform duration-300 group-hover:-rotate-6">
+                <TitanMark className="size-7" />
+              </span>
+              <span className="font-display text-lg font-extrabold leading-none tracking-tight text-cream">
+                Titan<span className="text-flame">Tiles</span>
+                <span className="block text-[11px] font-bold tracking-[0.3em] text-cream/60">
+                  SURVIVE HQ
+                </span>
+              </span>
+            </Link>
+            <p className="mt-5 max-w-xs text-base font-semibold leading-relaxed text-cream/70">
               Stop guessing. Start conquering. Command intelligence for the
-              tile-based 4X survival battlefield of{" "}
-              <span className="text-steel-200">Tiles Survive!</span>
+              tile-based 4X survival world of{" "}
+              <span className="text-gold">Tiles Survive!</span>
             </p>
-            <p className="mt-6 flex items-center gap-2.5 font-mono text-[10px] tracking-[0.28em] text-mint-400">
-              <span aria-hidden className="size-1.5 animate-blip rounded-full bg-mint-400" />
-              ALL SYSTEMS OPERATIONAL
+            <p className="mt-6 inline-flex items-center gap-2.5 rounded-full border-2 border-cream/20 bg-cream/5 px-4 py-1.5 font-mono text-[10px] font-bold tracking-[0.22em] text-leaf">
+              <span aria-hidden className="size-2 animate-pulse rounded-full bg-leaf" />
+              ALL LANTERNS LIT
             </p>
           </div>
 
           {columns.map((col) => (
             <nav key={col.heading} aria-label={col.heading}>
-              <h3 className="font-mono text-[11px] tracking-[0.32em] text-gold-500">
+              <h3 className="inline-block rounded-lg bg-cream/10 px-3 py-1 font-display text-xs font-bold tracking-[0.25em] text-gold">
                 {col.heading}
               </h3>
               <ul className="mt-5 space-y-3">
@@ -66,11 +86,11 @@ export default function SiteFooter() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center gap-2 text-sm text-steel-300 transition-colors hover:text-gold-300"
+                      className="group inline-flex items-center gap-2.5 text-base font-semibold text-cream/75 transition-all hover:translate-x-1 hover:text-gold"
                     >
                       <span
                         aria-hidden
-                        className="size-1 rounded-full bg-steel-500 transition-colors group-hover:bg-gold-500"
+                        className="size-1.5 rounded-full bg-cream/30 transition-colors group-hover:bg-flame"
                       />
                       {link.label}
                     </Link>
@@ -81,14 +101,15 @@ export default function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/5 pt-8 md:flex-row md:items-center md:justify-between">
-          <p className="max-w-xl text-xs leading-relaxed text-steel-500">
+        <div className="mt-14 flex flex-col gap-4 border-t-2 border-cream/10 pt-8 md:flex-row md:items-center md:justify-between">
+          <p className="max-w-xl text-sm font-semibold text-cream/50">
             © {year} {site.name}. Fan-made companion project — not affiliated
             with, endorsed by, or sponsored by FunPlus. Tiles Survive! is a
-            trademark of FunPlus International AG.
+            trademark of FunPlus International AG. Game art used as references
+            for the community.
           </p>
-          <p className="font-mono text-[10px] tracking-[0.3em] text-steel-500">
-            FORGED IN THE VOID // {site.patch}
+          <p className="font-mono text-[10px] font-bold tracking-[0.25em] text-cream/40">
+            FORGED AT THE FURNACE // {site.patch}
           </p>
         </div>
       </div>

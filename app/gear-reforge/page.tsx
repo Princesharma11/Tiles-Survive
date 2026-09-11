@@ -28,6 +28,7 @@ export default function GearReforgePage() {
         "CROSS-CHECKING TIER BREAKPOINTS",
       ]}
       variant="forge"
+      scene="/world/scene-furnace.webp"
     />
   );
 }

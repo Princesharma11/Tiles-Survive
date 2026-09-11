@@ -3,7 +3,7 @@ import { site } from "@/data/site";
 
 /* ------------------------------------------------------------------ */
 /*  Open Graph image — generated at build time by Vercel (next/og).    */
-/*  1200×630 social card: void backdrop, gold tiles, wordmark.         */
+/*  Warm adventure palette matching the game world.                    */
 /* ------------------------------------------------------------------ */
 
 export const alt = `${site.name} — ${site.tagline}`;
@@ -21,48 +21,48 @@ export default function OpengraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background:
-            "linear-gradient(135deg, #04060c 0%, #0b1220 55%, #131c10 100%)",
+          background: "linear-gradient(160deg, #fde7c8 0%, #fbd9a8 55%, #f6c445 100%)",
           position: "relative",
         }}
       >
-        {/* Tile motif */}
+        {/* Tiles */}
         <div
           style={{
             position: "absolute",
-            top: 70,
+            top: 64,
             left: 110,
-            width: 84,
-            height: 84,
-            background: "#f5b942",
-            borderRadius: 14,
-            opacity: 0.85,
+            width: 88,
+            height: 88,
+            background: "#6fae3e",
+            border: "5px solid #2d2a26",
+            borderRadius: 20,
+            transform: "rotate(-10deg)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: 72,
+            right: 120,
+            width: 70,
+            height: 70,
+            background: "#f07d2e",
+            border: "5px solid #2d2a26",
+            borderRadius: 18,
             transform: "rotate(12deg)",
           }}
         />
         <div
           style={{
             position: "absolute",
-            bottom: 80,
-            right: 120,
-            width: 64,
-            height: 64,
-            border: "3px solid #ff5c33",
+            top: 130,
+            right: 250,
+            width: 44,
+            height: 44,
+            background: "#ed5ca8",
+            border: "4px solid #2d2a26",
             borderRadius: 12,
-            opacity: 0.7,
-            transform: "rotate(-14deg)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 140,
-            right: 240,
-            width: 40,
-            height: 40,
-            border: "2px solid #57e6c5",
-            borderRadius: 8,
-            opacity: 0.5,
+            transform: "rotate(18deg)",
           }}
         />
 
@@ -70,39 +70,45 @@ export default function OpengraphImage() {
           style={{
             display: "flex",
             alignItems: "center",
-            fontSize: 34,
-            letterSpacing: "0.5em",
-            color: "#9dacc6",
-            marginBottom: 18,
+            gap: 14,
+            background: "#2fa39b",
+            border: "5px solid #2d2a26",
+            borderRadius: 999,
+            padding: "10px 30px",
+            fontSize: 26,
+            fontWeight: 700,
+            color: "#ffffff",
+            marginBottom: 26,
           }}
         >
-          [ COMMAND INTELLIGENCE ]
+          FAN-MADE COMPANION
         </div>
 
         <div
           style={{
             display: "flex",
-            fontSize: 92,
-            fontWeight: 700,
-            color: "#e8edf6",
+            fontSize: 96,
+            fontWeight: 800,
+            color: "#2d2a26",
             letterSpacing: "-0.02em",
           }}
         >
-          TITAN
-          <span style={{ color: "#f5b942" }}>TILES</span>
-          SURVIVE
+          Titan
+          <span style={{ color: "#d9631e" }}>Tiles</span>
+          Survive
         </div>
 
         <div
           style={{
             display: "flex",
             marginTop: 26,
-            padding: "12px 34px",
-            border: "2px solid rgba(245,185,66,0.45)",
-            borderRadius: 10,
+            padding: "14px 36px",
+            background: "#2d2a26",
+            borderRadius: 18,
             fontSize: 30,
-            color: "#ffe1a1",
-            letterSpacing: "0.14em",
+            fontWeight: 700,
+            color: "#ffb03a",
+            letterSpacing: "0.08em",
           }}
         >
           STOP GUESSING. START CONQUERING.

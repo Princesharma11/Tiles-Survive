@@ -2,11 +2,11 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
-import { fadeUp, staggerContainer } from "@/lib/animations/variants";
+import { fadeUp, springPop, staggerContainer } from "@/lib/animations/variants";
 import Reveal from "@/components/motion/Reveal";
 
 /* ------------------------------------------------------------------ */
-/*  SectionHeader — HUD eyebrow + display title + description.         */
+/*  SectionHeader — expedition signpost: wooden badge + big title.     */
 /* ------------------------------------------------------------------ */
 
 export interface SectionHeaderProps {
@@ -15,6 +15,7 @@ export interface SectionHeaderProps {
   accent?: string; // highlighted tail of the title
   description?: string;
   align?: "left" | "center";
+  dark?: boolean; // on dark (pine) sections
   className?: string;
 }
 
@@ -24,6 +25,7 @@ export function SectionHeader({
   accent,
   description,
   align = "left",
+  dark = false,
   className,
 }: SectionHeaderProps) {
   const words = accent ? title.split(" " + accent) : [title];
@@ -36,33 +38,51 @@ export function SectionHeader({
         className
       )}
     >
-      <motion.div variants={staggerContainer(0.12)} initial="hidden" whileInView="show" viewport={{ once: true }}>
-        <motion.p
+      <motion.div
+        variants={staggerContainer(0.1)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
+        <motion.span
           variants={fadeUp}
           className={cn(
-            "mb-4 flex items-center gap-3 font-mono text-[11px] tracking-[0.35em] text-gold-500",
-            align === "center" && "justify-center"
+            "mb-5 inline-flex items-center gap-2 rounded-full border-2 px-4 py-1.5 font-display text-[11px] font-bold uppercase tracking-[0.22em]",
+            dark
+              ? "border-cream/30 bg-cream/10 text-gold"
+              : "border-ink/15 bg-white text-ember-deep shadow-[0_2px_0_0_rgba(45,42,38,0.15)]"
           )}
         >
-          <span aria-hidden className="inline-block size-1.5 animate-blip rounded-full bg-gold-500" />
+          <span aria-hidden className="text-base leading-none">
+            ⛺
+          </span>
           {eyebrow}
-        </motion.p>
+        </motion.span>
+
         <motion.h2
           variants={fadeUp}
-          className="font-display text-3xl font-bold uppercase italic leading-[1.05] tracking-tight text-steel-100 sm:text-4xl lg:text-5xl"
+          className={cn(
+            "font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-5xl lg:text-[3.4rem]",
+            dark ? "text-cream" : "text-ink"
+          )}
         >
           {words[0]}
           {accent && (
             <>
               {" "}
-              <span className="text-gradient-gold">{accent}</span>
+              <span className="text-sunset">{accent}</span>
             </>
           )}
         </motion.h2>
+
         {description && (
           <motion.p
             variants={fadeUp}
-            className="mt-5 text-base leading-relaxed text-steel-300"
+            transition={springPop}
+            className={cn(
+              "mt-4 text-lg font-semibold leading-relaxed",
+              dark ? "text-cream/75" : "text-ink-soft"
+            )}
           >
             {description}
           </motion.p>

@@ -1,5 +1,3 @@
-import type { IconName } from "@/components/ui/icons";
-
 export type Feature = {
   id: string;
   index: string;
@@ -9,13 +7,14 @@ export type Feature = {
   bullets: string[];
   meta: string;
   status: "LIVE" | "BETA";
-  icon: IconName;
+  image: string;
+  imageAlt: string;
+  chipColor: string;
   href: string;
-  accent: "gold" | "ember" | "mint";
 };
 
 /**
- * The three flagship tools featured in the interactive grid.
+ * The three flagship tools — each anchored to a real corner of the game world.
  */
 export const features: Feature[] = [
   {
@@ -24,7 +23,7 @@ export const features: Feature[] = [
     title: "Arcadian War Room",
     tagline: "Plan the rally before the rally.",
     description:
-      "Command-grade planning for Arcadian Conquest and cross-State warfare. Plot marches on a live tile grid, assign officer roles, and war-game every approach before you commit a single troop.",
+      "Command-grade planning for Arcadian Conquest and cross-State wars. Plot marches across the tile map, assign officer roles, and war-game every approach before a single troop marches.",
     bullets: [
       "Rally timeline simulator",
       "Garrison & officer role sync",
@@ -32,44 +31,47 @@ export const features: Feature[] = [
     ],
     meta: "12,400+ plans filed this season",
     status: "LIVE",
-    icon: "radar",
+    image: "/world/scene-island.webp",
+    imageAlt: "Floating tile island high above the frontier",
+    chipColor: "#3d9bd1",
     href: "/war-room",
-    accent: "gold",
   },
   {
     id: "troop-ratio",
     index: "02",
     title: "Troop Ratio Optimizer",
-    tagline: "Solve the Guards / Gunners / Marksmen triangle.",
+    tagline: "Solve the Guards · Gunners · Marksmen triangle.",
     description:
       "Feed in your barracks and get the counter-proof split your march actually needs. No more 100%-Guard coin flips getting shredded by a balanced Gunner-Marksman wall.",
     bullets: [
-      "45/35/20 consensus baseline presets",
-      "Faction-aligned hero pairing (Stalwart → Rover)",
+      "45/35/20 consensus presets",
+      "Faction-aligned hero pairing",
       "Counter-matrix combat simulator",
     ],
-    meta: "Counter math overrides raw power",
+    meta: "Counter math beats raw power",
     status: "LIVE",
-    icon: "sliders",
+    image: "/world/scene-village.webp",
+    imageAlt: "A scout overlooking the tile valley settlement",
+    chipColor: "#6fae3e",
     href: "/hero-meta-calc",
-    accent: "ember",
   },
   {
     id: "gear-reforge",
     index: "03",
     title: "Gear Reforge Simulator",
-    tagline: "Chief Gear compounds. Reforge blind and it shows.",
+    tagline: "Chief Gear compounds — forge, don't gamble.",
     description:
-      "Chief Gear boosts every hero you field — a bad roll hurts account-wide. Test substat rolls across white-to-legendary quality tiers before you spend a single alloy.",
+      "Chief Gear boosts every hero you field, so a bad reroll taxes the whole account. Test substat rolls across white-to-legendary tiers before you spend a single alloy.",
     bullets: [
       "Full reforge odds table",
       "Quality-tier breakpoint planner",
       "Save & compare roll sets",
     ],
-    meta: "Simulated 2.1M reforges and counting",
+    meta: "2.1M reforges simulated",
     status: "BETA",
-    icon: "anvil",
+    image: "/world/scene-furnace.webp",
+    imageAlt: "The settlement furnace blazing at the heart of the base",
+    chipColor: "#f07d2e",
     href: "/gear-reforge",
-    accent: "mint",
   },
 ];

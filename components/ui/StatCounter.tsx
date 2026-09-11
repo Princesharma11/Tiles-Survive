@@ -5,7 +5,7 @@ import { animate, useInView } from "framer-motion";
 import { EASE_OUT_EXPO } from "@/lib/animations/variants";
 
 /* ------------------------------------------------------------------ */
-/*  StatCounter — counts up when scrolled into view.                   */
+/*  StatCounter — counts up when scrolled into view (sticker style).   */
 /* ------------------------------------------------------------------ */
 
 export interface StatCounterProps {
@@ -22,7 +22,7 @@ export function StatCounter({ value, suffix = "", label }: StatCounterProps) {
   useEffect(() => {
     if (!inView) return;
     const controls = animate(0, value, {
-      duration: 1.8,
+      duration: 1.6,
       ease: EASE_OUT_EXPO,
       onUpdate: (v) => setDisplay(String(Math.round(v)).padStart(2, "0")),
     });
@@ -31,11 +31,11 @@ export function StatCounter({ value, suffix = "", label }: StatCounterProps) {
 
   return (
     <div ref={ref} className="px-4 text-center sm:px-6">
-      <p className="font-display text-2xl font-bold text-gold-400 sm:text-3xl">
+      <p className="font-display text-3xl font-extrabold text-ink">
         {display}
-        {suffix}
+        <span className="text-ember">{suffix}</span>
       </p>
-      <p className="mt-1 font-mono text-[10px] tracking-[0.3em] text-steel-400">
+      <p className="mt-0.5 font-mono text-[10px] font-bold tracking-[0.22em] text-ink-soft">
         {label}
       </p>
     </div>

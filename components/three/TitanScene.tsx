@@ -10,10 +10,10 @@ import CommandRings from "./CommandRings";
 import EmberField from "./EmberField";
 
 /* ------------------------------------------------------------------ */
-/*  TitanScene — the hero "command table": a breathing tile grid,      */
-/*  a glowing tile monolith, orbiting command rings, drifting embers.  */
-/*  Parallax is driven by a window-level pointer listener so the       */
-/*  canvas itself can stay pointer-events: none.                       */
+/*  TitanScene — a warm, sunlit floating tile island: grass-topped     */
+/*  tiles breathing in waves, a rock totem with a molten-gold core,    */
+/*  drift rings and rising embers. Pointer parallax via window         */
+/*  listener so the canvas itself stays pointer-events: none.          */
 /* ------------------------------------------------------------------ */
 
 const pointerTarget = { x: 0, y: 0 };
@@ -33,40 +33,26 @@ export default function TitanScene({ isMobile = false }: { isMobile?: boolean })
   useFrame(({ camera }, delta) => {
     const g = root.current;
     if (g) {
-      g.rotation.y = THREE.MathUtils.damp(
-        g.rotation.y,
-        pointerTarget.x * 0.18,
-        2,
-        delta
-      );
+      g.rotation.y = THREE.MathUtils.damp(g.rotation.y, pointerTarget.x * 0.16, 2, delta);
     }
-    camera.position.x = THREE.MathUtils.damp(
-      camera.position.x,
-      pointerTarget.x * 0.9,
-      1.8,
-      delta
-    );
-    camera.position.y = THREE.MathUtils.damp(
-      camera.position.y,
-      3.4 + pointerTarget.y * 0.45,
-      1.8,
-      delta
-    );
+    camera.position.x = THREE.MathUtils.damp(camera.position.x, pointerTarget.x * 0.8, 1.8, delta);
+    camera.position.y = THREE.MathUtils.damp(camera.position.y, 3.4 + pointerTarget.y * 0.4, 1.8, delta);
     camera.lookAt(0, 0.7, 0);
   });
 
   return (
     <>
-      <fog attach="fog" args={["#04060c", 13, 30]} />
+      <fog attach="fog" args={["#fbd9a8", 13, 30]} />
 
-      <ambientLight intensity={0.5} color="#7f93b8" />
-      <directionalLight position={[6, 9, 4]} intensity={1.2} color="#ffe3b0" />
+      {/* Golden-hour lighting */}
+      <ambientLight intensity={0.85} color="#ffe8c4" />
+      <directionalLight position={[6, 10, 4]} intensity={1.6} color="#fff1d6" />
       <pointLight
         position={[-7, 3, -5]}
-        intensity={70}
+        intensity={50}
         distance={22}
         decay={2}
-        color="#ff5c33"
+        color="#f07d2e"
       />
 
       <group ref={root}>
@@ -78,10 +64,10 @@ export default function TitanScene({ isMobile = false }: { isMobile?: boolean })
           count={isMobile ? 50 : 90}
           scale={[13, 6, 13]}
           position={[0, 2.2, 0]}
-          size={2.4}
+          size={2.6}
           speed={0.25}
-          opacity={0.5}
-          color="#f5b942"
+          opacity={0.65}
+          color="#fff1c9"
         />
       </group>
     </>

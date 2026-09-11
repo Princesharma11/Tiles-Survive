@@ -28,6 +28,7 @@ export default function HeroMetaCalcPage() {
         "SOLVING MARCH EQUATIONS",
       ]}
       variant="calc"
+      scene="/world/scene-village.webp"
     />
   );
 }

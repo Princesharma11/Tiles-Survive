@@ -28,6 +28,7 @@ export default function WarRoomPage() {
         "CALIBRATING RALLY TIMERS",
       ]}
       variant="radar"
+      scene="/world/scene-island.webp"
     />
   );
 }

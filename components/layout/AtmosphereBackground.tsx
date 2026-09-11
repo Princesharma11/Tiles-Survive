@@ -1,26 +1,27 @@
 /* ------------------------------------------------------------------ */
-/*  AtmosphereBackground — fixed, GPU-cheap ambient layers that sit    */
-/*  behind every page: tactical grid, drifting glows, film grain.      */
-/*  Pure CSS animation — zero JS, zero layout impact.                  */
+/*  AtmosphereBackground — light sky world behind every page:          */
+/*  warm gradient, drifting cloud puffs, faint tile grid. Pure CSS.    */
 /* ------------------------------------------------------------------ */
 
 export default function AtmosphereBackground() {
   return (
-    <div aria-hidden className="noise pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      {/* Base grid */}
-      <div className="bg-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(90%_70%_at_50%_0%,black,transparent_75%)]" />
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-gradient-to-b from-cream via-paper to-sand">
+      {/* Sun glow */}
+      <div className="absolute -top-32 right-[8%] size-[420px] rounded-full bg-gradient-to-b from-flame/30 to-gold/10 blur-3xl" />
 
-      {/* Command gold bloom — top left */}
-      <div className="absolute -left-40 -top-40 size-[560px] animate-breathe rounded-full bg-gold-500/[0.07] blur-[130px]" />
-
-      {/* Ember bloom — bottom right */}
+      {/* Drifting clouds */}
+      <div className="cloud animate-drift absolute left-[6%] top-[18%] h-24 w-72 opacity-80" />
       <div
-        className="absolute -bottom-52 -right-40 size-[620px] animate-breathe rounded-full bg-ember-500/[0.06] blur-[140px]"
-        style={{ animationDelay: "2.4s" }}
+        className="cloud animate-drift absolute right-[14%] top-[38%] h-20 w-60 opacity-60"
+        style={{ animationDuration: "34s", animationDelay: "-8s" }}
+      />
+      <div
+        className="cloud animate-drift absolute left-[30%] top-[62%] h-24 w-80 opacity-50"
+        style={{ animationDuration: "42s", animationDelay: "-20s" }}
       />
 
-      {/* Horizon line glow */}
-      <div className="absolute inset-x-0 top-1/3 h-px bg-gradient-to-r from-transparent via-gold-500/10 to-transparent" />
+      {/* Faint tile grid, fading downward */}
+      <div className="bg-tilegrid absolute inset-0 opacity-50 [mask-image:linear-gradient(to_bottom,black,transparent_60%)]" />
     </div>
   );
 }

@@ -9,9 +9,8 @@ import { guides } from "@/data/guides";
 import { cn } from "@/lib/utils/cn";
 
 /* ------------------------------------------------------------------ */
-/*  GuidesCarousel — horizontally scrolling codex rail.                */
-/*  Native scroll-snap (trackpad + touch friendly) + arrow controls    */
-/*  + animated scroll progress rail.                                   */
+/*  GuidesCarousel — horizontally snapping codex rail with arrows      */
+/*  + animated progress trail.                                         */
 /* ------------------------------------------------------------------ */
 
 export default function GuidesCarousel() {
@@ -37,63 +36,29 @@ export default function GuidesCarousel() {
   };
 
   return (
-    <section id="guides" className="relative py-24 md:py-36">
-      {/* Ambient glow behind the rail */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-1/4 mx-auto h-72 max-w-4xl rounded-full bg-gold-500/[0.05] blur-[120px]"
-      />
-
+    <section id="guides" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeader
-            eyebrow="[ 03 // KNOWLEDGE CACHE ]"
-            title="The survival codex."
+            eyebrow="Knowledge cache"
+            title="The survival"
             accent="codex."
-            description="Battle-tested guides distilled from thousands of State wars — from your first fog clearing run to cross-server conquest."
+            description="Battle-tested guides distilled from thousands of State wars — from your first fog run to cross-server conquest."
             className="mb-0"
           />
 
-          {/* Arrow controls */}
           <div className="mb-12 hidden gap-3 md:mb-16 lg:flex">
-            <button
-              type="button"
-              onClick={() => scrollBy(-1)}
-              disabled={atStart}
-              aria-label="Scroll guides left"
-              className={cn(
-                "grid size-12 place-items-center rounded-full border transition-all duration-300",
-                atStart
-                  ? "cursor-not-allowed border-white/5 text-steel-500"
-                  : "border-gold-500/40 text-gold-400 hover:border-gold-500 hover:bg-gold-500/10 hover:shadow-glow"
-              )}
-            >
-              <ChevronLeftIcon className="size-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollBy(1)}
-              disabled={atEnd}
-              aria-label="Scroll guides right"
-              className={cn(
-                "grid size-12 place-items-center rounded-full border transition-all duration-300",
-                atEnd
-                  ? "cursor-not-allowed border-white/5 text-steel-500"
-                  : "border-gold-500/40 text-gold-400 hover:border-gold-500 hover:bg-gold-500/10 hover:shadow-glow"
-              )}
-            >
-              <ChevronRightIcon className="size-5" />
-            </button>
+            <ArrowButton dir={-1} disabled={atStart} onClick={scrollBy} label="Scroll guides left" />
+            <ArrowButton dir={1} disabled={atEnd} onClick={scrollBy} label="Scroll guides right" />
           </div>
         </div>
       </div>
 
-      {/* Horizontal rail */}
       <div className="mx-auto max-w-7xl sm:px-8">
         <div
           ref={scrollerRef}
           onScroll={sync}
-          className="mask-fade-x no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-2 sm:-mx-2 sm:px-2"
+          className="no-scrollbar mask-fade-x -mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-3 sm:-mx-2 sm:px-2"
         >
           {guides.map((guide, i) => (
             <GuideCard
@@ -107,25 +72,59 @@ export default function GuidesCarousel() {
           {/* Terminal card */}
           <a
             href="/guides"
-            className="group flex w-[300px] shrink-0 snap-start flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-gold-500/30 bg-gold-500/[0.03] transition-all duration-500 hover:border-gold-500/60 hover:bg-gold-500/[0.07] sm:w-[350px]"
+            className="group flex w-[300px] shrink-0 snap-start flex-col items-center justify-center gap-4 rounded-3xl border-[3px] border-dashed border-ink/30 bg-white/50 transition-all duration-500 hover:-translate-y-2 hover:border-ink hover:bg-white sm:w-[350px]"
           >
-            <span className="grid size-14 place-items-center rounded-full border border-gold-500/40 text-gold-400 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-90">
-              <ChevronRightIcon className="size-6" />
+            <span className="grid size-16 place-items-center rounded-2xl border-[3px] border-ink bg-gradient-to-b from-flame to-ember text-white shadow-[0_4px_0_0_#2d2a26] transition-transform duration-500 group-hover:rotate-90 group-hover:scale-110">
+              <ChevronRightIcon className="size-7" />
             </span>
-            <span className="font-mono text-[11px] tracking-[0.3em] text-gold-400">
-              OPEN FULL CODEX
+            <span className="font-display text-sm font-extrabold uppercase tracking-[0.25em] text-ink">
+              Open full codex
             </span>
           </a>
         </div>
 
-        {/* Progress rail */}
-        <div className="mx-auto mt-8 h-px w-full max-w-xs overflow-hidden bg-white/10">
+        {/* Progress trail */}
+        <div className="trail-dots mx-auto mt-8 w-full max-w-xs opacity-40" />
+        <div className="mx-auto mt-2 h-1.5 w-full max-w-xs overflow-hidden rounded-full border-2 border-ink/15 bg-white">
           <motion.div
-            className="h-full w-full origin-left bg-gradient-to-r from-gold-600 to-gold-300"
+            className="h-full w-full origin-left rounded-full bg-gradient-to-r from-ember to-berry"
             style={{ scaleX: progress }}
           />
         </div>
       </div>
     </section>
+  );
+}
+
+function ArrowButton({
+  dir,
+  disabled,
+  onClick,
+  label,
+}: {
+  dir: 1 | -1;
+  disabled: boolean;
+  onClick: (d: 1 | -1) => void;
+  label: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onClick(dir)}
+      disabled={disabled}
+      aria-label={label}
+      className={cn(
+        "grid size-13 place-items-center rounded-2xl border-[3px] border-ink shadow-[0_4px_0_0_#2d2a26] transition-all duration-300",
+        disabled
+          ? "cursor-not-allowed border-ink/20 bg-paper text-ink-faint shadow-none"
+          : "bg-white text-ink hover:-translate-y-1 hover:bg-gold active:translate-y-0.5"
+      )}
+    >
+      {dir === -1 ? (
+        <ChevronLeftIcon className="size-6" />
+      ) : (
+        <ChevronRightIcon className="size-6" />
+      )}
+    </button>
   );
 }

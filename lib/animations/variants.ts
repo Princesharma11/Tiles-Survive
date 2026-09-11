@@ -1,27 +1,34 @@
 import type { Transition, Variants } from "framer-motion";
 
 /* ------------------------------------------------------------------ */
-/*  TitanTilesSurvive — Motion Language                                */
-/*  Every animation on the site flows through these shared primitives  */
-/*  so the whole app feels like one machine.                           */
+/*  TitanTilesSurvive — Motion Language ("Adventure HUD")              */
+/*  Springy, game-feel motion: overshoot pops, floating loops,         */
+/*  chunky presses. Every component shares these primitives.           */
 /* ------------------------------------------------------------------ */
 
-/** Signature ease — fast attack, long silky settle (easeOutExpo-ish). */
+/** Soft adventure ease for big reveals. */
 export const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-/** Soft organic spring — cards, panels, layout shifts. */
-export const springSoft: Transition = {
+/** The signature game-feel spring — cards, cutouts, pop-ins. Overshoots a touch. */
+export const springPop: Transition = {
   type: "spring",
-  stiffness: 140,
-  damping: 22,
+  stiffness: 320,
+  damping: 19,
   mass: 0.9,
 };
 
-/** Snappy spring — buttons, toggles, magnetic hovers. */
+/** Gentle spring — panels, layout shifts. */
+export const springSoft: Transition = {
+  type: "spring",
+  stiffness: 160,
+  damping: 22,
+};
+
+/** Snappy spring — buttons, toggles. */
 export const springSnappy: Transition = {
   type: "spring",
-  stiffness: 420,
-  damping: 32,
+  stiffness: 500,
+  damping: 30,
 };
 
 /** Standard viewport config for scroll reveals. */
@@ -31,43 +38,39 @@ export const viewportOnce = {
   margin: "0px 0px -80px 0px",
 } as const;
 
-/** Fade + rise — the workhorse reveal. */
+/** Fade + rise + tiny tilt — the workhorse reveal. */
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 36, rotate: -0.5 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: EASE_OUT_EXPO },
+    rotate: 0,
+    transition: { duration: 0.75, ease: EASE_OUT_EXPO },
   },
 };
 
-/** Fade only — for content sitting on busy backgrounds. */
-export const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 0.9, ease: "easeOut" } },
-};
-
-/** Scale + fade — for tiles, plates, chips. */
-export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.9 },
+/** Bouncy scale pop — stickers, badges, characters. */
+export const popIn: Variants = {
+  hidden: { opacity: 0, scale: 0.6, y: 24 },
   show: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.7, ease: EASE_OUT_EXPO },
+    y: 0,
+    transition: springPop,
   },
 };
 
-/** Masked line reveal — hero headline lines slide out of an overflow clip. */
+/** Masked line reveal — hero headline lines. */
 export const lineReveal: Variants = {
-  hidden: { y: "115%", rotate: 2 },
+  hidden: { y: "115%", rotate: 3 },
   show: {
     y: "0%",
     rotate: 0,
-    transition: { duration: 1, ease: EASE_OUT_EXPO },
+    transition: { duration: 0.9, ease: EASE_OUT_EXPO },
   },
 };
 
-/** Orchestrator — staggers any set of child variants. */
+/** Orchestrator — staggers child variants. */
 export const staggerContainer = (
   staggerChildren = 0.09,
   delayChildren = 0
@@ -78,27 +81,12 @@ export const staggerContainer = (
   },
 });
 
-/** Mobile menu / dropdown item entrance. */
+/** Mobile menu item entrance. */
 export const menuItem: Variants = {
-  hidden: { opacity: 0, x: -24 },
+  hidden: { opacity: 0, x: -28 },
   show: {
     opacity: 1,
     x: 0,
     transition: { duration: 0.5, ease: EASE_OUT_EXPO },
   },
-};
-
-/** Pulse ring for the logo mark. */
-export const pulseRing: Variants = {
-  idle: { scale: 1, opacity: 0.7 },
-  pulse: (delay: number = 0) => ({
-    scale: [1, 1.45],
-    opacity: [0.7, 0],
-    transition: {
-      duration: 2.2,
-      ease: "easeOut",
-      repeat: Infinity,
-      delay,
-    },
-  }),
 };

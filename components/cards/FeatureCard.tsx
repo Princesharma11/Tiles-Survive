@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type MouseEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   motion,
@@ -8,49 +9,23 @@ import {
   useMotionValue,
   useReducedMotion,
 } from "framer-motion";
-import { getIcon } from "@/components/ui/icons";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import type { Feature } from "@/data/features";
-import { cn } from "@/lib/utils/cn";
-import { springSoft } from "@/lib/animations/variants";
+import { springPop, springSoft } from "@/lib/animations/variants";
 
 /* ------------------------------------------------------------------ */
-/*  FeatureCard — tilts, lifts, spotlights under the cursor, and       */
-/*  EXPANDS on hover to reveal tool details (tap toggles on touch).    */
+/*  FeatureCard — sticker game panel: real world-scene art header,     */
+/*  ink outline, hard edge. Expands on hover (tap on mobile) to        */
+/*  reveal the tool's loadout with springy height animation.           */
 /* ------------------------------------------------------------------ */
-
-const accentMap = {
-  gold: {
-    chip: "border-gold-500/40 bg-gold-500/10 text-gold-400",
-    plate: "border-gold-500/30 bg-gold-500/10 text-gold-400",
-    glow: "hover:border-gold-500/50 hover:shadow-glow",
-    tagline: "text-gold-500",
-  },
-  ember: {
-    chip: "border-ember-500/40 bg-ember-500/10 text-ember-400",
-    plate: "border-ember-500/30 bg-ember-500/10 text-ember-400",
-    glow: "hover:border-ember-500/50 hover:shadow-ember",
-    tagline: "text-ember-400",
-  },
-  mint: {
-    chip: "border-mint-400/40 bg-mint-400/10 text-mint-400",
-    plate: "border-mint-400/30 bg-mint-400/10 text-mint-400",
-    glow: "hover:border-mint-400/50 hover:shadow-[0_0_32px_rgba(87,230,197,0.12)]",
-    tagline: "text-mint-400",
-  },
-} as const;
 
 export default function FeatureCard({ feature }: { feature: Feature }) {
   const [expanded, setExpanded] = useState(false);
   const reduce = useReducedMotion();
 
-  // Cursor spotlight
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const spotlight = useMotionTemplate`radial-gradient(340px circle at ${mx}px ${my}px, rgba(245,185,66,0.09), transparent 70%)`;
-
-  const accent = accentMap[feature.accent];
-  const Icon = getIcon(feature.icon);
+  const spotlight = useMotionTemplate`radial-gradient(360px circle at ${mx}px ${my}px, ${feature.chipColor}22, transparent 70%)`;
 
   const handleMove = (e: MouseEvent<HTMLElement>) => {
     if (reduce) return;
@@ -62,120 +37,131 @@ export default function FeatureCard({ feature }: { feature: Feature }) {
   return (
     <motion.article
       variants={{
-        hidden: { opacity: 0, y: 36 },
+        hidden: { opacity: 0, y: 44, rotate: -1 },
         show: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+          rotate: 0,
+          transition: springPop,
         },
       }}
       onHoverStart={() => setExpanded(true)}
       onHoverEnd={() => setExpanded(false)}
       onTap={() => setExpanded((v) => !v)}
       onMouseMove={handleMove}
-      whileHover={reduce ? undefined : { y: -8 }}
+      whileHover={reduce ? undefined : { y: -10, rotate: 0.4 }}
       transition={springSoft}
-      className={cn(
-        "group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/10 bg-panel/70 p-7 backdrop-blur-md transition-colors duration-500",
-        accent.glow
-      )}
+      className="group relative flex cursor-pointer flex-col overflow-hidden rounded-3xl border-[3px] border-ink bg-white shadow-[0_5px_0_0_#2d2a26,0_22px_40px_-18px_rgba(45,42,38,0.4)]"
       data-expanded={expanded}
     >
       {/* Cursor spotlight */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 z-10"
         style={{ background: spotlight, opacity: expanded ? 1 : 0 }}
       />
 
-      {/* Top status rail */}
-      <div className="relative mb-7 flex items-center justify-between">
+      {/* Art header */}
+      <div className="relative h-48 overflow-hidden border-b-[3px] border-ink">
+        <Image
+          src={feature.image}
+          alt={feature.imageAlt}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-t from-ink/25 to-transparent"
+        />
+        {/* Module chip */}
         <span
-          className={cn(
-            "grid size-12 place-items-center rounded-xl border backdrop-blur-sm",
-            accent.plate
-          )}
+          className="absolute left-4 top-4 rounded-full border-[3px] border-ink px-3 py-1 font-display text-[11px] font-extrabold tracking-[0.14em] text-ink shadow-[0_3px_0_0_#2d2a26]"
+          style={{ background: feature.chipColor }}
         >
-          <Icon className="size-6" />
+          MODULE {feature.index}
         </span>
+        {/* Status badge */}
         <span
-          className={cn(
-            "rounded-full border px-3 py-1 font-mono text-[10px] tracking-[0.28em]",
-            accent.chip
-          )}
+          className={`absolute right-4 top-4 rounded-full border-[3px] border-ink px-3 py-1 font-display text-[11px] font-extrabold tracking-[0.14em] shadow-[0_3px_0_0_#2d2a26] ${
+            feature.status === "LIVE"
+              ? "bg-leaf text-white"
+              : "bg-gold text-ink"
+          }`}
         >
-          {feature.status}
+          {feature.status === "LIVE" ? "● LIVE" : "◆ BETA"}
         </span>
       </div>
 
-      <p className="relative font-mono text-[10px] tracking-[0.3em] text-steel-500">
-        MODULE // {feature.index}
-      </p>
-      <h3 className="relative mt-2 font-display text-2xl font-bold uppercase italic tracking-tight text-steel-100">
-        {feature.title}
-      </h3>
-      <p
-        className={cn(
-          "relative mt-1 font-mono text-[11px] tracking-[0.14em]",
-          accent.tagline
-        )}
-      >
-        {feature.tagline}
-      </p>
+      {/* Body */}
+      <div className="relative z-10 flex flex-1 flex-col p-6">
+        <h3 className="font-display text-2xl font-extrabold tracking-tight text-ink">
+          {feature.title}
+        </h3>
+        <p
+          className="mt-0.5 font-display text-sm font-bold"
+          style={{ color: feature.chipColor }}
+        >
+          {feature.tagline}
+        </p>
 
-      <p className="relative mt-4 text-sm leading-relaxed text-steel-300">
-        {feature.description}
-      </p>
+        <p className="mt-3 text-base font-semibold leading-relaxed text-ink-soft">
+          {feature.description}
+        </p>
 
-      {/* Expandable tool details */}
-      <motion.div
-        initial={false}
-        animate={{
-          height: expanded ? "auto" : 0,
-          opacity: expanded ? 1 : 0,
-        }}
-        transition={{ ...springSoft, opacity: { duration: 0.3 } }}
-        className="relative overflow-hidden"
-      >
-        <div className="pt-5">
-          <ul className="space-y-2.5 border-t border-white/5 pt-5">
-            {feature.bullets.map((bullet) => (
-              <li
-                key={bullet}
-                className="flex items-center gap-3 text-[13px] text-steel-200"
-              >
-                <span aria-hidden className="text-[9px] text-gold-500">
-                  ◆
-                </span>
-                {bullet}
-              </li>
-            ))}
-          </ul>
+        {/* Expandable loadout */}
+        <motion.div
+          initial={false}
+          animate={{
+            height: expanded ? "auto" : 0,
+            opacity: expanded ? 1 : 0,
+          }}
+          transition={{ ...springSoft, opacity: { duration: 0.25 } }}
+          className="overflow-hidden"
+        >
+          <div className="pt-4">
+            <ul className="space-y-2 rounded-2xl border-2 border-dashed border-ink/20 bg-paper/60 p-4">
+              {feature.bullets.map((bullet) => (
+                <li
+                  key={bullet}
+                  className="flex items-center gap-2.5 text-sm font-bold text-ink"
+                >
+                  <span
+                    aria-hidden
+                    className="grid size-5 shrink-0 place-items-center rounded-full border-2 border-ink text-[9px]"
+                    style={{ background: feature.chipColor }}
+                  >
+                    ✓
+                  </span>
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
 
-          <div className="mt-5 flex items-center justify-between">
-            <span className="font-mono text-[10px] tracking-[0.2em] text-steel-500">
+        {/* Footer */}
+        <div className="mt-auto pt-5">
+          <div className="flex items-center justify-between gap-3">
+            <span className="rounded-full bg-paper px-3 py-1 font-mono text-[10px] font-bold tracking-[0.12em] text-ink-soft">
               {feature.meta.toUpperCase()}
             </span>
             <Link
               href={feature.href}
-              className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-gold-400 transition-colors hover:text-gold-300"
+              className="inline-flex items-center gap-1.5 rounded-full border-[3px] border-ink bg-gradient-to-b from-flame to-ember px-4 py-1.5 font-display text-xs font-extrabold uppercase tracking-wide text-white shadow-[0_3px_0_0_#a03f10] transition-transform hover:-translate-y-0.5 active:translate-y-0.5"
               onClick={(e) => e.stopPropagation()}
             >
-              OPEN TOOL
+              Open
               <ArrowRightIcon className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
+          <p
+            className="mt-3 text-center font-display text-[11px] font-bold uppercase tracking-[0.25em] text-ink-faint transition-opacity duration-200"
+            style={{ opacity: expanded ? 0 : 1 }}
+          >
+            Hover to expand // tap on mobile
+          </p>
         </div>
-      </motion.div>
-
-      {/* Bottom accent rail */}
-      <div className="relative mt-auto pt-6">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <p className="mt-3 text-center font-mono text-[9px] tracking-[0.35em] text-steel-500 transition-opacity duration-300"
-          style={{ opacity: expanded ? 0 : 1 }}
-        >
-          HOVER TO EXPAND // TAP ON MOBILE
-        </p>
       </div>
     </motion.article>
   );

@@ -5,18 +5,15 @@ import AtmosphereBackground from "@/components/layout/AtmosphereBackground";
 import { site } from "@/data/site";
 
 /* ------------------------------------------------------------------ */
-/*  Fonts — self-hosted via Fontsource npm packages. Zero external     */
-/*  font CDN at build or runtime: fast, private, Vercel-friendly.      */
+/*  Fonts — self-hosted via Fontsource: Baloo 2 (chunky display),      */
+/*  Nunito (friendly body), JetBrains Mono (HUD numbers).              */
 /* ------------------------------------------------------------------ */
 
-import "@fontsource/chakra-petch/400.css";
-import "@fontsource/chakra-petch/500.css";
-import "@fontsource/chakra-petch/600.css";
-import "@fontsource/chakra-petch/700.css";
-import "@fontsource/chakra-petch/500-italic.css";
-import "@fontsource/chakra-petch/600-italic.css";
-import "@fontsource/chakra-petch/700-italic.css";
-import "@fontsource-variable/inter";
+import "@fontsource/baloo-2/500.css";
+import "@fontsource/baloo-2/600.css";
+import "@fontsource/baloo-2/700.css";
+import "@fontsource/baloo-2/800.css";
+import "@fontsource-variable/nunito";
 import "@fontsource-variable/jetbrains-mono";
 
 import "./globals.css";
@@ -53,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#04060c",
+  themeColor: "#fff9f0",
   width: "device-width",
   initialScale: 1,
 };
@@ -63,10 +60,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="font-body bg-void text-steel-200">
+      <body className="font-body bg-cream text-ink">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-gold-500 focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:text-void"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:border-[3px] focus:border-ink focus:bg-ember focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:font-bold focus:text-white"
         >
           SKIP TO CONTENT
         </a>
