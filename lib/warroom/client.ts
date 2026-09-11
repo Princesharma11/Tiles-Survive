@@ -129,22 +129,40 @@ export function useNow(intervalMs = 1000): number {
   return now;
 }
 
-/** Persisted identity helpers (leader token / member id) per war code. */
+/** Persisted identity helpers (leader token / member id) per war code.
+    All storage access is fail-safe: sandboxed iframes / privacy modes
+    can throw on sessionStorage — that must never break the war flow. */
 const ns = (code: string) => code.toLowerCase();
 
 export const warIdentity = {
   leaderToken(code: string): string | null {
-    if (typeof window === "undefined") return null;
-    return window.sessionStorage.getItem(`tts-war-leader-${ns(code)}`);
+    try {
+      if (typeof window === "undefined") return null;
+      return window.sessionStorage.getItem(`tts-war-leader-${ns(code)}`);
+    } catch {
+      return null;
+    }
   },
   setLeaderToken(code: string, token: string) {
-    window.sessionStorage.setItem(`tts-war-leader-${ns(code)}`, token);
+    try {
+      window.sessionStorage.setItem(`tts-war-leader-${ns(code)}`, token);
+    } catch {
+      /* storage blocked — leader authority is still validated server-side */
+    }
   },
   memberId(code: string): string | null {
-    if (typeof window === "undefined") return null;
-    return window.sessionStorage.getItem(`tts-war-member-${ns(code)}`);
+    try {
+      if (typeof window === "undefined") return null;
+      return window.sessionStorage.getItem(`tts-war-member-${ns(code)}`);
+    } catch {
+      return null;
+    }
   },
   setMemberId(code: string, id: string) {
-    window.sessionStorage.setItem(`tts-war-member-${ns(code)}`, id);
+    try {
+      window.sessionStorage.setItem(`tts-war-member-${ns(code)}`, id);
+    } catch {
+      /* storage blocked */
+    }
   },
 };

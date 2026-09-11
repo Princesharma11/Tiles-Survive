@@ -198,8 +198,8 @@ export default function WarConsole({ code }: { code: string }) {
         </button>
       </motion.header>
 
-      {/* Invite panel — ALWAYS shows the link when open, so the invite is
-          obtainable even where every clipboard API is blocked. */}
+      {/* Invite panel — the link is ALWAYS visible when open, so the
+          invite is obtainable even where clipboard APIs are blocked. */}
       <AnimatePresence>
         {inviteOpen && (
           <motion.div
@@ -245,6 +245,24 @@ export default function WarConsole({ code }: { code: string }) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Personal orders (members) */}
+      {myMember && myMember.slot && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-5 rounded-2xl border-[3px] border-ink bg-gradient-to-b from-leaf to-leaf-deep px-4 py-3 text-white shadow-[0_4px_0_0_#25511c]"
+        >
+          <p className="font-display text-[10px] font-extrabold uppercase tracking-[0.28em] text-white/75">
+            🎯 Your orders
+          </p>
+          <p className="font-display text-lg font-extrabold">
+            Report to {slotById(myMember.slot)?.structure.name ?? "your slot"} as{" "}
+            {myMember.role === "rally" ? "RALLY LEADER ★" : "Filler"} — reinforce
+            on time.
+          </p>
+        </motion.div>
+      )}
 
       {/* Timers */}
       <div className="mb-5">
