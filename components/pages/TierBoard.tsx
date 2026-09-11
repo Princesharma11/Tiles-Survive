@@ -278,6 +278,14 @@ export default function TierBoard() {
         Rankings weigh PvP performance, campaign pushing and kit utility.
         Economy-only value (Travis, Eva, Lucky) is flagged — not counted toward
         combat scores. Meta shifts with every balance patch.
+        <br />
+        <span className="text-ink-soft/70">
+          Portrait credits: Ghost, Maddie, Rusty, Lucky &amp; Sarge are official
+          FunPlus renders; Freja is cropped from in-game footage; Rosie, Layla,
+          Nikola, Tarzan, Tara, Becca, Kiki, Jacob, Tony &amp; Ray are fan-made
+          renditions drawn on-style from the official art; Travis, Eva &amp;
+          Chef appear as monogram plates.
+        </span>
       </motion.p>
 
       {/* Synergy Tracker */}
