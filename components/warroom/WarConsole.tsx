@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useWarRoom, useNow, warIdentity } from "@/lib/warroom/client";
 import type { Control, StructureId, WarRole } from "@/lib/warroom/types";
 import { slotById } from "@/lib/warroom/types";
@@ -27,6 +27,7 @@ export default function WarConsole({ code }: { code: string }) {
   const [isLeader, setIsLeader] = useState(false);
   const [myMemberId, setMyMemberId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [inviteOpen, setInviteOpen] = useState(false);
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
   const inviteRef = useRef<HTMLInputElement>(null);
 
@@ -53,11 +54,30 @@ export default function WarConsole({ code }: { code: string }) {
       ? `${window.location.origin}/war/${encodeURIComponent(session.code)}`
       : "";
 
-  const copyInvite = async () => {
+  const attemptCopy = async () => {
     const ok = await copyText(inviteUrl);
     setCopyState(ok ? "copied" : "failed");
-    if (ok) setTimeout(() => setCopyState("idle"), 2500);
-    else setTimeout(() => inviteRef.current?.select(), 50);
+    if (ok) {
+      setTimeout(() => {
+        setCopyState("idle");
+        setInviteOpen(false);
+      }, 1800);
+    } else {
+      /* clipboard fully blocked → link stays visible & pre-selected */
+      setTimeout(() => {
+        inviteRef.current?.focus();
+        inviteRef.current?.select();
+      }, 50);
+    }
+  };
+
+  const toggleInvite = () => {
+    const next = !inviteOpen;
+    setInviteOpen(next);
+    if (next) {
+      setCopyState("idle");
+      void attemptCopy();
+    }
   };
 
   /* --------------------------- states ----------------------------- */
@@ -166,61 +186,65 @@ export default function WarConsole({ code }: { code: string }) {
 
         <button
           type="button"
-          onClick={copyInvite}
+          onClick={toggleInvite}
+          aria-expanded={inviteOpen}
           className="rounded-2xl border-[3px] border-ink bg-gradient-to-b from-gold to-flame px-4 py-2 font-display text-xs font-extrabold uppercase tracking-wide text-ink shadow-[0_3px_0_0_#2d2a26] transition-all hover:-translate-y-0.5"
         >
           {copyState === "copied"
-            ? "✓ Link copied!"
-            : "🔗 Copy invite link"}
+            ? "✓ Copied! Paste it in Discord"
+            : inviteOpen
+              ? "🔗 Close invite"
+              : "🔗 Copy invite link"}
         </button>
       </motion.header>
 
-      {/* Manual-copy fallback (iframe / permission-blocked browsers) */}
-      {copyState === "failed" && (
-        <motion.div
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-5 flex flex-wrap items-center gap-2 rounded-2xl border-[3px] border-ink bg-berry/10 p-3"
-        >
-          <p className="w-full font-display text-xs font-extrabold uppercase tracking-[0.14em] text-berry">
-            ⚠ One-tap copy blocked here — select the link &amp; press Ctrl/Cmd + C
-          </p>
-          <input
-            ref={inviteRef}
-            readOnly
-            value={inviteUrl}
-            onFocus={(e) => e.target.select()}
-            aria-label="War Room invite link"
-            className="min-w-0 flex-1 rounded-xl border-2 border-ink bg-white px-3 py-2 font-mono text-sm font-bold text-ink"
-          />
-          <button
-            type="button"
-            onClick={() => setCopyState("idle")}
-            aria-label="Dismiss"
-            className="grid size-8 shrink-0 place-items-center rounded-lg border-2 border-ink bg-white text-xs font-black text-ink-soft hover:bg-paper"
+      {/* Invite panel — ALWAYS shows the link when open, so the invite is
+          obtainable even where every clipboard API is blocked. */}
+      <AnimatePresence>
+        {inviteOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="mb-5 rounded-2xl border-[3px] border-ink bg-white p-3.5 shadow-[0_4px_0_0_#2d2a26]"
           >
-            ✕
-          </button>
-        </motion.div>
-      )}
-
-      {/* Personal orders (members) */}
-      {myMember && myMember.slot && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-5 rounded-2xl border-[3px] border-ink bg-gradient-to-b from-leaf to-leaf-deep px-4 py-3 text-white shadow-[0_4px_0_0_#25511c]"
-        >
-          <p className="font-display text-[10px] font-extrabold uppercase tracking-[0.28em] text-white/75">
-            🎯 Your orders
-          </p>
-          <p className="font-display text-lg font-extrabold">
-            Report to {slotById(myMember.slot)?.structure.name ?? "your slot"} as{" "}
-            {myMember.role === "rally" ? "RALLY LEADER ★" : "Filler"} — reinforce
-            on time.
-          </p>
-        </motion.div>
-      )}
+            <p className="font-display text-xs font-extrabold uppercase tracking-[0.16em] text-ink-soft">
+              War Room invite link
+            </p>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <input
+                ref={inviteRef}
+                readOnly
+                value={inviteUrl}
+                onFocus={(e) => e.target.select()}
+                aria-label="War Room invite link"
+                className="min-w-0 flex-1 rounded-xl border-[3px] border-ink bg-paper/70 px-3 py-2 font-mono text-sm font-bold text-ink"
+              />
+              <button
+                type="button"
+                onClick={() => void attemptCopy()}
+                className="shrink-0 rounded-xl border-[3px] border-ink bg-gradient-to-b from-leaf to-leaf-deep px-4 py-2 font-display text-xs font-extrabold uppercase tracking-wide text-white shadow-[0_3px_0_0_#25511c] transition-all hover:-translate-y-0.5"
+              >
+                Copy again
+              </button>
+              <button
+                type="button"
+                onClick={() => setInviteOpen(false)}
+                aria-label="Close invite panel"
+                className="grid size-9 shrink-0 place-items-center rounded-xl border-[3px] border-ink bg-white text-xs font-black text-ink-soft hover:bg-paper"
+              >
+                ✕
+              </button>
+            </div>
+            {copyState === "failed" && (
+              <p className="mt-2 rounded-lg bg-berry/10 px-3 py-1.5 font-display text-[11px] font-bold text-berry">
+                ⚠ This view blocks one-tap copy — the link above is already
+                selected: press Ctrl / Cmd + C.
+              </p>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Timers */}
       <div className="mb-5">
