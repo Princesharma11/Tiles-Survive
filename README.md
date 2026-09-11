@@ -109,6 +109,28 @@ npm run dev        # http://localhost:3000
 npm run build      # production build (what Vercel runs)
 ```
 
+## Production domain — titantilessurvive.com
+
+The canonical site URL lives in `data/site.ts` (`site.url`) and flows into
+metadata, Open Graph, Twitter cards, per-page canonicals, `sitemap.xml`,
+`robots.txt` and the homepage JSON-LD automatically.
+
+`middleware.ts` 308-redirects **www.titantilessurvive.com → titantilessurvive.com**
+(only for that exact host — Vercel previews and localhost are untouched).
+
+### Vercel + DNS setup (one time)
+
+1. Vercel → your project → **Settings → Domains → Add**:
+   - `titantilessurvive.com`
+   - `www.titantilessurvive.com`
+2. At your registrar, point DNS at Vercel:
+   - **A record** `@` → `76.76.21.21`
+   - **CNAME** `www` → `cname.vercel-dns.com`
+3. Vercel issues TLS certificates for both automatically; the middleware
+   handles the www → apex redirect at the edge.
+4. Every absolute URL in the app already points at the apex domain —
+   no env vars needed.
+
 ## Deploy to Vercel
 
 1. Push this repo to GitHub.

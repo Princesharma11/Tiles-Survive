@@ -1,3 +1,4 @@
+import { site } from "@/data/site";
 import HeroSection from "@/components/sections/HeroSection";
 import TickerTape from "@/components/sections/TickerTape";
 import FeatureGrid from "@/components/sections/FeatureGrid";
@@ -15,9 +16,30 @@ import CallToArms from "@/components/sections/CallToArms";
 /*  05 Living world CTA (3D floating island)                           */
 /* ------------------------------------------------------------------ */
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.name,
+  alternateName: "TitanTiles",
+  url: site.url,
+  description: site.description,
+  inLanguage: "en",
+  about: {
+    "@type": "VideoGame",
+    name: "Tiles Survive!",
+    publisher: { "@type": "Organization", name: "FunPlus" },
+    genre: ["4X", "Strategy", "Survival"],
+    gamePlatform: ["iOS", "Android"],
+  },
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <HeroSection />
       <TickerTape />
       <FeatureGrid />

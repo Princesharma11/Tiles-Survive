@@ -3,6 +3,7 @@ import ModuleBoot from "@/components/pages/ModuleBoot";
 
 export const metadata: Metadata = {
   title: "Gear Reforge Simulator",
+  alternates: { canonical: "/gear-reforge" },
   description:
     "Simulate Chief Gear reforges before you spend — substat odds, white-to-legendary quality breakpoints, and roll-set comparisons for Tiles Survive!.",
 };

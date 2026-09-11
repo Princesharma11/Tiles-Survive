@@ -3,6 +3,7 @@ import ModuleBoot from "@/components/pages/ModuleBoot";
 
 export const metadata: Metadata = {
   title: "Hero Meta Calc",
+  alternates: { canonical: "/hero-meta-calc" },
   description:
     "Solve the Guards / Gunners / Marksmen triangle — troop ratio optimization, faction-aligned hero pairing, and counter-matrix simulation for Tiles Survive!.",
 };

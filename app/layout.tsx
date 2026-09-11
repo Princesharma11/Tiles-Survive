@@ -35,12 +35,16 @@ export const metadata: Metadata = {
     "troop ratio optimizer",
     "chief gear reforge",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     url: site.url,
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",

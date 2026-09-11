@@ -3,11 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   // ------------------------------------------------------------------
-  //  Cache strategy for fast-iterating deployments:
-  //  • HTML routes must always revalidate — a year-long s-maxage lets
-  //    stale pages reference deleted JS chunks, breaking hydration
-  //    (buttons appear dead after every redeploy).
-  //  • /_next/static assets are content-hashed → safe to cache forever.
+  //  Production headers for titantilessurvive.com (Vercel):
+  //  • HTML revalidates every load — stale HTML referencing deleted
+  //    chunks breaks hydration (buttons appear dead after redeploys).
+  //  • /_next/static assets are content-hashed → immutable cache.
+  //  • Sensible security defaults (no frame-blocking: the app is
+  //    designed to be embeddable in preview panes).
   // ------------------------------------------------------------------
   async headers() {
     return [
@@ -17,6 +18,15 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=0, must-revalidate",
+          },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
           },
         ],
       },
