@@ -42,13 +42,13 @@ export const features: Feature[] = [
     title: "Troop Ratio Optimizer",
     tagline: "Solve the Guards · Gunners · Marksmen triangle.",
     description:
-      "Feed in your barracks and get the counter-proof split your march actually needs. No more 100%-Guard coin flips getting shredded by a balanced Gunner-Marksman wall.",
+      "Input the enemy scout report — the engine mirrors their threat across the counter triangle and outputs exact troop counts, expected counter damage and hero pairings. Live now.",
     bullets: [
-      "45/35/20 consensus presets",
-      "Faction-aligned hero pairing",
-      "Counter-matrix combat simulator",
+      "40/30/30 baseline autopilot",
+      "Counter-mirror engine (live)",
+      "Faction + hero pairing alerts",
     ],
-    meta: "Counter math beats raw power",
+    meta: "Scout report in — march plan out",
     status: "LIVE",
     image: "/world/scene-village.webp",
     imageAlt: "A scout overlooking the tile valley settlement",
