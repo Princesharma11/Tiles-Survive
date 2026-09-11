@@ -23,6 +23,8 @@ export interface TitanButtonProps {
   children: ReactNode;
   className?: string;
   ariaLabel?: string;
+  /** "submit" when used inside a form (default: "button"). */
+  type?: "button" | "submit";
 }
 
 /** Face + edge colors per variant. Edge = the "depth" under the button. */
@@ -64,6 +66,7 @@ export function TitanButton({
   children,
   className,
   ariaLabel,
+  type = "button",
 }: TitanButtonProps) {
   const reduce = useReducedMotion();
   const { face, edge, text } = variantStyles[variant];
@@ -106,7 +109,7 @@ export function TitanButton({
         </Link>
       ) : (
         <button
-          type="button"
+          type={type}
           onClick={onClick}
           aria-label={ariaLabel}
           className="block h-full w-full"

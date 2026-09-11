@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import TitanButton from "@/components/ui/TitanButton";
@@ -172,11 +171,9 @@ export default function HeroSpotlight() {
         </div>
 
         <div className="mt-12 text-center">
-          <Link href="/tier-list" className="inline-block">
-            <TitanButton variant="sun" size="lg" icon={<ArrowRightIcon className="size-[18px]" />}>
-              Full Tier List
-            </TitanButton>
-          </Link>
+          <TitanButton href="/tier-list" variant="sun" size="lg" icon={<ArrowRightIcon className="size-[18px]" />}>
+            Full Tier List
+          </TitanButton>
         </div>
       </div>
     </section>

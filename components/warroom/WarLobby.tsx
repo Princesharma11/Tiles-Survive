@@ -132,6 +132,7 @@ export default function WarLobby() {
 
               <div className="mt-5">
                 <TitanButton
+                  type="submit"
                   size="lg"
                   className="w-full"
                   icon={<SwordsIcon className="size-5" />}
@@ -180,6 +181,7 @@ export default function WarLobby() {
 
               <div className="mt-5">
                 <TitanButton
+                  type="submit"
                   variant="sun"
                   size="lg"
                   className="w-full"
