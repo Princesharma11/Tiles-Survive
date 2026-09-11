@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import TitanButton from "@/components/ui/TitanButton";
 import { ArrowRightIcon } from "@/components/ui/icons";
-import { tierBoard } from "@/data/tierList";
+import { HEROES, TIER_META } from "@/data/heroMeta";
 import { popIn, springPop, staggerContainer, viewportOnce } from "@/lib/animations/variants";
 import { cn } from "@/lib/utils/cn";
 
@@ -17,6 +17,9 @@ import { cn } from "@/lib/utils/cn";
 
 export default function HeroSpotlight() {
   const reduce = useReducedMotion();
+
+  // S-TIER core meta — the squad leading the patch.
+  const squad = HEROES.filter((h) => h.tier === "S" && h.portrait);
 
   return (
     <section className="relative overflow-hidden border-y-[3px] border-ink bg-gradient-to-b from-pine via-pine-deep to-pine py-24 md:py-32">
@@ -62,7 +65,7 @@ export default function HeroSpotlight() {
           viewport={viewportOnce}
           className="hidden gap-6 md:grid md:grid-cols-2 xl:grid-cols-4"
         >
-          {tierBoard.map((hero) => (
+          {squad.map((hero) => (
             <motion.div
               key={hero.name}
               variants={popIn}
@@ -78,7 +81,7 @@ export default function HeroSpotlight() {
                 initial={{ opacity: 0.35, scale: 1 }}
                 transition={springPop}
                 className="absolute inset-x-4 bottom-10 top-16 rounded-full blur-2xl"
-                style={{ background: hero.accent.glow }}
+                style={{ background: `${hero.accent}66` }}
               />
 
               {/* Portrait */}
@@ -90,7 +93,7 @@ export default function HeroSpotlight() {
                 className="relative mx-auto h-[300px] xl:h-[330px]"
               >
                 <Image
-                  src={hero.portrait}
+                  src={hero.portrait!}
                   alt={`${hero.name} — official Tiles Survive hero art`}
                   fill
                   sizes="(max-width:1280px) 45vw, 25vw"
@@ -119,14 +122,14 @@ export default function HeroSpotlight() {
                 </p>
                 <p
                   className="font-mono text-[10px] font-bold tracking-[0.2em]"
-                  style={{ color: hero.accent.ring }}
+                  style={{ color: hero.accent }}
                 >
                   {hero.role.toUpperCase()}
                 </p>
               </div>
 
               <p className="mx-auto mt-3 max-w-[240px] text-center text-sm font-semibold leading-relaxed text-cream/70">
-                {hero.note}
+                {hero.verdict}
               </p>
             </motion.div>
           ))}
@@ -134,14 +137,14 @@ export default function HeroSpotlight() {
 
         {/* Mobile roster: snap rail */}
         <div className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 md:hidden">
-          {tierBoard.map((hero) => (
+          {squad.map((hero) => (
             <div
               key={hero.name}
               className="w-[240px] shrink-0 snap-center rounded-3xl border-[3px] border-cream/20 bg-cream/5 p-4"
             >
               <div className="relative mx-auto h-56 w-full">
                 <Image
-                  src={hero.portrait}
+                  src={hero.portrait!}
                   alt={`${hero.name} — official Tiles Survive hero art`}
                   fill
                   sizes="240px"
@@ -162,7 +165,7 @@ export default function HeroSpotlight() {
                 <p className="font-display text-lg font-extrabold text-ink">{hero.name}</p>
                 <p
                   className="font-mono text-[9px] font-bold tracking-[0.2em]"
-                  style={{ color: hero.accent.ring }}
+                  style={{ color: hero.accent }}
                 >
                   {hero.role.toUpperCase()} // {hero.score}/100
                 </p>

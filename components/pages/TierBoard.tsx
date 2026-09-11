@@ -1,97 +1,148 @@
 "use client";
 
 import Image from "next/image";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
+import SynergyTracker from "@/components/tools/SynergyTracker";
 import {
-  fadeUp,
-  popIn,
-  springPop,
-  staggerContainer,
-  viewportOnce,
-} from "@/lib/animations/variants";
-import { pendingIntel, tierBoard, type HeroEntry } from "@/data/tierList";
+  HEROES,
+  TIER_META,
+  TIER_ORDER,
+  type Hero,
+  type TierKey,
+} from "@/data/heroMeta";
+import { fadeUp, popIn, springPop, staggerContainer, viewportOnce } from "@/lib/animations/variants";
 import { cn } from "@/lib/utils/cn";
 
 /* ------------------------------------------------------------------ */
-/*  TierBoard — community consensus meta board with official art.      */
+/*  TierBoard — The Definitive Tiles Survive Hero Tier List.           */
+/*  Sticky tier nav + full verdict cards + Synergy Tracker.            */
 /* ------------------------------------------------------------------ */
 
-function HeroCard({ hero }: { hero: HeroEntry }) {
+function PortraitFrame({ hero, big = false }: { hero: Hero; big?: boolean }) {
+  if (!hero.portrait) {
+    return (
+      <span
+        className={cn(
+          "grid size-full place-items-center border-b-[3px] border-ink font-display font-extrabold text-white",
+          big ? "text-5xl" : "text-3xl"
+        )}
+        style={{ background: hero.accent }}
+        aria-hidden
+      >
+        {hero.name.slice(0, 2).toUpperCase()}
+      </span>
+    );
+  }
+  return (
+    <Image
+      src={hero.portrait}
+      alt={`${hero.name} — ${hero.rarity} ${hero.heroClass} hero art`}
+      fill
+      sizes="(max-width:640px) 90vw, (max-width:1280px) 45vw, 380px"
+      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+    />
+  );
+}
+
+function HeroCard({ hero, index }: { hero: Hero; index: number }) {
+  const tier = TIER_META[hero.tier];
   return (
     <motion.article
+      layout
       variants={popIn}
-      whileHover={{ y: -8 }}
       transition={springPop}
-      className="group relative overflow-hidden rounded-3xl border-[3px] border-ink bg-white p-5 shadow-[0_4px_0_0_#2d2a26,0_18px_34px_-18px_rgba(45,42,38,0.35)]"
+      className="group relative flex flex-col overflow-hidden rounded-3xl border-[3px] border-ink bg-white shadow-[0_4px_0_0_#2d2a26,0_20px_38px_-20px_rgba(45,42,38,0.35)] transition-transform duration-300 hover:-translate-y-1.5"
     >
-      {/* glow */}
+      {/* Art header */}
       <div
-        aria-hidden
-        className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-80"
-        style={{ background: hero.accent.glow }}
-      />
+        className="relative h-48 overflow-hidden border-b-[3px] border-ink"
+        style={{ background: `linear-gradient(135deg, ${hero.accent}26, #fdf1dc 65%)` }}
+      >
+        <PortraitFrame hero={hero} big />
 
-      <div className="relative flex items-start gap-4">
-        {/* Portrait frame */}
-        <motion.div
-          whileHover={{ rotate: -3, scale: 1.06 }}
-          transition={springPop}
-          className="relative h-24 w-20 shrink-0 overflow-hidden rounded-2xl border-[3px] bg-paper"
-          style={{ borderColor: hero.accent.ring }}
+        {/* Tier badge */}
+        <span
+          className={cn(
+            "absolute left-3 top-3 grid size-12 place-items-center rounded-2xl border-[3px] border-ink font-display text-2xl font-extrabold shadow-[0_3px_0_0_#2d2a26]",
+            tier.plate
+          )}
         >
-          <Image
-            src={hero.portrait}
-            alt={`${hero.name} — official Tiles Survive hero art`}
-            fill
-            sizes="80px"
-            className="object-cover object-top"
-          />
-        </motion.div>
+          {hero.tier}
+        </span>
 
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="truncate font-display text-2xl font-extrabold tracking-tight text-ink">
-              {hero.name}
-            </h3>
-            <span
-              className={cn(
-                "grid size-10 shrink-0 place-items-center rounded-xl border-[3px] border-ink font-display text-xl font-extrabold shadow-[0_3px_0_0_#2d2a26]",
-                hero.tier === "S"
-                  ? "bg-gradient-to-b from-gold to-flame text-ink"
-                  : "bg-gradient-to-b from-flame to-ember text-white"
-              )}
-            >
-              {hero.tier}
-            </span>
-          </div>
-          <span
-            className="mt-1 inline-block rounded-full border-2 border-ink px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-[0.16em]"
-            style={{ background: hero.accent.chip, color: "#2d2a26" }}
+        {/* Rarity */}
+        <span className="absolute right-3 top-3 rounded-full border-[3px] border-ink bg-white px-2.5 py-0.5 font-display text-[10px] font-extrabold tracking-[0.14em] text-ink shadow-[0_2px_0_0_#2d2a26]">
+          {hero.rarity}
+        </span>
+
+        {/* Tag */}
+        {hero.tag && (
+          <motion.span
+            initial={{ rotate: -8 }}
+            animate={{ rotate: [-8, -4, -8] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-3 left-3 rounded-full border-[3px] border-ink bg-gradient-to-b from-gold to-flame px-2.5 py-0.5 font-display text-[10px] font-extrabold uppercase tracking-wide text-ink shadow-[0_2px_0_0_#2d2a26]"
           >
-            {hero.role.toUpperCase()}
-          </span>
-        </div>
+            ★ {hero.tag}
+          </motion.span>
+        )}
       </div>
 
-      <p className="relative mt-4 min-h-[3.4rem] text-sm font-semibold leading-relaxed text-ink-soft">
-        {hero.note}
-      </p>
+      {/* Body */}
+      <div className="flex flex-1 flex-col p-5">
+        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: hero.accent }}>
+          {hero.role}
+        </p>
+        <h3 className="mt-0.5 font-display text-2xl font-extrabold tracking-tight text-ink">
+          {hero.name}
+        </h3>
 
-      {/* Score */}
-      <div className="relative mt-3">
-        <div className="mb-1.5 flex justify-between font-mono text-[10px] font-bold tracking-[0.2em] text-ink-soft">
-          <span>META SCORE</span>
-          <span className="text-ember-deep">{hero.score}/100</span>
+        {/* chips */}
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          <span
+            className="rounded-full border-2 border-ink px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wide text-ink"
+            style={{ background: `${hero.accent}30` }}
+          >
+            {hero.faction}
+          </span>
+          <span className="rounded-full border-2 border-ink/20 bg-paper px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wide text-ink-soft">
+            {hero.classNote ?? hero.heroClass}
+          </span>
         </div>
-        <div className="h-4 overflow-hidden rounded-full border-[3px] border-ink bg-paper">
-          <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-gold via-flame to-ember"
-            initial={{ width: 0 }}
-            whileInView={{ width: `${hero.score}%` }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          />
+
+        <p className="mt-3 font-display text-[15px] font-extrabold leading-snug text-ink">
+          “{hero.verdict}”
+        </p>
+        <p className="mt-2 text-sm font-semibold leading-relaxed text-ink-soft">
+          {hero.detail}
+        </p>
+
+        {hero.economy && (
+          <p className="mt-3 rounded-xl border-2 border-dashed border-leaf/50 bg-leaf/10 px-3 py-1.5 text-xs font-bold text-leaf-deep">
+            🏭 {hero.economy}
+          </p>
+        )}
+
+        {/* meta score */}
+        <div className="mt-auto pt-4">
+          <div className="mb-1 flex justify-between font-mono text-[9px] font-bold tracking-[0.18em] text-ink-faint">
+            <span>META SCORE</span>
+            <span>{hero.score}/100</span>
+          </div>
+          <div className="h-3.5 overflow-hidden rounded-full border-[3px] border-ink bg-paper">
+            <motion.div
+              className="h-full rounded-full"
+              style={{
+                background: `linear-gradient(90deg, ${hero.accent}, ${hero.accent}cc)`,
+              }}
+              initial={{ width: 0 }}
+              whileInView={{ width: `${hero.score}%` }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.1 + index * 0.05 }}
+            />
+          </div>
         </div>
       </div>
     </motion.article>
@@ -99,117 +150,140 @@ function HeroCard({ hero }: { hero: HeroEntry }) {
 }
 
 export default function TierBoard() {
+  const [filter, setFilter] = useState<TierKey | "ALL">("ALL");
+
+  const grouped = useMemo(() => {
+    const map = new Map<TierKey, Hero[]>();
+    for (const tier of TIER_ORDER) {
+      map.set(
+        tier,
+        HEROES.filter((h) => h.tier === tier)
+      );
+    }
+    return map;
+  }, []);
+
+  const visibleTiers: TierKey[] =
+    filter === "ALL" ? TIER_ORDER : [filter];
+
   return (
     <section className="relative mx-auto max-w-7xl px-5 pb-28 pt-32 sm:px-8 md:pt-40">
       <SectionHeader
-        eyebrow="Consensus board"
-        title="Hero meta"
+        eyebrow="Season deep-dive"
+        title="The definitive hero"
         accent="tier list."
-        description="Community consensus distilled into one board — official art, meta scores, and zero sentimentality. S-tier is proven; everything else is situational or bait."
+        description="Your heroes are the engine of your account — investing wrong throttles progression and burns premium fragments. Ranked for PvP, campaign pushing and kit utility in the current sustain-heavy meta."
       />
 
-      <div className="mb-10 flex flex-wrap items-center gap-3">
-        <span className="rounded-full border-[3px] border-ink bg-gold px-3.5 py-1 font-display text-[11px] font-extrabold tracking-[0.2em] text-ink shadow-[0_3px_0_0_#2d2a26]">
-          DRAFT v6.2
-        </span>
-        <span className="rounded-full border-[3px] border-ink/20 bg-white px-3.5 py-1 font-mono text-[10px] font-bold tracking-[0.18em] text-ink-soft">
-          SAMPLE DATASET — FULL SYNC PENDING
-        </span>
+      {/* Sticky tier nav + filters */}
+      <div className="sticky top-20 z-30 mb-10 -mx-2 rounded-3xl border-[3px] border-ink bg-cream/90 px-2 py-2.5 shadow-[0_4px_0_0_#2d2a26] backdrop-blur-md">
+        <div className="no-scrollbar flex items-center gap-2 overflow-x-auto px-1">
+          <button
+            type="button"
+            onClick={() => setFilter("ALL")}
+            aria-pressed={filter === "ALL"}
+            className={cn(
+              "shrink-0 rounded-full border-[3px] px-4 py-1.5 font-display text-xs font-extrabold uppercase tracking-[0.14em] transition-all",
+              filter === "ALL"
+                ? "border-ink bg-ink text-cream shadow-[0_3px_0_0_#000]"
+                : "border-ink/20 bg-white text-ink-soft hover:border-ink"
+            )}
+          >
+            All {HEROES.length}
+          </button>
+          {TIER_ORDER.map((tier) => {
+            const meta = TIER_META[tier];
+            const count = grouped.get(tier)?.length ?? 0;
+            return (
+              <button
+                key={tier}
+                type="button"
+                onClick={() => setFilter(tier)}
+                aria-pressed={filter === tier}
+                className={cn(
+                  "shrink-0 rounded-full border-[3px] px-4 py-1.5 font-display text-xs font-extrabold uppercase tracking-[0.14em] transition-all",
+                  filter === tier
+                    ? cn("shadow-[0_3px_0_0_#2d2a26]", meta.plate)
+                    : "border-ink/20 bg-white text-ink-soft hover:border-ink"
+                )}
+              >
+                {meta.icon} {tier}-Tier · {count}
+              </button>
+            );
+          })}
+          <span className="ml-auto hidden shrink-0 font-mono text-[10px] font-bold text-ink-faint lg:block">
+            SUSTAIN META // v6.2
+          </span>
+        </div>
       </div>
 
-      {/* Ranked cards */}
-      <motion.div
-        variants={staggerContainer(0.1)}
-        initial="hidden"
-        whileInView="show"
-        viewport={viewportOnce}
-        className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4"
-      >
-        {tierBoard.map((hero) => (
-          <HeroCard key={hero.name} hero={hero} />
-        ))}
-      </motion.div>
+      {/* Tier sections */}
+      {visibleTiers.map((tier) => {
+        const meta = TIER_META[tier];
+        const heroes = grouped.get(tier) ?? [];
+        return (
+          <div key={tier} className="mb-16 scroll-mt-40" id={`tier-${tier.toLowerCase()}`}>
+            {/* Tier header */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportOnce}
+              className="mb-6 flex flex-wrap items-center gap-4"
+            >
+              <span
+                className={cn(
+                  "grid size-16 place-items-center rounded-2xl border-[3px] border-ink font-display text-3xl font-extrabold shadow-[0_4px_0_0_#2d2a26]",
+                  meta.plate
+                )}
+              >
+                {tier}
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="font-display text-2xl font-extrabold tracking-tight text-ink">
+                  {meta.icon} {meta.label}
+                </p>
+                <p className="text-sm font-bold text-ink-soft">{meta.blurb}</p>
+              </div>
+              <div className="trail-dots hidden w-40 opacity-40 sm:block" style={{ backgroundImage: `radial-gradient(circle, ${meta.ring} 1.5px, transparent 1.5px)` }} />
+            </motion.div>
 
-      {/* Pending slots */}
-      {pendingIntel.map(({ tier, slots, label }) => (
-        <div key={tier} className="mt-14">
-          <div className="mb-5 flex items-center gap-4">
-            <span
+            <motion.div
+              layout
+              variants={staggerContainer(0.08)}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportOnce}
               className={cn(
-                "grid size-11 place-items-center rounded-xl border-[3px] border-ink font-display text-xl font-extrabold shadow-[0_3px_0_0_#2d2a26]",
-                tier === "S"
-                  ? "bg-gradient-to-b from-gold to-flame text-ink"
-                  : tier === "A"
-                    ? "bg-gradient-to-b from-flame to-ember text-white"
-                    : "border-ink/30 bg-paper text-ink-soft shadow-none"
+                "grid gap-6",
+                heroes.length >= 4 ? "sm:grid-cols-2 xl:grid-cols-4" : "sm:grid-cols-2 xl:grid-cols-3"
               )}
             >
-              {tier}
-            </span>
-            <span className="font-mono text-[11px] font-bold tracking-[0.24em] text-ink-soft">
-              {label}
-            </span>
-            <div className="trail-dots flex-1 opacity-40" />
+              {heroes.map((hero, i) => (
+                <HeroCard key={hero.id} hero={hero} index={i} />
+              ))}
+            </motion.div>
           </div>
-          <motion.div
-            variants={staggerContainer(0.08)}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewportOnce}
-            className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4"
-          >
-            {Array.from({ length: slots }).map((_, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                className="flex h-36 flex-col items-center justify-center gap-2 rounded-3xl border-[3px] border-dashed border-ink/25 bg-white/50"
-              >
-                <motion.span
-                  className="text-2xl"
-                  aria-hidden
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.3 }}
-                >
-                  🔍
-                </motion.span>
-                <span className="font-mono text-[10px] font-bold tracking-[0.24em] text-ink-faint">
-                  AWAITING DATA SCAN
-                </span>
-                <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-ink-faint/70">
-                  SLOT_{String(i + 1).padStart(2, "0")} // TIER {tier}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      ))}
+        );
+      })}
 
-      {/* Faction cycle legend */}
-      <motion.div
+      {/* Methodology note */}
+      <motion.p
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={viewportOnce}
-        className="mt-16 rounded-3xl border-[3px] border-ink bg-pine p-6 text-cream shadow-[0_5px_0_0_#2d2a26]"
+        className="mb-14 rounded-2xl border-2 border-dashed border-ink/20 bg-white/70 px-4 py-3 text-center text-xs font-bold text-ink-faint"
       >
-        <p className="inline-block rounded-lg bg-cream/10 px-3 py-1 font-display text-xs font-bold tracking-[0.24em] text-gold">
-          TROOP FACTION CYCLE
-        </p>
-        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 font-display text-sm font-bold tracking-wide">
-          <span className="rounded-xl border-2 border-cream/40 bg-cream/10 px-3 py-1.5 text-gold">STALWART</span>
-          <span className="text-cream/50">▸</span>
-          <span className="rounded-xl border-2 border-cream/40 bg-cream/10 px-3 py-1.5 text-flame">AERONAUT</span>
-          <span className="text-cream/50">▸</span>
-          <span className="rounded-xl border-2 border-cream/40 bg-cream/10 px-3 py-1.5 text-teal">MARINER</span>
-          <span className="text-cream/50">▸</span>
-          <span className="rounded-xl border-2 border-cream/40 bg-cream/10 px-3 py-1.5 text-cream">ROVER</span>
-          <span className="text-cream/50">▸</span>
-          <span className="text-cream/50">STALWART…</span>
-          <span className="ml-auto font-mono text-[10px] text-cream/60">
-            GUARDS ▸ MARKSMEN ▸ GUNNERS ▸ GUARDS
-          </span>
-        </div>
-      </motion.div>
+        Rankings weigh PvP performance, campaign pushing and kit utility.
+        Economy-only value (Travis, Eva, Lucky) is flagged — not counted toward
+        combat scores. Meta shifts with every balance patch.
+      </motion.p>
+
+      {/* Synergy Tracker */}
+      <div id="synergy" className="scroll-mt-32">
+        <SynergyTracker />
+      </div>
     </section>
   );
 }
