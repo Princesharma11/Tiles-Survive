@@ -48,7 +48,7 @@ export default function SynergyTracker() {
     <span className="flex items-center gap-2">
       <span className="relative size-8 shrink-0 overflow-hidden rounded-lg border-2 border-ink bg-paper">
         {hero.portrait ? (
-          <Image src={hero.portrait} alt="" fill sizes="32px" className="object-cover" />
+          <Image src={hero.portrait} alt="" fill sizes="32px" className="object-cover object-top" />
         ) : (
           <span
             className="grid size-full place-items-center font-display text-[10px] font-extrabold text-white"

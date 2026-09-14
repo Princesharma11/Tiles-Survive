@@ -280,12 +280,9 @@ export default function TierBoard() {
         combat scores. Meta shifts with every balance patch.
         <br />
         <span className="text-ink-soft/70">
-          Portrait credits: Ghost, Maddie, Rusty, Lucky, Sarge, Becca, Kiki,
-          Jacob, Chiron &amp; Candy are official FunPlus renders sourced via
-          community guide sites; Freja is cropped from in-game footage; Rosie,
-          Layla, Nikola, Tarzan, Tara, Tony &amp; Ray are fan-made renditions
-          drawn on-style from the official art; Travis, Eva &amp; Chef appear
-          as monogram plates.
+          Portrait credits: all 27 hero renders are official FunPlus art,
+          supplied via the site&rsquo;s Hero-Images collection. Homepage
+          floating cutouts are transparent variants of the same renders.
         </span>
       </motion.p>
 

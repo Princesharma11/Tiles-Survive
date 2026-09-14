@@ -28,7 +28,7 @@ import {
 /** Floating character cutouts (official art, transparent webp). */
 const CAST = [
   {
-    src: "/heroes/ghost.webp",
+    src: "/heroes/cutout-ghost.webp",
     alt: "Ghost — Tiles Survive hero in a graffiti hoodie",
     w: 792,
     h: 880,
@@ -39,7 +39,7 @@ const CAST = [
     flip: true,
   },
   {
-    src: "/heroes/lucky.webp",
+    src: "/heroes/cutout-lucky.webp",
     alt: "Lucky — Tiles Survive hero with pink pigtails",
     w: 641,
     h: 880,
@@ -50,7 +50,7 @@ const CAST = [
     flip: false,
   },
   {
-    src: "/heroes/maddie.webp",
+    src: "/heroes/cutout-maddie.webp",
     alt: "Maddie — Tiles Survive hero with slingshot",
     w: 799,
     h: 880,
@@ -141,7 +141,7 @@ export default function HeroSection() {
           className="relative h-56 w-44"
         >
           <Image
-            src="/heroes/maddie.webp"
+            src="/heroes/cutout-maddie.webp"
             alt=""
             fill
             sizes="200px"

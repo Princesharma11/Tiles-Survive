@@ -215,6 +215,21 @@ export const HEROES: Hero[] = [
     accent: "#2fa39b",
   },
   {
+    id: "undine",
+    name: "Undine",
+    tier: "A",
+    rarity: "SSR",
+    faction: "Mariner",
+    heroClass: "Gunner",
+    role: "Auto-Attack Amplifier",
+    verdict: "Turns every auto-attack your team fires into a problem.",
+    detail:
+      "Azure Anthem hits for 507% Attack and lifts the whole team's auto-attack damage by 15% for six seconds, while her passive permanently raises back-row Attack by 8.34%. Point her at auto-attack-heavy carries and watch sustain metas melt — the engine of the Mariner core.",
+    score: 83,
+    portrait: "/heroes/undine.webp",
+    accent: "#2fa39b",
+  },
+  {
     id: "jacob",
     name: "Jacob",
     tier: "A",
@@ -228,6 +243,21 @@ export const HEROES: Hero[] = [
     score: 83,
     portrait: "/heroes/jacob.webp",
     accent: "#6fae3e",
+  },
+  {
+    id: "shark",
+    name: "Shark",
+    tier: "A",
+    rarity: "SSR",
+    faction: "Mariner",
+    heroClass: "Guard",
+    role: "Transforming Bruiser",
+    verdict: "Transforms, tanks, and drags the whole frontline with him.",
+    detail:
+      "Shark Surge shifts him into Shark Form for 15% damage reduction and a whirlpool grinding 115% Attack per second — and his Vanguard passive permanently buffs front-row HP and DEF just for showing up. The Mariner wall when Nikola lives on someone else's account.",
+    score: 82,
+    portrait: "/heroes/shark.webp",
+    accent: "#2fa39b",
   },
   {
     id: "tony",
@@ -245,6 +275,21 @@ export const HEROES: Hero[] = [
     accent: "#3d9bd1",
   },
   {
+    id: "wright",
+    name: "Wright",
+    tier: "A",
+    rarity: "SSR",
+    faction: "Aeronaut",
+    heroClass: "Gunner",
+    role: "Attack Amplifier",
+    verdict: "A team-wide attack buff with a 1,390% cannon attached.",
+    detail:
+      "Wright's Wing Barrage dumps 1,390% Attack across everything in range, while Skyborne Support quietly lifts every ally's ATK around the clock. He's the Aeronaut mirror of Chiron — pure offense amplification without the shred, but the buff never stops paying.",
+    score: 81,
+    portrait: "/heroes/wright.webp",
+    accent: "#f6c445",
+  },
+  {
     id: "candy",
     name: "Candy",
     tier: "A",
@@ -258,6 +303,21 @@ export const HEROES: Hero[] = [
     score: 81,
     portrait: "/heroes/candy.webp",
     accent: "#ed5ca8",
+  },
+  {
+    id: "ragnar",
+    name: "Ragnar",
+    tier: "A",
+    rarity: "SSR",
+    faction: "Mariner",
+    heroClass: "Guard",
+    role: "Warship Vanguard",
+    verdict: "Calls a warship. The warship wins the lane.",
+    detail:
+      "Every second Water Blade Strike lashes a wider arc and softens enemy Attack, and Support Warship sends a 556% damage cruiser straight through the enemy line. A balanced bruiser who debuffs the enemy just by fighting — the flexible Mariner frontline.",
+    score: 81,
+    portrait: "/heroes/ragnar.webp",
+    accent: "#3d9bd1",
   },
   {
     id: "freja",
@@ -277,7 +337,38 @@ export const HEROES: Hero[] = [
     accent: "#f6c445",
   },
 
+  {
+    id: "mike",
+    name: "Mike",
+    tier: "A",
+    rarity: "SSR",
+    faction: "Aeronaut",
+    heroClass: "Guard",
+    role: "Zone Suppressor",
+    verdict: "The zone that makes enemy DPS feel twice as slow.",
+    detail:
+      "Mike anchors the front with his Blast Shield and drops a Suppression Zone that cuts damage taken by allies inside by 20.85% while slowing enemy attack speed by the same margin. A PvP stalwart for Aeronaut squads — the anti-burst answer to whale marksmen.",
+    score: 80,
+    portrait: "/heroes/mike.webp",
+    accent: "#3d9bd1",
+  },
+
   /* ------------------------------ B ------------------------------ */
+  {
+    id: "knotty",
+    name: "Knotty",
+    tier: "B",
+    rarity: "SSR",
+    faction: "Mariner",
+    heroClass: "Marksman",
+    role: "AoE Artillery",
+    verdict: "A one-hero artillery barrage — when the party starts.",
+    detail:
+      "Knotty's shells splash every enemy in range on the auto-attack itself, and Party Time doubles the blast radius while adding 69.5% damage for five seconds. Situational but savage against clumped waves — exactly the artillery Jacob's taunt bomb dreams of.",
+    score: 72,
+    portrait: "/heroes/knotty.webp",
+    accent: "#f07d2e",
+  },
   {
     id: "maddie",
     name: "Maddie",
@@ -305,6 +396,7 @@ export const HEROES: Hero[] = [
     verdict: "Level him for base tech, not for the battlefield.",
     detail:
       "A solid sniper for early PvE bosses — but his real value is the passive economy boost to your base's smelter output. Worth leveling purely for base-tech progression.",
+    portrait: "/heroes/travis.webp",
     score: 62,
     accent: "#f07d2e",
     economy: "Smelter output boost — keep him leveling at base.",
@@ -321,6 +413,7 @@ export const HEROES: Hero[] = [
     verdict: "No late-game combat utility — an excellent gatherer.",
     detail:
       "Middle-of-the-road consistent DPS with nothing unique for late PvP, but Eva is an excellent gathering-focused growth hero for world-map resource farming.",
+    portrait: "/heroes/eva.webp",
     score: 60,
     accent: "#6fae3e",
     economy: "Gathering monster — run her on world-map farms.",
@@ -336,6 +429,7 @@ export const HEROES: Hero[] = [
     verdict: "Decent self-healing tank… until PvP melts him instantly.",
     detail:
       "A decent early tank with self-healing, but Chef gets melted instantly in high-level PvP. Bench him when real fights start.",
+    portrait: "/heroes/chef.webp",
     score: 58,
     accent: "#f07d2e",
   },
@@ -559,12 +653,39 @@ export const SYNERGY_PAIRS: SynergyPair[] = [
     rating: 4,
   },
   {
-    a: "candy",
-    b: "jacob",
-    title: "Sweet Chaos",
+    a: "shark",
+    b: "undine",
+    title: "Tide Pool",
     effect:
-      "Candy's Dazzling Aura trims enemy ATK while Jacob's Ultimate Prank cuts both ATK and DEF — stacked debuffs plus a taunt bomb mean enemies hit softer and stand still for it.",
-    math: "≈ −5.6% enemy ATK & DEF while both live",
+      "Shark transforms and anchors the front while Undine's Azure Anthem (+15% team auto-attack damage) and back-row ATK passive crank the whole squad's output up a notch — the documented Mariner core.",
+    math: "≈ +23% back-row auto damage while both live",
+    rating: 5,
+  },
+  {
+    a: "mike",
+    b: "kiki",
+    title: "Slow-Mo Slaughter",
+    effect:
+      "Kiki needs a window to charge Laser Discharge — Mike's Suppression Zone (−20.85% enemy attack speed, −20.85% damage taken inside) freezes the field long enough for all three beams to fire.",
+    math: "≈ +1 safe charge cycle per fight",
+    rating: 4,
+  },
+  {
+    a: "undine",
+    b: "knotty",
+    title: "Bouncing Barrage",
+    effect:
+      "Azure Anthem's +15% auto-attack damage applies to Knotty's splash shells too — double the blast radius during Party Time and the whole map is the blast zone.",
+    math: "≈ +15% shell damage during the anthem window",
+    rating: 4,
+  },
+  {
+    a: "wright",
+    b: "kiki",
+    title: "Sky Cannon",
+    effect:
+      "Skyborne Support lifts ATK for Kiki and the whole Aeronaut squad — small numbers, but they stack with her Photon Surge self-buff into a very serious laser.",
+    math: "≈ +2.78% squad ATK, always on",
     rating: 3,
   },
 ];

@@ -11,7 +11,7 @@ export const site = {
   description:
     "Command intelligence for Tiles Survive! — a next-gen companion hub with the Arcadian War Room, troop ratio optimization, Chief Gear reforge simulation, live tier lists and a survival codex.",
   url: "https://titantilessurvive.com",
-  patch: "PATCH 6.2.1",
+  patch: "PATCH 2.6.0",
   season: "SEASON 6 // ARCADIAN CONQUEST",
 } as const;
 
