@@ -38,6 +38,18 @@ export const viewportOnce = {
   margin: "0px 0px -80px 0px",
 } as const;
 
+/**
+ * Viewport config for TALL containers (big hero grids).
+ * `amount: 0.25` on a 2,500px grid would require 625px visible at once —
+ * impossible on short viewports, leaving cards stuck at opacity:0.
+ * A 5% sliver is enough to start the stagger.
+ */
+export const viewportPeek = {
+  once: true,
+  amount: 0.05,
+  margin: "0px 0px -60px 0px",
+} as const;
+
 /** Fade + rise + tiny tilt — the workhorse reveal. */
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 36, rotate: -0.5 },

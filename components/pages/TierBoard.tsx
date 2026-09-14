@@ -12,7 +12,7 @@ import {
   type Hero,
   type Rarity,
 } from "@/data/heroMeta";
-import { fadeUp, popIn, springPop, staggerContainer, viewportOnce } from "@/lib/animations/variants";
+import { fadeUp, popIn, springPop, staggerContainer, viewportOnce, viewportPeek } from "@/lib/animations/variants";
 import { cn } from "@/lib/utils/cn";
 
 /* ------------------------------------------------------------------ */
@@ -224,7 +224,7 @@ export default function TierBoard() {
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
-              viewport={viewportOnce}
+              viewport={viewportPeek}
               className="mb-6 flex flex-wrap items-center gap-4"
             >
               <span
@@ -249,7 +249,7 @@ export default function TierBoard() {
               variants={staggerContainer(0.08)}
               initial="hidden"
               whileInView="show"
-              viewport={viewportOnce}
+              viewport={viewportPeek}
               className={cn(
                 "grid gap-6",
                 heroes.length >= 4 ? "sm:grid-cols-2 xl:grid-cols-4" : "sm:grid-cols-2 xl:grid-cols-3"
