@@ -63,7 +63,7 @@ export default function SynergyTracker() {
           {hero.name}
         </span>
         <span className="block font-mono text-[9px] font-bold uppercase tracking-wide text-ink-faint">
-          {hero.tier}-tier · {hero.role}
+          {hero.rarity} · {hero.role}
         </span>
       </span>
     </span>
@@ -107,7 +107,7 @@ export default function SynergyTracker() {
             >
               {roster.map((h) => (
                 <option key={h.id} value={h.id}>
-                  {h.name} ({h.tier}-tier {h.heroClass})
+                  {h.name} ({h.rarity} {h.heroClass})
                 </option>
               ))}
             </select>
@@ -134,7 +134,7 @@ export default function SynergyTracker() {
             >
               {roster.map((h) => (
                 <option key={h.id} value={h.id}>
-                  {h.name} ({h.tier}-tier {h.heroClass})
+                  {h.name} ({h.rarity} {h.heroClass})
                 </option>
               ))}
             </select>

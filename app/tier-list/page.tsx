@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Hero Tier List",
   alternates: { canonical: "/tier-list" },
   description:
-    "The community-consensus Tiles Survive! hero tier list — S-tier core picks, situational picks, and the troop faction cycle, updated for patch 2.6.",
+    "The complete community-consensus Tiles Survive! hero list — every hero grouped by SSR, SR and R rarity, scored for PvP, campaign and kit utility, updated for patch 2.6.",
 };
 
 export default function TierListPage() {

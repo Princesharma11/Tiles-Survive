@@ -10,7 +10,7 @@ import {
   TIER_META,
   TIER_ORDER,
   type Hero,
-  type TierKey,
+  type Rarity,
 } from "@/data/heroMeta";
 import { fadeUp, popIn, springPop, staggerContainer, viewportOnce } from "@/lib/animations/variants";
 import { cn } from "@/lib/utils/cn";
@@ -47,7 +47,7 @@ function PortraitFrame({ hero, big = false }: { hero: Hero; big?: boolean }) {
 }
 
 function HeroCard({ hero, index }: { hero: Hero; index: number }) {
-  const tier = TIER_META[hero.tier];
+  const tier = TIER_META[hero.rarity];
   return (
     <motion.article
       layout
@@ -65,17 +65,13 @@ function HeroCard({ hero, index }: { hero: Hero; index: number }) {
         {/* Tier badge */}
         <span
           className={cn(
-            "absolute left-3 top-3 grid size-12 place-items-center rounded-2xl border-[3px] border-ink font-display text-2xl font-extrabold shadow-[0_3px_0_0_#2d2a26]",
+            "absolute left-3 top-3 grid size-12 place-items-center rounded-2xl border-[3px] border-ink font-display text-xl font-extrabold shadow-[0_3px_0_0_#2d2a26]",
             tier.plate
           )}
         >
-          {hero.tier}
-        </span>
-
-        {/* Rarity */}
-        <span className="absolute right-3 top-3 rounded-full border-[3px] border-ink bg-white px-2.5 py-0.5 font-display text-[10px] font-extrabold tracking-[0.14em] text-ink shadow-[0_2px_0_0_#2d2a26]">
           {hero.rarity}
         </span>
+
 
         {/* Tag */}
         {hero.tag && (
@@ -150,20 +146,20 @@ function HeroCard({ hero, index }: { hero: Hero; index: number }) {
 }
 
 export default function TierBoard() {
-  const [filter, setFilter] = useState<TierKey | "ALL">("ALL");
+  const [filter, setFilter] = useState<Rarity | "ALL">("ALL");
 
   const grouped = useMemo(() => {
-    const map = new Map<TierKey, Hero[]>();
+    const map = new Map<Rarity, Hero[]>();
     for (const tier of TIER_ORDER) {
       map.set(
         tier,
-        HEROES.filter((h) => h.tier === tier)
+        HEROES.filter((h) => h.rarity === tier)
       );
     }
     return map;
   }, []);
 
-  const visibleTiers: TierKey[] =
+  const visibleTiers: Rarity[] =
     filter === "ALL" ? TIER_ORDER : [filter];
 
   return (
@@ -172,7 +168,7 @@ export default function TierBoard() {
         eyebrow="Season deep-dive"
         title="The definitive hero"
         accent="tier list."
-        description="Your heroes are the engine of your account — investing wrong throttles progression and burns premium fragments. Ranked for PvP, campaign pushing and kit utility in the current sustain-heavy meta."
+        description="Your heroes are the engine of your account — investing wrong throttles progression and burns premium fragments. Every hero in the game grouped by rarity and scored for PvP, campaign pushing and kit utility in the current sustain-heavy meta."
       />
 
       {/* Sticky tier nav + filters */}
@@ -207,7 +203,7 @@ export default function TierBoard() {
                     : "border-ink/20 bg-white text-ink-soft hover:border-ink"
                 )}
               >
-                {meta.icon} {tier}-Tier · {count}
+                {meta.icon} {tier} · {count}
               </button>
             );
           })}

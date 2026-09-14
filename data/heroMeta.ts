@@ -3,7 +3,6 @@
 /*  Community deep-dive verdicts, season current meta.                 */
 /* ------------------------------------------------------------------ */
 
-export type TierKey = "S" | "A" | "B" | "C" | "D";
 export type Rarity = "SSR" | "SR" | "R";
 export type HeroClass = "Guard" | "Gunner" | "Marksman";
 export type HeroFaction = "Stalwart" | "Rover" | "Aeronaut" | "Mariner";
@@ -11,7 +10,6 @@ export type HeroFaction = "Stalwart" | "Rover" | "Aeronaut" | "Mariner";
 export interface Hero {
   id: string;
   name: string;
-  tier: TierKey;
   rarity: Rarity;
   faction: HeroFaction;
   heroClass: HeroClass;
@@ -29,7 +27,7 @@ export interface Hero {
 }
 
 export const TIER_META: Record<
-  TierKey,
+  Rarity,
   {
     label: string;
     blurb: string;
@@ -39,50 +37,32 @@ export const TIER_META: Record<
     icon: string;
   }
 > = {
-  S: {
-    label: "The Core Meta",
+  SSR: {
+    label: "Legendary Pool",
     blurb:
-      "These heroes define the endgame. If you pull them, drop everything and invest all your resources into them.",
+      "Nineteen SSR heroes — the meta core, the strategic powerhouses and the infamous SSR traps all live here. Rarity opens the door; the meta score tells you who actually deserves the gold fragments.",
     plate: "border-ink bg-gradient-to-b from-gold to-flame text-ink",
     text: "text-ember-deep",
     ring: "#f6c445",
     icon: "👑",
   },
-  A: {
-    label: "Strategic Powerhouses",
+  SR: {
+    label: "Epic Pool",
     blurb:
-      "Incredibly strong — the perfect puzzle pieces to complete S-Tier cores.",
+      "Six SR heroes. Freja punches far above her pay grade — the rest pay rent at the base with smelter boosts, gathering runs and stamina savings rather than battlefield work.",
     plate: "border-ink bg-gradient-to-b from-flame to-ember text-white",
     text: "text-ember-deep",
     ring: "#f07d2e",
     icon: "⚡",
   },
-  B: {
-    label: "Mid-Game Fillers",
+  R: {
+    label: "Rare Pool",
     blurb:
-      "Perfectly usable early, but they get benched in endgame PvP as scaling falls off. Several are worth leveling for base economy passives.",
-    plate: "border-ink bg-gradient-to-b from-white to-paper text-ink",
-    text: "text-ink-soft",
-    ring: "#3d9bd1",
-    icon: "🧰",
-  },
-  C: {
-    label: "Benchwarmers",
-    blurb:
-      "Do not waste combat fragments here — the numbers don't justify the cost.",
+      "Two tutorial-week regulars. Nostalgia and garrison filler — the numbers never justify the fragments.",
     plate: "border-ink/30 bg-paper text-ink-soft",
     text: "text-ink-faint",
     ring: "#a39585",
-    icon: "🪑",
-  },
-  D: {
-    label: "Do Not Invest",
-    blurb:
-      "Rarity ≠ quality. These either lack raw stats or their utility never pays back the investment.",
-    plate: "border-ink/30 bg-berry/15 text-berry",
-    text: "text-berry",
-    ring: "#ed5ca8",
-    icon: "🚫",
+    icon: "🧰",
   },
 };
 
@@ -91,7 +71,6 @@ export const HEROES: Hero[] = [
   {
     id: "rosie",
     name: "Rosie",
-    tier: "S",
     rarity: "SSR",
     faction: "Stalwart",
     heroClass: "Guard",
@@ -107,7 +86,6 @@ export const HEROES: Hero[] = [
   {
     id: "layla",
     name: "Layla",
-    tier: "S",
     rarity: "SSR",
     faction: "Rover",
     heroClass: "Gunner",
@@ -123,7 +101,6 @@ export const HEROES: Hero[] = [
   {
     id: "nikola",
     name: "Nikola",
-    tier: "S",
     rarity: "SSR",
     faction: "Stalwart",
     heroClass: "Guard",
@@ -139,7 +116,6 @@ export const HEROES: Hero[] = [
   {
     id: "tarzan",
     name: "Tarzan",
-    tier: "S",
     rarity: "SSR",
     faction: "Stalwart",
     heroClass: "Guard",
@@ -156,13 +132,12 @@ export const HEROES: Hero[] = [
   {
     id: "tara",
     name: "Tara",
-    tier: "A",
     rarity: "SSR",
     faction: "Stalwart",
     heroClass: "Gunner",
     role: "Keystone Support",
     tag: "The Keystone",
-    verdict: "The most important A-tier hero in the game.",
+    verdict: "The most important support hero in the game.",
     detail:
       "Moderate personal damage, but Tara applies a massive global DEF buff to the team and shields allies. She is the keystone that makes the '4 Guards + 1 Gunner' meta composition work.",
     score: 89,
@@ -172,7 +147,6 @@ export const HEROES: Hero[] = [
   {
     id: "becca",
     name: "Becca",
-    tier: "A",
     rarity: "SSR",
     faction: "Rover",
     heroClass: "Marksman",
@@ -187,7 +161,6 @@ export const HEROES: Hero[] = [
   {
     id: "kiki",
     name: "Kiki",
-    tier: "A",
     rarity: "SSR",
     faction: "Aeronaut",
     heroClass: "Marksman",
@@ -202,7 +175,6 @@ export const HEROES: Hero[] = [
   {
     id: "chiron",
     name: "Chiron",
-    tier: "A",
     rarity: "SSR",
     faction: "Rover",
     heroClass: "Gunner",
@@ -217,7 +189,6 @@ export const HEROES: Hero[] = [
   {
     id: "undine",
     name: "Undine",
-    tier: "A",
     rarity: "SSR",
     faction: "Mariner",
     heroClass: "Gunner",
@@ -232,7 +203,6 @@ export const HEROES: Hero[] = [
   {
     id: "jacob",
     name: "Jacob",
-    tier: "A",
     rarity: "SSR",
     faction: "Rover",
     heroClass: "Guard",
@@ -247,7 +217,6 @@ export const HEROES: Hero[] = [
   {
     id: "shark",
     name: "Shark",
-    tier: "A",
     rarity: "SSR",
     faction: "Mariner",
     heroClass: "Guard",
@@ -262,7 +231,6 @@ export const HEROES: Hero[] = [
   {
     id: "tony",
     name: "Tony",
-    tier: "A",
     rarity: "SSR",
     faction: "Aeronaut",
     heroClass: "Guard",
@@ -277,7 +245,6 @@ export const HEROES: Hero[] = [
   {
     id: "wright",
     name: "Wright",
-    tier: "A",
     rarity: "SSR",
     faction: "Aeronaut",
     heroClass: "Gunner",
@@ -292,7 +259,6 @@ export const HEROES: Hero[] = [
   {
     id: "candy",
     name: "Candy",
-    tier: "A",
     rarity: "SSR",
     faction: "Rover",
     heroClass: "Gunner",
@@ -307,7 +273,6 @@ export const HEROES: Hero[] = [
   {
     id: "ragnar",
     name: "Ragnar",
-    tier: "A",
     rarity: "SSR",
     faction: "Mariner",
     heroClass: "Guard",
@@ -322,7 +287,6 @@ export const HEROES: Hero[] = [
   {
     id: "freja",
     name: "Freja",
-    tier: "A",
     rarity: "SR",
     faction: "Stalwart",
     heroClass: "Guard",
@@ -331,7 +295,7 @@ export const HEROES: Hero[] = [
     tag: "Best SR in the game",
     verdict: "Punches way above her rarity class.",
     detail:
-      "Double strikes and shielded AoE slashes make Freja (also spelled Freya) the best SR in the game — the first substitute if you're missing an S-Tier frontline hero.",
+      "Double strikes and shielded AoE slashes make Freja (also spelled Freya) the best SR in the game — the first substitute if you're missing a legendary frontline hero.",
     score: 80,
     portrait: "/heroes/freja.webp",
     accent: "#f6c445",
@@ -340,7 +304,6 @@ export const HEROES: Hero[] = [
   {
     id: "mike",
     name: "Mike",
-    tier: "A",
     rarity: "SSR",
     faction: "Aeronaut",
     heroClass: "Guard",
@@ -357,7 +320,6 @@ export const HEROES: Hero[] = [
   {
     id: "knotty",
     name: "Knotty",
-    tier: "B",
     rarity: "SSR",
     faction: "Mariner",
     heroClass: "Marksman",
@@ -372,7 +334,6 @@ export const HEROES: Hero[] = [
   {
     id: "maddie",
     name: "Maddie",
-    tier: "B",
     rarity: "SSR",
     faction: "Aeronaut",
     heroClass: "Marksman",
@@ -387,7 +348,6 @@ export const HEROES: Hero[] = [
   {
     id: "travis",
     name: "Travis",
-    tier: "B",
     rarity: "SR",
     faction: "Rover",
     heroClass: "Gunner",
@@ -404,7 +364,6 @@ export const HEROES: Hero[] = [
   {
     id: "eva",
     name: "Eva",
-    tier: "B",
     rarity: "SR",
     faction: "Rover",
     heroClass: "Gunner",
@@ -421,7 +380,6 @@ export const HEROES: Hero[] = [
   {
     id: "chef",
     name: "Chef",
-    tier: "B",
     rarity: "SR",
     faction: "Stalwart",
     heroClass: "Guard",
@@ -438,7 +396,6 @@ export const HEROES: Hero[] = [
   {
     id: "ray",
     name: "Ray",
-    tier: "C",
     rarity: "SSR",
     faction: "Stalwart",
     heroClass: "Marksman",
@@ -454,7 +411,6 @@ export const HEROES: Hero[] = [
   {
     id: "sarge",
     name: "Sarge",
-    tier: "C",
     rarity: "SR",
     faction: "Aeronaut",
     heroClass: "Marksman",
@@ -471,7 +427,6 @@ export const HEROES: Hero[] = [
   {
     id: "lucky",
     name: "Lucky",
-    tier: "D",
     rarity: "SR",
     faction: "Aeronaut",
     heroClass: "Marksman",
@@ -487,7 +442,6 @@ export const HEROES: Hero[] = [
   {
     id: "ghost",
     name: "Ghost",
-    tier: "D",
     rarity: "R",
     faction: "Rover",
     heroClass: "Marksman",
@@ -502,7 +456,6 @@ export const HEROES: Hero[] = [
   {
     id: "rusty",
     name: "Rusty",
-    tier: "D",
     rarity: "R",
     faction: "Stalwart",
     heroClass: "Guard",
@@ -518,7 +471,7 @@ export const HEROES: Hero[] = [
 
 export const heroById = (id: string) => HEROES.find((h) => h.id === id);
 
-export const TIER_ORDER: TierKey[] = ["S", "A", "B", "C", "D"];
+export const TIER_ORDER: Rarity[] = ["SSR", "SR", "R"];
 
 /* ------------------------------------------------------------------ */
 /*  Synergy Tracker — documented hero pair interactions                */

@@ -108,7 +108,7 @@ export default function HeroSection() {
           <Cutout key={c.src} {...c} progress={scrollYProgress} reduce={!!reduce} />
         ))}
 
-        {/* S-tier sticker badge near Maddie */}
+        {/* Meta sticker badge near Maddie */}
         <motion.div
           variants={popIn}
           initial="hidden"
@@ -121,7 +121,7 @@ export default function HeroSection() {
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             className="rounded-xl border-[3px] border-ink bg-gradient-to-b from-gold to-flame px-3 py-1 font-display text-sm font-extrabold text-ink shadow-[0_3px_0_0_#2d2a26]"
           >
-            ★ S-TIER SQUAD
+            ★ META SQUAD
           </motion.div>
         </motion.div>
       </div>

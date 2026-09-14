@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import TitanButton from "@/components/ui/TitanButton";
 import { ArrowRightIcon } from "@/components/ui/icons";
-import { HEROES, TIER_META } from "@/data/heroMeta";
+import { HEROES } from "@/data/heroMeta";
 import { popIn, springPop, staggerContainer, viewportOnce } from "@/lib/animations/variants";
 import { cn } from "@/lib/utils/cn";
 
@@ -18,8 +18,9 @@ import { cn } from "@/lib/utils/cn";
 export default function HeroSpotlight() {
   const reduce = useReducedMotion();
 
-  // S-TIER core meta — the squad leading the patch.
-  const squad = HEROES.filter((h) => h.tier === "S" && h.portrait);
+  // Meta core — the highest-scoring heroes leading the patch.
+  const squad = HEROES.filter((h) => h.score >= 90 && h.portrait)
+    .sort((a, b) => b.score - a.score);
 
   return (
     <section className="relative overflow-hidden border-y-[3px] border-ink bg-gradient-to-b from-pine via-pine-deep to-pine py-24 md:py-32">
@@ -106,12 +107,10 @@ export default function HeroSpotlight() {
                   transition={springPop}
                   className={cn(
                     "absolute right-1 top-0 grid size-12 place-items-center rounded-2xl border-[3px] border-ink font-display text-2xl font-extrabold shadow-[0_4px_0_0_#2d2a26]",
-                    hero.tier === "S"
-                      ? "bg-gradient-to-b from-gold to-flame text-ink"
-                      : "bg-gradient-to-b from-flame to-ember text-white"
+                    "bg-gradient-to-b from-gold to-flame text-ink"
                   )}
                 >
-                  {hero.tier}
+                  {hero.score}
                 </motion.span>
               </motion.div>
 
@@ -153,12 +152,10 @@ export default function HeroSpotlight() {
                 <span
                   className={cn(
                     "absolute right-0 top-0 grid size-11 place-items-center rounded-xl border-[3px] border-ink font-display text-xl font-extrabold shadow-[0_3px_0_0_#2d2a26]",
-                    hero.tier === "S"
-                      ? "bg-gradient-to-b from-gold to-flame text-ink"
-                      : "bg-gradient-to-b from-flame to-ember text-white"
+                    "bg-gradient-to-b from-gold to-flame text-ink"
                   )}
                 >
-                  {hero.tier}
+                  {hero.score}
                 </span>
               </div>
               <div className="mt-2 rounded-xl border-[3px] border-ink bg-white px-3 py-1.5 text-center">
