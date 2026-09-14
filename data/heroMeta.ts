@@ -4,7 +4,7 @@
 /* ------------------------------------------------------------------ */
 
 export type TierKey = "S" | "A" | "B" | "C" | "D";
-export type Rarity = "SSR" | "SR" | "SR/R" | "R";
+export type Rarity = "SSR" | "SR" | "R";
 export type HeroClass = "Guard" | "Gunner" | "Marksman";
 export type HeroFaction = "Stalwart" | "Rover" | "Aeronaut" | "Mariner";
 
@@ -472,7 +472,7 @@ export const HEROES: Hero[] = [
     id: "lucky",
     name: "Lucky",
     tier: "D",
-    rarity: "SR/R",
+    rarity: "SR",
     faction: "Aeronaut",
     heroClass: "Marksman",
     role: "Utility / Economy",
