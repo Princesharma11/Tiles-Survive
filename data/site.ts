@@ -16,7 +16,7 @@ export const site = {
 } as const;
 
 export const heroStats = [
-  { value: 3, suffix: "", label: "LIVE TOOLS" },
+  { value: 4, suffix: "", label: "LIVE TOOLS" },
   { value: 40, suffix: "+", label: "HERO PROFILES" },
   { value: 120, suffix: "+", label: "CODEX ENTRIES" },
 ] as const;

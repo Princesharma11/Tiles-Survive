@@ -20,6 +20,12 @@ export const navItems: NavItem[] = [
     hint: "Pairing & skill math",
   },
   {
+    id: "gear-reforge",
+    label: "Gear Reforge",
+    href: "/gear-reforge",
+    hint: "Alloy reforge simulator",
+  },
+  {
     id: "tier-list",
     label: "Tier List",
     href: "/tier-list",
