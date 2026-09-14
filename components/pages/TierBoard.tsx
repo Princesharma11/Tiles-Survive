@@ -212,7 +212,7 @@ export default function TierBoard() {
             );
           })}
           <span className="ml-auto hidden shrink-0 font-mono text-[10px] font-bold text-ink-faint lg:block">
-            SUSTAIN META // v6.2
+            SUSTAIN META // v2.6
           </span>
         </div>
       </div>
@@ -280,11 +280,12 @@ export default function TierBoard() {
         combat scores. Meta shifts with every balance patch.
         <br />
         <span className="text-ink-soft/70">
-          Portrait credits: Ghost, Maddie, Rusty, Lucky &amp; Sarge are official
-          FunPlus renders; Freja is cropped from in-game footage; Rosie, Layla,
-          Nikola, Tarzan, Tara, Becca, Kiki, Jacob, Tony &amp; Ray are fan-made
-          renditions drawn on-style from the official art; Travis, Eva &amp;
-          Chef appear as monogram plates.
+          Portrait credits: Ghost, Maddie, Rusty, Lucky, Sarge, Becca, Kiki,
+          Jacob, Chiron &amp; Candy are official FunPlus renders sourced via
+          community guide sites; Freja is cropped from in-game footage; Rosie,
+          Layla, Nikola, Tarzan, Tara, Tony &amp; Ray are fan-made renditions
+          drawn on-style from the official art; Travis, Eva &amp; Chef appear
+          as monogram plates.
         </span>
       </motion.p>
 

@@ -200,6 +200,21 @@ export const HEROES: Hero[] = [
     accent: "#3d9bd1",
   },
   {
+    id: "chiron",
+    name: "Chiron",
+    tier: "A",
+    rarity: "SSR",
+    faction: "Rover",
+    heroClass: "Gunner",
+    role: "Defense-Break Enabler",
+    verdict: "Turns every skill rotation into a team-wide damage spike.",
+    detail:
+      "Chiron's Arrowstorm rains piercing arrows on everything in range and strips 10% DEF off every enemy it touches for five seconds — and Deadshot gains bonus crit against shredded targets. He's at his best versus bosses and tanky waves; value dips only when fights end before the shred window rolls.",
+    score: 84,
+    portrait: "/heroes/chiron.webp",
+    accent: "#2fa39b",
+  },
+  {
     id: "jacob",
     name: "Jacob",
     tier: "A",
@@ -228,6 +243,21 @@ export const HEROES: Hero[] = [
     score: 82,
     portrait: "/heroes/tony.webp",
     accent: "#3d9bd1",
+  },
+  {
+    id: "candy",
+    name: "Candy",
+    tier: "A",
+    rarity: "SSR",
+    faction: "Rover",
+    heroClass: "Gunner",
+    role: "Healing Carry-Amplifier",
+    verdict: "Turns your hardest-hitting hero into a win condition.",
+    detail:
+      "Candy's Healing Smile restores the whole team every second for five seconds — and gifts a fat +27.8 Crit to whichever ally packs the highest ATK. Aim it at Rosie or Tarzan and fights end early, while Dazzling Aura quietly trims enemy ATK across the board. Just build a real carry first: she amplifies one, she doesn't replace one.",
+    score: 81,
+    portrait: "/heroes/candy.webp",
+    accent: "#ed5ca8",
   },
   {
     id: "freja",
@@ -508,6 +538,33 @@ export const SYNERGY_PAIRS: SynergyPair[] = [
     effect:
       "Not a combat pair — the classic economy duo for smelter output and world-map gathering runs.",
     math: "Base-tech progression, zero fragments wasted",
+    rating: 3,
+  },
+  {
+    a: "chiron",
+    b: "becca",
+    title: "Shredded Lane",
+    effect:
+      "Arrowstorm's 10% DEF shred stacks with Becca's own Foresight debuff — by the time Heartseeker's line fires, every target in it is wearing paper armor.",
+    math: "≈ −21% enemy DEF when both windows overlap",
+    rating: 4,
+  },
+  {
+    a: "candy",
+    b: "becca",
+    title: "Sugar Rush Execution",
+    effect:
+      "Healing Smile hands its +27.8 Crit to your highest-ATK ally — usually Becca — turning Heartseeker's sub-30% HP executes into guaranteed deletions while the heal keeps her alive to fire it.",
+    math: "≈ +28 crit on your carry's burst window",
+    rating: 4,
+  },
+  {
+    a: "candy",
+    b: "jacob",
+    title: "Sweet Chaos",
+    effect:
+      "Candy's Dazzling Aura trims enemy ATK while Jacob's Ultimate Prank cuts both ATK and DEF — stacked debuffs plus a taunt bomb mean enemies hit softer and stand still for it.",
+    math: "≈ −5.6% enemy ATK & DEF while both live",
     rating: 3,
   },
 ];
