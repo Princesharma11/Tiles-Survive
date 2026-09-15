@@ -7,12 +7,12 @@ import GuidesCarousel from "@/components/sections/GuidesCarousel";
 import CallToArms from "@/components/sections/CallToArms";
 
 /* ------------------------------------------------------------------ */
-/*  Homepage — vertical flow:                                          */
+/*  Homepage — vertical flow (guides lead):                            */
 /*  01 Hero (official key art + floating hero cutouts + parallax)      */
 /*  → Expedition-log ticker                                            */
-/*  02 Arsenal (art-backed expanding feature cards)                    */
-/*  03 Hero spotlight (official character art, night-camp band)        */
-/*  04 Guides carousel (world-scene codex rail)                        */
+/*  02 Guides carousel (the codex leads — content is the front door)   */
+/*  03 Arsenal (art-backed expanding feature cards)                    */
+/*  04 Hero spotlight (official character art, night-camp band)        */
 /*  05 Living world CTA (3D floating island)                           */
 /* ------------------------------------------------------------------ */
 
@@ -42,9 +42,9 @@ export default function HomePage() {
       />
       <HeroSection />
       <TickerTape />
+      <GuidesCarousel />
       <FeatureGrid />
       <HeroSpotlight />
-      <GuidesCarousel />
       <CallToArms />
     </>
   );

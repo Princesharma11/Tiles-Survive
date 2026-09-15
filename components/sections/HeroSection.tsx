@@ -200,19 +200,19 @@ export default function HeroSection() {
           className="mt-9 flex flex-wrap items-center gap-4"
         >
           <TitanButton
+            href="/guides"
+            size="xl"
+            icon={<CrosshairIcon className="size-5" />}
+          >
+            Read the Field Guides
+          </TitanButton>
+          <TitanButton
             href="/war-room"
+            variant="paper"
             size="xl"
             icon={<SwordsIcon className="size-5" />}
           >
             Enter War Room
-          </TitanButton>
-          <TitanButton
-            href="/hero-meta-calc"
-            variant="paper"
-            size="xl"
-            icon={<CrosshairIcon className="size-5" />}
-          >
-            Analyze Roster
           </TitanButton>
         </motion.div>
 

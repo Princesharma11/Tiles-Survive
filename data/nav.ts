@@ -8,6 +8,12 @@ export type NavItem = {
 /** Primary command navigation (sticky header + mobile overlay). */
 export const navItems: NavItem[] = [
   {
+    id: "guides",
+    label: "Guides",
+    href: "/guides",
+    hint: "The survival codex",
+  },
+  {
     id: "war-room",
     label: "War Room",
     href: "/war-room",
@@ -30,11 +36,5 @@ export const navItems: NavItem[] = [
     label: "Tier List",
     href: "/tier-list",
     hint: "Community consensus board",
-  },
-  {
-    id: "guides",
-    label: "Guides",
-    href: "/guides",
-    hint: "The survival codex",
   },
 ];

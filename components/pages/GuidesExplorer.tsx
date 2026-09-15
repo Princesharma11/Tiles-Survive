@@ -85,13 +85,6 @@ export default function GuidesExplorer() {
           No entries in this sector yet — scouts are on it 🔍
         </p>
       )}
-
-      {/* Anchor targets for deep links */}
-      {guides.map((guide) => (
-        <div key={guide.id} id={guide.slug} className="sr-only">
-          {guide.title}
-        </div>
-      ))}
     </section>
   );
 }

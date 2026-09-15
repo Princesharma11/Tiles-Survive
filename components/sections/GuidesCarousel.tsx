@@ -40,10 +40,10 @@ export default function GuidesCarousel() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeader
-            eyebrow="Knowledge cache"
-            title="The survival"
-            accent="codex."
-            description="Battle-tested guides distilled from thousands of State wars — from your first fog run to cross-server conquest."
+            eyebrow="Start here // survival codex"
+            title="Guides forged"
+            accent="in the field."
+            description="Eight complete, patch-2.6.0 strategy guides — from your first fog run to cross-server conquest. Written for gamers, by officers who hold the tile."
             className="mb-0"
           />
 

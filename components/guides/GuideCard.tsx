@@ -28,7 +28,7 @@ export default function GuideCard({
 
   return (
     <Link
-      href={`/guides#${guide.slug}`}
+      href={`/guides/${guide.slug}`}
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-3xl border-[3px] border-ink bg-white shadow-[0_4px_0_0_#2d2a26,0_18px_34px_-18px_rgba(45,42,38,0.35)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_8px_0_0_#2d2a26,0_26px_44px_-18px_rgba(45,42,38,0.45)]",
         className

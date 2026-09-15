@@ -9,7 +9,7 @@ export const site = {
   name: "TitanTilesSurvive",
   tagline: "Stop Guessing. Start Conquering.",
   description:
-    "Command intelligence for Tiles Survive! — a next-gen companion hub with the Arcadian War Room, troop ratio optimization, Chief Gear reforge simulation, live tier lists and a survival codex.",
+    "Tiles Survive! strategy guides and tools — the Survival Codex with eight deep field guides, the Arcadian War Room, troop ratio optimizer, Chief Gear reforge simulator and the live hero tier list.",
   url: "https://titantilessurvive.com",
   patch: "PATCH 2.6.0",
   season: "SEASON 6 // ARCADIAN CONQUEST",
@@ -18,7 +18,7 @@ export const site = {
 export const heroStats = [
   { value: 4, suffix: "", label: "LIVE TOOLS" },
   { value: 40, suffix: "+", label: "HERO PROFILES" },
-  { value: 120, suffix: "+", label: "CODEX ENTRIES" },
+  { value: 8, suffix: "", label: "FIELD GUIDES" },
 ] as const;
 
 export const tickerItems = [
