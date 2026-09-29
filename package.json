@@ -2,7 +2,8 @@
   "name": "titan-tiles-survive",
   "version": "0.1.0",
   "private": true,
-  "description": "TitanTilesSurvive — command intelligence companion web app for the 4X strategy game Tiles Survive!",
+  "type": "module",
+  "description": "TitanTilesSurvive \u2014 command intelligence companion web app for the 4X strategy game Tiles Survive!",
   "engines": {
     "node": ">=20"
   },
