@@ -22,11 +22,10 @@ import ChatPanel from "./ChatPanel";
 /* ------------------------------------------------------------------ */
 
 export default function WarConsole({ code }: { code: string }) {
-  const { session, status, storage, mutate, serverNow } = useWarRoom(code);
+  const { session, status, mutate, serverNow } = useWarRoom(code);
   const tick = useNow(1000);
 
   const [isLeader, setIsLeader] = useState(false);
-  const [storageWarnClosed, setStorageWarnClosed] = useState(false);
   const [myMemberId, setMyMemberId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [inviteOpen, setInviteOpen] = useState(false);
@@ -112,8 +111,7 @@ export default function WarConsole({ code }: { code: string }) {
           <p className="mt-2 font-bold text-ink-soft">
             The code <span className="font-mono text-ember-deep">{code}</span>{" "}
             doesn&apos;t exist — the room expired (rooms live 24h), or the
-            leader deployed a fresh one. Rooms only fall on their own when the
-            server has no Redis attached — see the note inside a live room.
+            leader deployed a fresh one.
           </p>
           <Link
             href="/war-room"
@@ -224,34 +222,6 @@ export default function WarConsole({ code }: { code: string }) {
               : "🔗 Copy invite link"}
         </button>
       </motion.header>
-
-      {/* Ephemeral-storage warning: on serverless without Redis, rooms
-          live only as long as one warm instance. Tell the leader why. */}
-      {storage === "temp-file" && !storageWarnClosed && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-5 flex flex-wrap items-center gap-3 rounded-2xl border-[3px] border-ember-deep/60 bg-flame/15 px-4 py-3"
-          role="alert"
-        >
-          <p className="min-w-0 flex-1 text-xs font-bold leading-relaxed text-ink">
-            ⚠️ <span className="font-extrabold">This deployment uses temporary room storage.</span>{" "}
-            Rooms can fall when the server idles — that&apos;s not a bug in your room, it&apos;s
-            missing Redis. Fix it once: add the free{" "}
-            <span className="font-extrabold text-ember-deep">Upstash Redis</span> integration from
-            the Vercel Marketplace (it injects KV_REST_API_URL / KV_REST_API_TOKEN automatically) —
-            rooms then survive idles, restarts and redeployments for the full 24h.
-          </p>
-          <button
-            type="button"
-            onClick={() => setStorageWarnClosed(true)}
-            aria-label="Dismiss storage warning"
-            className="shrink-0 rounded-xl border-2 border-ink/20 bg-white px-2.5 py-1 text-xs font-black text-ink-soft hover:border-ink/50"
-          >
-            ✕
-          </button>
-        </motion.div>
-      )}
 
       {/* Invite panel — the link is ALWAYS visible when open, so the
           invite is obtainable even where clipboard APIs are blocked. */}
