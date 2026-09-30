@@ -101,14 +101,16 @@ const restToken =
   process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN ?? "";
 const upstashReady = Boolean(restUrl && restToken);
 
-async function upstashCommand<T>(command: string): Promise<T | null> {
+/** Upstash REST takes a JSON array of command arguments — never a
+    space-joined string (payloads contain spaces). */
+async function upstashCommand<T>(args: (string | number)[]): Promise<T | null> {
   const res = await fetch(restUrl, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${restToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(command.split(" ")),
+    body: JSON.stringify(args),
     cache: "no-store",
   });
   if (!res.ok) throw new Error(`Upstash error ${res.status}`);
@@ -118,7 +120,7 @@ async function upstashCommand<T>(command: string): Promise<T | null> {
 
 const upstashStore: WarStore = {
   async get(code) {
-    const raw = await upstashCommand<string>(`GET war:${code.toLowerCase()}`);
+    const raw = await upstashCommand<string>(["GET", `war:${code.toLowerCase()}`]);
     if (!raw) return null;
     const session = JSON.parse(raw) as WarSession;
     if (session.expiresAt < Date.now()) return null;
@@ -137,9 +139,13 @@ const upstashStore: WarStore = {
     return session;
   },
   async save(session) {
-    await upstashCommand(
-      `SET war:${session.code.toLowerCase()} ${JSON.stringify(session)} EX ${TTL_SECONDS}`
-    );
+    await upstashCommand([
+      "SET",
+      `war:${session.code.toLowerCase()}`,
+      JSON.stringify(session),
+      "EX",
+      TTL_SECONDS,
+    ]);
   },
 };
 
@@ -173,11 +179,30 @@ export function newSession(code: string, allianceName: string): WarSession {
       },
     ],
     pings: [],
+    chat: [
+      {
+        id: "boot",
+        at: now,
+        authorId: "system",
+        name: "",
+        text: "War Room deployed — coordinate here. The leader's broadcasts land in the ticker; everything else is yours.",
+        kind: "system",
+      },
+    ],
   };
 }
 
 export function getStore(): WarStore {
   return upstashReady ? upstashStore : fileStore;
+}
+
+export type WarStorageMode = "redis" | "temp-file";
+
+/** Which backing store is live. "temp-file" is per-instance ephemeral
+    storage — fine for dev, NOT ok for serverless production (rooms fall
+    when the instance idles). The UI surfaces a setup hint in that case. */
+export function warStorageMode(): WarStorageMode {
+  return upstashReady ? "redis" : "temp-file";
 }
 
 export { upstashReady };

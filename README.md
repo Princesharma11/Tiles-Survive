@@ -77,8 +77,9 @@ The flagship tool at `/war-room` — a real-time command center for alliance
 coordination, implementing the full operational blueprint:
 
 - **Phase 1 — Viral lobby:** deploy a room with an alliance name → get a
-  shareable `/war/<Code>` link (e.g. `/war/Arcadia-Alpha-77`, 24h TTL).
-  Members join with zero accounts: username, power, strongest troop type.
+  shareable `/war/<Code>` link (e.g. `/war/48291`, unique 5-digit war code,
+  24h TTL). The war code is displayed in-room with tap-to-copy. Members join
+  with zero accounts: username, power, strongest troop type.
 - **Phase 2 — Tactical map:** Arcadia center + four corner towers with
   friendly/enemy control toggles per structure.
 - **Phase 3 — Assignments:** roster drawer with draggable member cards →

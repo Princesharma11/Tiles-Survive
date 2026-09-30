@@ -1,4 +1,4 @@
-import type { Member, TickerEntry, WarAction, WarSession } from "./types";
+import type { ChatMessage, Member, TickerEntry, WarAction, WarSession } from "./types";
 import { slotById, structureById, TROOP_META } from "./types";
 
 /* ------------------------------------------------------------------ */
@@ -8,6 +8,15 @@ import { slotById, structureById, TROOP_META } from "./types";
 
 const uid = () =>
   `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
+
+const sysMsg = (text: string): ChatMessage => ({
+  id: `${Date.now().toString(36)}sys${Math.random().toString(36).slice(2, 6)}`,
+  at: Date.now(),
+  authorId: "system",
+  name: "",
+  text,
+  kind: "system",
+});
 
 const LEADER_ACTIONS = new Set([
   "assign",
@@ -41,6 +50,7 @@ export function applyAction(session: WarSession, action: WarAction): ApplyResult
     members: [...session.members],
     ticker: [...session.ticker],
     pings: [...session.pings],
+    chat: [...(session.chat ?? [])],
     control: { ...session.control },
   };
 
@@ -69,6 +79,7 @@ export function applyAction(session: WarSession, action: WarAction): ApplyResult
         at: Date.now(),
       };
       next.ticker = [reportIn, ...next.ticker].slice(0, 14);
+      pushChat(next, sysMsg(`${member.name} reported in — ${TROOP_META[member.troop].label}`));
       break;
     }
 
@@ -140,12 +151,14 @@ export function applyAction(session: WarSession, action: WarAction): ApplyResult
         at: Date.now(),
       };
       next.ticker = [liveAlert, ...next.ticker].slice(0, 14);
+      pushChat(next, sysMsg("⚔️ CONQUEST IS LIVE — hold your assignments and watch the timers!"));
       break;
     }
 
     case "endLive": {
       next.phase = "planning";
       next.liveStartedAt = null;
+      pushChat(next, sysMsg("🏁 Live phase ended — the leader closed the war. Debrief in chat."));
       break;
     }
 
@@ -160,6 +173,28 @@ export function applyAction(session: WarSession, action: WarAction): ApplyResult
         at: Date.now(),
       };
       next.ticker = [removal, ...next.ticker].slice(0, 14);
+      pushChat(next, sysMsg(`${member.name} left the roster.`));
+      break;
+    }
+
+    case "chat": {
+      const text = action.text.trim().slice(0, 200);
+      if (!text) return { ok: false, error: "Message is empty." };
+      if (action.token && action.token === session.leaderToken) {
+        pushChat(next, {
+          id: uid(), at: Date.now(), authorId: "leader", name: "War Leader", text, kind: "chat",
+        });
+        break;
+      }
+      const member =
+        action.memberId != null
+          ? next.members.find((m) => m.id === action.memberId)
+          : undefined;
+      if (!member)
+        return { ok: false, error: "Join the roster before chatting." };
+      pushChat(next, {
+        id: uid(), at: Date.now(), authorId: member.id, name: member.name, text, kind: "chat",
+      });
       break;
     }
 
@@ -168,6 +203,15 @@ export function applyAction(session: WarSession, action: WarAction): ApplyResult
   }
 
   return { ok: true, session: next };
+}
+
+/* ------------------------------ chat ------------------------------- */
+
+const CHAT_CAP = 100;
+
+/** Append a chat message, keeping only the most recent CHAT_CAP entries. */
+function pushChat(session: WarSession, message: ChatMessage) {
+  session.chat = [...session.chat, message].slice(-CHAT_CAP);
 }
 
 /* --------------------------- formatting --------------------------- */

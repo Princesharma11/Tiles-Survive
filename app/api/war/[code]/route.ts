@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getStore, safeCode } from "@/lib/warroom/store";
+import { getStore, safeCode, warStorageMode } from "@/lib/warroom/store";
 import { applyAction } from "@/lib/warroom/actions";
 import type { WarAction } from "@/lib/warroom/types";
 
@@ -24,7 +24,11 @@ export async function GET(request: Request, ctx: Ctx) {
   const url = new URL(request.url);
   const clientV = Number(url.searchParams.get("v") ?? "-1");
   if (clientV === session.v) {
-    return NextResponse.json({ unchanged: true, v: session.v });
+    return NextResponse.json({
+      unchanged: true,
+      v: session.v,
+      storage: warStorageMode(),
+    });
   }
 
   /* Strip the leader token — it never travels to clients. */
@@ -34,6 +38,7 @@ export async function GET(request: Request, ctx: Ctx) {
   return NextResponse.json({
     session: publicSession,
     now: Date.now(), // lets clients compute a clock offset for synced timers
+    storage: warStorageMode(),
   });
 }
 

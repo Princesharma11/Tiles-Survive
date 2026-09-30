@@ -30,8 +30,18 @@ export interface Ping {
   at: number;
 }
 
+export interface ChatMessage {
+  id: string;
+  at: number;
+  /** "leader" | "system" | member id */
+  authorId: string;
+  name: string;
+  text: string;
+  kind: "chat" | "system";
+}
+
 export interface WarSession {
-  code: string; // e.g. "Arcadia-Alpha-77"
+  code: string; // unique 5-digit war code, e.g. "48291"
   allianceName: string;
   /** Present in server storage & create-response only — GET responses
      strip it so members can never read the leader's command token. */
@@ -45,6 +55,7 @@ export interface WarSession {
   members: Member[];
   ticker: TickerEntry[];
   pings: Ping[];
+  chat: ChatMessage[];
 }
 
 /* ------------------------- battle config -------------------------- */
@@ -154,24 +165,21 @@ export const SESSION_TTL = 24 * 60 * 60; // rooms auto-expire after a day
 
 /* --------------------------- code gen ----------------------------- */
 
-const CODE_A = [
-  "Arcadia", "Titan", "Ember", "Aurora", "Frost",
-  "Grove", "Rally", "Pine", "Forge", "Storm",
-];
-const CODE_B = [
-  "Alpha", "Bravo", "Echo", "Nova", "Vanguard",
-  "Sentinel", "Comet", "Falcon", "Warden", "Zephyr",
-];
-
+/** Unique 5-digit war code (10000-99999) — short enough to read out
+    loud on a voice call, type on a phone, or drop in alliance chat.
+    Collisions are retried by the store on create. */
 export function generateWarCode(): string {
-  const a = CODE_A[Math.floor(Math.random() * CODE_A.length)];
-  const b = CODE_B[Math.floor(Math.random() * CODE_B.length)];
-  const n = Math.floor(Math.random() * 90) + 10;
-  return `${a}-${b}-${n}`;
+  return String(Math.floor(10000 + Math.random() * 90000));
 }
 
-export const normalizeCode = (raw: string) =>
-  raw.trim().replace(/^\/+|\/+$/g, "").replace(/^war\//i, "");
+/** Tolerant input normalization: accepts "48291", "/war/48291",
+    "war/48291" and full pasted invite URLs. */
+export const normalizeCode = (raw: string) => {
+  let s = raw.trim().replace(/\/+$/, "");
+  const slash = s.lastIndexOf("/");
+  if (slash >= 0) s = s.slice(slash + 1);
+  return s.replace(/^war\//i, "");
+};
 
 export const TROOP_META: Record<
   TroopType,
@@ -193,4 +201,6 @@ export type WarAction =
   | { type: "ping"; token: string; structureId: StructureId }
   | { type: "startLive"; token: string }
   | { type: "endLive"; token: string }
-  | { type: "remove"; token: string; memberId: string };
+  | { type: "remove"; token: string; memberId: string }
+  /** Open chat: leader authenticates with token, members with memberId. */
+  | { type: "chat"; token?: string; memberId?: string; text: string };

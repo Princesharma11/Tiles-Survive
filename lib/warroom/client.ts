@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { WarAction, WarSession } from "./types";
+import type { WarStorageMode } from "./store";
 
 /* ------------------------------------------------------------------ */
 /*  useWarRoom — the realtime client.                                  */
@@ -21,6 +22,7 @@ export type WarRoomStatus = "loading" | "ready" | "notfound";
 export function useWarRoom(code: string) {
   const [session, setSession] = useState<WarSession | null>(null);
   const [status, setStatus] = useState<WarRoomStatus>("loading");
+  const [storage, setStorage] = useState<WarStorageMode | null>(null);
 
   const versionRef = useRef(0);
   const offsetRef = useRef(0); // serverNow - clientNow
@@ -47,6 +49,7 @@ export function useWarRoom(code: string) {
           return;
         }
         const data = await res.json();
+        if (typeof data.storage === "string") setStorage(data.storage);
         if (!data.unchanged) absorb(data);
       } catch {
         /* transient network error — next poll retries */
@@ -116,7 +119,7 @@ export function useWarRoom(code: string) {
   /** Server-synchronized timestamp (ms). */
   const serverNow = useCallback(() => Date.now() + offsetRef.current, []);
 
-  return { session, status, mutate, refresh, serverNow };
+  return { session, status, storage, mutate, refresh, serverNow };
 }
 
 /** Ticking clock for countdowns (1s). */

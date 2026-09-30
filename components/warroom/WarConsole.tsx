@@ -13,6 +13,7 @@ import TacticalMap from "./TacticalMap";
 import RosterDrawer from "./RosterDrawer";
 import CommandTicker from "./CommandTicker";
 import EventTimers from "./EventTimers";
+import ChatPanel from "./ChatPanel";
 
 /* ------------------------------------------------------------------ */
 /*  WarConsole — the /war/[code] command center.                       */
@@ -21,14 +22,16 @@ import EventTimers from "./EventTimers";
 /* ------------------------------------------------------------------ */
 
 export default function WarConsole({ code }: { code: string }) {
-  const { session, status, mutate, serverNow } = useWarRoom(code);
+  const { session, status, storage, mutate, serverNow } = useWarRoom(code);
   const tick = useNow(1000);
 
   const [isLeader, setIsLeader] = useState(false);
+  const [storageWarnClosed, setStorageWarnClosed] = useState(false);
   const [myMemberId, setMyMemberId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [inviteOpen, setInviteOpen] = useState(false);
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  const [codeCopy, setCodeCopy] = useState<"idle" | "copied" | "failed">("idle");
   const inviteRef = useRef<HTMLInputElement>(null);
 
   /* Resolve local identity once the session arrives */
@@ -108,7 +111,9 @@ export default function WarConsole({ code }: { code: string }) {
           </h2>
           <p className="mt-2 font-bold text-ink-soft">
             The code <span className="font-mono text-ember-deep">{code}</span>{" "}
-            doesn&apos;t exist — or the room auto-expired after 24h of peace.
+            doesn&apos;t exist — the room expired (rooms live 24h), or the
+            leader deployed a fresh one. Rooms only fall on their own when the
+            server has no Redis attached — see the note inside a live room.
           </p>
           <Link
             href="/war-room"
@@ -179,10 +184,32 @@ export default function WarConsole({ code }: { code: string }) {
             )}
           </p>
           <p className="font-mono text-[11px] font-bold text-ink-soft">
-            {session.members.length} on roster · {assignedCount} deployed ·{" "}
-            <span className="text-ember-deep">{session.code}</span>
+            {session.members.length} on roster · {assignedCount} deployed
           </p>
         </div>
+
+        {/* The 5-digit war code — read it out loud, type it on a phone */}
+        <button
+          type="button"
+          onClick={() => {
+            void copyText(session.code).then((ok) => {
+              setCodeCopy(ok ? "copied" : "failed");
+              setTimeout(() => setCodeCopy("idle"), 1600);
+            });
+          }}
+          title="Tap to copy the war code"
+          className="flex shrink-0 flex-col items-center rounded-2xl border-[3px] border-ink bg-gradient-to-b from-gold to-flame px-4 py-1.5 shadow-[0_4px_0_0_#2d2a26] transition-all hover:-translate-y-0.5"
+        >
+          <span className="font-mono text-[8px] font-bold uppercase tracking-[0.28em] text-ink/70">
+            War Code
+          </span>
+          <span className="font-mono text-2xl font-extrabold leading-tight tracking-[0.18em] text-ink">
+            {session.code}
+          </span>
+          <span className="font-mono text-[8px] font-bold uppercase tracking-wider text-ink/60">
+            {codeCopy === "copied" ? "✓ copied" : "tap to copy"}
+          </span>
+        </button>
 
         <button
           type="button"
@@ -198,6 +225,34 @@ export default function WarConsole({ code }: { code: string }) {
         </button>
       </motion.header>
 
+      {/* Ephemeral-storage warning: on serverless without Redis, rooms
+          live only as long as one warm instance. Tell the leader why. */}
+      {storage === "temp-file" && !storageWarnClosed && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-5 flex flex-wrap items-center gap-3 rounded-2xl border-[3px] border-ember-deep/60 bg-flame/15 px-4 py-3"
+          role="alert"
+        >
+          <p className="min-w-0 flex-1 text-xs font-bold leading-relaxed text-ink">
+            ⚠️ <span className="font-extrabold">This deployment uses temporary room storage.</span>{" "}
+            Rooms can fall when the server idles — that&apos;s not a bug in your room, it&apos;s
+            missing Redis. Fix it once: add the free{" "}
+            <span className="font-extrabold text-ember-deep">Upstash Redis</span> integration from
+            the Vercel Marketplace (it injects KV_REST_API_URL / KV_REST_API_TOKEN automatically) —
+            rooms then survive idles, restarts and redeployments for the full 24h.
+          </p>
+          <button
+            type="button"
+            onClick={() => setStorageWarnClosed(true)}
+            aria-label="Dismiss storage warning"
+            className="shrink-0 rounded-xl border-2 border-ink/20 bg-white px-2.5 py-1 text-xs font-black text-ink-soft hover:border-ink/50"
+          >
+            ✕
+          </button>
+        </motion.div>
+      )}
+
       {/* Invite panel — the link is ALWAYS visible when open, so the
           invite is obtainable even where clipboard APIs are blocked. */}
       <AnimatePresence>
@@ -209,7 +264,8 @@ export default function WarConsole({ code }: { code: string }) {
             className="mb-5 rounded-2xl border-[3px] border-ink bg-white p-3.5 shadow-[0_4px_0_0_#2d2a26]"
           >
             <p className="font-display text-xs font-extrabold uppercase tracking-[0.16em] text-ink-soft">
-              War Room invite link
+              War Room invite · code{" "}
+              <span className="font-mono text-sm tracking-[0.2em] text-ember-deep">{session.code}</span>
             </p>
             <div className="mt-2 flex flex-wrap items-center gap-2">
               <input
@@ -296,26 +352,42 @@ export default function WarConsole({ code }: { code: string }) {
           onSelect={setSelectedId}
         />
 
-        <RosterDrawer
-          members={session.members}
-          isLeader={isLeader}
-          myMemberId={myMemberId}
-          selectedId={selectedId}
-          onAssign={(memberId, slotId) =>
-            mutate({ type: "assign", token, memberId, slotId })
-          }
-          onRemove={(memberId) => mutate({ type: "remove", token, memberId })}
-          onCycleRole={(member) => {
-            const next: WarRole | null =
-              member.role === null
-                ? "rally"
-                : member.role === "rally"
-                  ? "filler"
-                  : null;
-            mutate({ type: "role", token, memberId: member.id, role: next });
-          }}
-          onSelect={setSelectedId}
-        />
+        <div className="flex flex-col gap-5">
+          <RosterDrawer
+            members={session.members}
+            isLeader={isLeader}
+            myMemberId={myMemberId}
+            selectedId={selectedId}
+            onAssign={(memberId, slotId) =>
+              mutate({ type: "assign", token, memberId, slotId })
+            }
+            onRemove={(memberId) => mutate({ type: "remove", token, memberId })}
+            onCycleRole={(member) => {
+              const next: WarRole | null =
+                member.role === null
+                  ? "rally"
+                  : member.role === "rally"
+                    ? "filler"
+                    : null;
+              mutate({ type: "role", token, memberId: member.id, role: next });
+            }}
+            onSelect={setSelectedId}
+          />
+
+          {/* Realtime comms — leader commands & member chatter */}
+          <ChatPanel
+            chat={session.chat ?? []}
+            members={session.members}
+            isLeader={isLeader}
+            myMemberId={myMemberId}
+            onSend={async (text) => {
+              const res = isLeader
+                ? await mutate({ type: "chat", token, text })
+                : await mutate({ type: "chat", memberId: myMemberId ?? undefined, text });
+              return res.ok;
+            }}
+          />
+        </div>
       </div>
 
       {/* Selection helper (tap-to-assign flow) */}

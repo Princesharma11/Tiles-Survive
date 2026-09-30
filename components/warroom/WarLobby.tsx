@@ -164,7 +164,8 @@ export default function WarLobby() {
                 Join a War Room
               </h3>
               <p className="mt-1 text-sm font-bold text-cream/70">
-                Got a link? Just open it. Got a code? Type it below.
+                Got a link? Just open it. Got a 5-digit code from your leader?
+                Type it below — or paste the whole link, it works too.
               </p>
 
               <label className="mt-5 block">
@@ -174,8 +175,11 @@ export default function WarLobby() {
                 <input
                   value={joinCode}
                   onChange={(e) => setJoinCode(e.target.value)}
-                  placeholder="Arcadia-Alpha-77"
-                  className="mt-1.5 w-full rounded-2xl border-[3px] border-cream/40 bg-pine-deep/60 px-4 py-3.5 font-mono text-lg font-bold text-cream placeholder:text-cream/30 focus:border-gold focus:outline-none"
+                  placeholder="e.g. 48291"
+                  inputMode="numeric"
+                  autoComplete="off"
+                  autoCapitalize="characters"
+                  className="mt-1.5 w-full rounded-2xl border-[3px] border-cream/40 bg-pine-deep/60 px-4 py-3.5 font-mono text-lg font-bold tracking-[0.3em] text-cream placeholder:tracking-[0.1em] placeholder:text-cream/30 focus:border-gold focus:outline-none"
                 />
               </label>
 
