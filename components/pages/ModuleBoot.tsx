@@ -221,7 +221,7 @@ export default function ModuleBoot({
 
             <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
               <TitanButton href="/guides" variant="primary">
-                Read The Codex
+                Read The Guides
               </TitanButton>
               <TitanButton href="/" variant="paper">
                 Back To HQ

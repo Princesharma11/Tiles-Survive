@@ -54,7 +54,7 @@ export default function ReforgeSimulator() {
           </h3>
           <CrossLink href="/tier-list" emoji="🏆" title="Hero Tier List" note="Who deserves the alloy in the first place" />
           <CrossLink href="/hero-meta-calc" emoji="🧪" title="Hero Meta Calc" note="Pairings & troop ratio math" />
-          <CrossLink href="/guides" emoji="📖" title="Survival Codex" note="The full guide library" />
+          <CrossLink href="/guides" emoji="📖" title="Tiles Survive Guides" note="The full guide library" />
         </div>
       </div>
 

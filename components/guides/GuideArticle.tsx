@@ -102,7 +102,7 @@ export default function GuideArticle({
           <ol className="flex flex-wrap items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink-faint">
             <li><Link href="/" className="hover:text-ember-deep">Home</Link></li>
             <li aria-hidden>/</li>
-            <li><Link href="/guides" className="hover:text-ember-deep">Survival Codex</Link></li>
+            <li><Link href="/guides" className="hover:text-ember-deep">Tiles Survive Guides</Link></li>
             <li aria-hidden>/</li>
             <li className="text-ink-soft">{guide.category}</li>
           </ol>
@@ -278,7 +278,7 @@ export default function GuideArticle({
             {/* Related guides */}
             <section className="mt-14">
               <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink">
-                Keep reading the codex
+                Keep reading the guides
               </h2>
               <div className="mt-4 grid gap-4 sm:grid-cols-3">
                 {related.map((g) => (

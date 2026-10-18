@@ -40,10 +40,10 @@ export default function GuidesCarousel() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeader
-            eyebrow="Start here // survival codex"
-            title="Guides forged"
-            accent="in the field."
-            description="Twelve complete, patch-2.6 strategy guides — from your first fog run to the Pet System and beyond — from your first fog run to cross-server conquest. Written for gamers, by officers who hold the tile."
+            eyebrow="Start here // the strategy library"
+            title="Tiles Survive guides"
+            accent="forged in the field."
+            description="Twelve complete, patch-2.6 strategy guides — from your first fog run to the Pet System and cross-server conquest. Written for gamers, by officers who hold the tile."
             className="mb-0"
           />
 
@@ -78,7 +78,7 @@ export default function GuidesCarousel() {
               <ChevronRightIcon className="size-7" />
             </span>
             <span className="font-display text-sm font-extrabold uppercase tracking-[0.25em] text-ink">
-              Open full codex
+              Open all guides
             </span>
           </a>
         </div>

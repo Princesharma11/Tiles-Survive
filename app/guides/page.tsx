@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const listLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "The Survival Codex — Tiles Survive Guides",
+  name: "Tiles Survive Guides & Walkthroughs",
   numberOfItems: guides.length,
   itemListElement: guides.map((g, i) => ({
     "@type": "ListItem",

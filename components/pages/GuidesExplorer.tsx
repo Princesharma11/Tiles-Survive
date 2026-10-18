@@ -27,7 +27,7 @@ export default function GuidesExplorer() {
     <section className="relative mx-auto max-w-7xl px-5 pb-28 pt-32 sm:px-8 md:pt-40">
       <SectionHeader
         as="h1"
-        eyebrow="Survival codex"
+        eyebrow="The strategy library"
         title="Tiles Survive guides"
         accent="forged in the field."
         description="Every entry is combat-reviewed by officers who actually hold the tile. Filter by discipline and start reading."

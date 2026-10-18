@@ -20,7 +20,7 @@ const columns = [
     heading: "INTEL",
     links: [
       { label: "Tier List v6.2", href: "/tier-list" },
-      { label: "Survival Codex", href: "/guides" },
+      { label: "Tiles Survive Guides", href: "/guides" },
       { label: "Patch Watch", href: "/guides" },
       { label: "Event Calendar", href: "/guides" },
     ],

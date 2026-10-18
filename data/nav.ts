@@ -11,7 +11,7 @@ export const navItems: NavItem[] = [
     id: "guides",
     label: "Guides",
     href: "/guides",
-    hint: "The survival codex",
+    hint: "Every Tiles Survive guide",
   },
   {
     id: "war-room",
