@@ -171,6 +171,7 @@ export default function HeroSection() {
           animate="show"
           className="max-w-3xl font-display text-[clamp(3rem,8.5vw,6.8rem)] font-extrabold uppercase leading-[0.92] tracking-tight"
         >
+          <span className="sr-only">Tiles Survive guide, tier list and strategy tools — </span>
           <span className="block overflow-hidden pb-1">
             <motion.span variants={lineReveal} className="block text-stroked text-cream drop-shadow-[0_6px_0_rgba(45,42,38,0.25)]">
               Stop Guessing.

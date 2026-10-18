@@ -2,12 +2,24 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import TroopOptimizer from "@/components/tools/TroopOptimizer";
+import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Hero Meta Calc",
+  title: "Tiles Survive Troop Ratio Optimizer",
   alternates: { canonical: "/hero-meta-calc" },
   description:
-    "The Troop Ratio Optimizer for Tiles Survive! — input the enemy scout report and get the counter-proof march: exact Guards/Gunners/Marksmen counts, expected counter damage, hero pairings and faction alerts.",
+    "Input the enemy scout report and get the counter march: exact Guards, Gunners and Marksmen ratios for every Tiles Survive fight.",
+};
+
+const toolLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Tiles Survive Troop Ratio Optimizer",
+  url: `${site.url}/hero-meta-calc`,
+  applicationCategory: "GameApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  about: { "@type": "VideoGame", name: "Tiles Survive!" },
 };
 
 /* ------------------------------------------------------------------ */
@@ -18,6 +30,10 @@ export const metadata: Metadata = {
 export default function HeroMetaCalcPage() {
   return (
     <div className="relative overflow-hidden pb-28 pt-32 md:pt-40">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolLd) }}
+      />
       {/* Scene backdrop */}
       <div aria-hidden className="absolute inset-0">
         <Image
@@ -53,7 +69,7 @@ export default function HeroMetaCalcPage() {
             </span>
           </div>
           <h1 className="mt-5 font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-tight text-ink sm:text-7xl">
-            Troop Ratio <span className="text-sunset">Optimizer</span>
+            <span className="sr-only">Tiles Survive </span>Troop Ratio <span className="text-sunset">Optimizer</span>
           </h1>
           <p className="mt-3 max-w-2xl font-display text-base font-bold uppercase tracking-[0.1em] text-ember-deep">
             Counter math beats raw power — solve the triangle before you march.

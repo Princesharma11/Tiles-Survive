@@ -79,8 +79,9 @@ export default function WarLobby() {
 
       <div className="relative mx-auto max-w-5xl px-5 sm:px-8">
         <SectionHeader
+          as="h1"
           eyebrow="The command center"
-          title="Arcadian"
+          title="The Tiles Survive"
           accent="War Room."
           align="center"
           description="Stop coordinating 100 players through chat scrollback and dead spreadsheets. Deploy a room, share one link, and run the conquest like a general."

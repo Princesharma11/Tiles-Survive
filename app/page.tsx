@@ -22,6 +22,7 @@ const jsonLd = {
   name: site.name,
   alternateName: "TitanTiles",
   url: site.url,
+  publisher: { "@type": "Organization", name: site.name, url: site.url },
   description: site.description,
   inLanguage: "en",
   about: {
@@ -39,6 +40,19 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: site.name,
+            url: site.url,
+            logo: `${site.url}/icon.svg`,
+            description: site.description,
+          }),
+        }}
       />
       <HeroSection />
       <TickerTape />

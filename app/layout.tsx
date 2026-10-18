@@ -21,8 +21,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Command Intelligence for Tiles Survive!`,
-    template: `%s // ${site.name}`,
+    default: "Tiles Survive Guide: Walkthroughs, Tier List & Free Tools",
+    template: `%s | ${site.name}`,
   },
   description: site.description,
   keywords: [
@@ -49,13 +49,13 @@ export const metadata: Metadata = {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
+    title: "Tiles Survive Guide — Tier List, Tools & War Room",
     description: site.description,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
+    title: "Tiles Survive Guide — Tier List, Tools & War Room",
     description: site.description,
   },
 };

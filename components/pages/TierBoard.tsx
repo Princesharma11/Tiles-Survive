@@ -165,9 +165,10 @@ export default function TierBoard() {
   return (
     <section className="relative mx-auto max-w-7xl px-5 pb-28 pt-32 sm:px-8 md:pt-40">
       <SectionHeader
+        as="h1"
         eyebrow="Season deep-dive"
-        title="The definitive hero"
-        accent="tier list."
+        title="The definitive Tiles Survive"
+        accent="hero tier list."
         description="Your heroes are the engine of your account — investing wrong throttles progression and burns premium fragments. Every hero in the game grouped by rarity and scored for PvP, campaign pushing and kit utility in the current sustain-heavy meta."
       />
 

@@ -17,6 +17,8 @@ export interface SectionHeaderProps {
   align?: "left" | "center";
   dark?: boolean; // on dark (pine) sections
   className?: string;
+  /** heading level — pass "h1" only for a page's single top header */
+  as?: "h1" | "h2";
 }
 
 export function SectionHeader({
@@ -27,8 +29,10 @@ export function SectionHeader({
   align = "left",
   dark = false,
   className,
+  as = "h2",
 }: SectionHeaderProps) {
   const words = accent ? title.split(" " + accent) : [title];
+  const Heading = as === "h1" ? motion.h1 : motion.h2;
 
   return (
     <Reveal
@@ -59,7 +63,7 @@ export function SectionHeader({
           {eyebrow}
         </motion.span>
 
-        <motion.h2
+        <Heading
           variants={fadeUp}
           className={cn(
             "font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-5xl lg:text-[3.4rem]",
@@ -73,7 +77,7 @@ export function SectionHeader({
               <span className="text-sunset">{accent}</span>
             </>
           )}
-        </motion.h2>
+        </Heading>
 
         {description && (
           <motion.p

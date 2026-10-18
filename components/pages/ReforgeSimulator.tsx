@@ -11,9 +11,10 @@ export default function ReforgeSimulator() {
   return (
     <section className="relative mx-auto max-w-7xl px-5 pb-28 pt-32 sm:px-8 md:pt-40">
       <SectionHeader
+        as="h1"
         eyebrow="Gear Lab // Patch 2.6.0"
-        title="The alloy reforge"
-        accent="simulator."
+        title="The Tiles Survive alloy"
+        accent="reforge simulator."
         description="Reforge Hammers are one of the rarest currencies in Tiles Survive! — misroll a locked line and it's weeks of Arcadian Conquest down the drain. Simulate infinite rolls, lock lines, grade every stat against the exact hero wearing it, and A/B your live gear — all before a single real hammer moves."
       />
 
