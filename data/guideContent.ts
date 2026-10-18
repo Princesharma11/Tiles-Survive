@@ -1085,5 +1085,378 @@ export const GUIDE_CONTENT: Record<string, GuideContent> = {
     ],
   },
 
+  /* ============================== G10 ============================== */
+  "turbo-turtle-event-guide": {
+    slug: "turbo-turtle-event-guide",
+    seoTitle: "Tiles Survive Turbo Turtle Event Guide & Best Strategy",
+    seoDescription:
+      "The Turbo Turtle playbook: bank Gear Scraps and speedups, burst the event window for double-dip progress, spend the store on Alloy first — milestones over rankings.",
+    intro: [
+      "Turbo Turtle is the gear event that pays you twice. Every Gear Scrap and speedup burned inside the window still does its normal job — gear levels go up — but it also mints event points, milestone rewards and store currency. The exact same materials spent outside the window do exactly one of those things.",
+      "That asymmetry is the entire event, and it is why gear discipline in Tiles Survive is a calendar problem before it is a resource problem. This is the full playbook: what counts toward progress, what to bank between events, how to spend the burst window, what the store is actually for, and where the free-to-play line sits between milestones and rankings.",
+    ],
+    sections: [
+      {
+        id: "double-dip",
+        heading: "The double-dip rule",
+        paragraphs: [
+          "Turbo Turtle scores your gear work: upgrades, material consumption and the speedups that finish them all generate event progress while the window is live. The stat gain you were getting anyway still lands — the event layer is stacked on top, not traded against it.",
+          "Flip that around and you get the rule that runs the whole guide: an upgrade done outside the event is the same upgrade at half the price of missing out. If a gear change can wait for Turbo Turtle, waiting is the correct play; if Turbo Turtle is live, the only wrong move is hoarding for no reason.",
+        ],
+        callout: {
+          kind: "tip",
+          title: "One sentence to memorize",
+          text: "If it's worth upgrading, it's worth upgrading inside Turbo Turtle — and if Turbo Turtle isn't live, the upgrade almost certainly wasn't urgent.",
+        },
+      },
+      {
+        id: "banking",
+        heading: "What to bank between events",
+        paragraphs: [
+          "The event is won in the quiet weeks before it. Your job between windows is to let the taps run and the inventory climb:",
+        ],
+        bullets: [
+          "Gear Scraps — the base currency of gear upgrades. Ghoulion Pursuit brackets and Exploration are the steady taps; let them fill the tank instead of draining them on arrival.",
+          "High-quality scraps — worth strictly more when they land on high-rarity, long-term pieces. Save the good stuff for gear that will still be on your main march in three months.",
+          "Blueprints — cluster the burns into the same window instead of sprinkling them across dead weeks.",
+          "Speedups — enough to close the gap to a milestone that matters, never the whole inventory. An unfinished upgrade mid-event is efficiency you can feel.",
+        ],
+        callout: {
+          kind: "warn",
+          title: "The quality-scrap leak",
+          text: "Burning premium scraps on a leveling bridge the week before the event is the most common self-inflicted wound. Scraps spend at full value any day — they only score during the window. Bank first, spend second.",
+        },
+      },
+      {
+        id: "burst",
+        heading: "The burst window: what to upgrade, in what order",
+        paragraphs: [
+          "When the event opens, spend with a plan, not a spree. The order that holds up across accounts:",
+        ],
+        bullets: [
+          "Main march gear first — the pieces worn by the heroes you actually field in rallies, arena and events. Practical power now, event points now, same materials.",
+          "Long-term rarity second — purple gear is the honest bridge, Alloy gear is the destination. High-rarity pieces you will keep are the correct home for saved quality scraps.",
+          "Reforge last and carefully — Reforge Hammers burn fast and pay unevenly. Reforge inside the event only when the piece belongs to your main lineup and the stat direction matches the build. Everything else waits for its own discipline.",
+          "The stop rule — spend to a milestone that pays, then halt when the next tier asks for too much. Efficiency is spending at the right time, not spending everything.",
+        ],
+      },
+      {
+        id: "store",
+        heading: "The event store: Alloy first, always",
+        paragraphs: [
+          "Event currency is seed capital for the next cycle, and the store makes that literal. Played consistently, Turbo Turtle is one of the steadiest Alloy crate taps in the game — a patient player clears roughly one crate a week of event currency.",
+        ],
+        table: {
+          columns: ["Store priority", "Why"],
+          rows: [
+            ["Alloy crate", "The long-term gear ceiling — the single hardest material to shortcut anywhere else"],
+            ["Gear Scraps", "Feeds the next burst window directly"],
+            ["Adhesives", "Ghoulion Pursuit pays them too, but the store tops the tank off cheaply"],
+            ["Reforge Hammers", "Only once your reforge targets are already chosen — hammers without a plan are a donation"],
+            ["Everything else", "Only under genuine, immediate need — this is a gear event; buy gear progression"],
+          ],
+        },
+              },
+      {
+        id: "milestones",
+        heading: "Milestones beat rankings",
+        paragraphs: [
+          "Ranking rewards are designed to be attractive and won by other people. The leaderboard is populated by bigger stockpiles and heavier spenders than you, and chasing it means liquidating the inventory that funds your next three cycles.",
+          "The free-to-play arithmetic is boring and correct: consistent mid-tier milestones, collected every single cycle, out-earn one heroic push followed by two empty events. If you compete at all, do it the honest way — bank across multiple cycles and only push when you have a real read on your State's competition level.",
+        ],
+        callout: {
+          kind: "warn",
+          title: "The leaderboard trap",
+          text: "A ranking is a one-time payout. A stocked inventory is a compounding one. Never trade the second for the first unless the reward tier genuinely changes your account.",
+        },
+      },
+      {
+        id: "stacking",
+        heading: "Stack it with the calendar",
+        paragraphs: [
+          "Turbo Turtle is strongest when it isn't alone. The Thursday-Friday stretch where Turbo Turtle and Power Play score simultaneously is the highest-value slot on the weekly calendar — materials spent there count twice before the event multipliers even enter the math. The same logic extends outward: know what the neighboring events score, and aim your banking at the overlap.",
+          "This is one loop in a bigger machine. The full cadence — what to bank for which event, and when — lives in the event calendar guide; Turbo Turtle is simply the gear-shaped gear in that gearbox.",
+        ],
+      },
+      {
+        id: "checklist",
+        heading: "The cycle checklist",
+        table: {
+          columns: ["Phase", "Do this"],
+          rows: [
+            ["Before", "Bank scraps and quality scraps, hold speedups, audit your main-march gear, pick upgrade targets in advance"],
+            ["During", "Main gear first, speedups only to reach milestones, claim rewards on time, buy the store before anything else eats the currency"],
+            ["After", "Stop the random upgrades, reopen the banking posture, aim at the next window"],
+          ],
+        },
+      },
+    ],
+    takeaways: [
+      "Every gear material spent inside the window pays twice — gear growth plus event progress. Outside it pays once.",
+      "Bank Gear Scraps, quality scraps, blueprints and speedups between events; choose targets before the window opens.",
+      "Store priority: Alloy crate, then scraps and adhesives — the store is next cycle's seed capital.",
+      "Milestones over rankings for free-to-play; rankings only with multi-cycle savings and a read on your State.",
+      "The loop compounds: bank, burst, claim, re-arm from the store, repeat every cycle.",
+    ],
+    faq: [
+      {
+        q: "What is Turbo Turtle in Tiles Survive?",
+        a: "A recurring gear-focused event. Gear upgrades and the materials and speedups behind them generate event progress, milestone rewards and store currency on top of the normal stat growth — the same work pays twice inside the window.",
+      },
+      {
+        q: "When should I upgrade my gear?",
+        a: "Inside the Turbo Turtle window whenever the upgrade can wait. The only upgrades that justify going out-of-window are ones you need immediately for a fight you cannot afford to lose.",
+      },
+      {
+        q: "What should I buy from the Turbo Turtle store?",
+        a: "The Alloy crate first — it is the steadiest Alloy tap in the game for consistent players. Then gear materials that feed the next cycle: scraps, adhesives, and hammers once your reforge targets are set.",
+      },
+      {
+        q: "How do I farm Gear Scraps?",
+        a: "Ghoulion Pursuit brackets and Exploration rewards are the steady sources, plus event stores. Let them accumulate between Turbo Turtle windows instead of spending them on arrival.",
+      },
+      {
+        q: "Should free-to-play players chase Turbo Turtle rankings?",
+        a: "No — milestones. Ranking tiers are contested by larger stockpiles and spenders. Consistent milestone collection every cycle out-earns a single overextended push.",
+      },
+    ],
+    relatedTools: [
+      { href: "/gear-reforge", label: "Gear Reforge Calculator", note: "Plan the hammers you win here" },
+      { href: "/guides/chief-gear-reforge-discipline", label: "Reforge Discipline", note: "When to lock a substat" },
+      { href: "/guides/event-calendar-compounding", label: "Event Calendar Guide", note: "Where Turbo Turtle sits in the year" },
+    ],
+  },
+
+  /* ============================== G11 ============================== */
+  "skill-weapon-exchange-guide": {
+    slug: "skill-weapon-exchange-guide",
+    seoTitle: "Tiles Survive Skill & Signature Weapon Exchange Guide",
+    seoDescription:
+      "Ten free swaps in fourteen days: the Skill & Signature Weapon Exchange rules, the SR-to-SSR lockout, and the exact order to rebuild your main march.",
+    intro: [
+      "The Hero Skill & Signature Weapon Exchange is the closest thing Tiles Survive has to a free respec: a limited window where signature weapons and skill levels move between heroes instead of being re-ground from zero. A level-15 weapon parked on a bench hero stops being a museum piece and becomes a direct power injection for whoever actually fights.",
+      "The catch is arithmetic: ten free swaps per window — five for weapons, five for skills — and every rule below exists so that none of the ten are wasted on a number that looked bigger.",
+    ],
+    sections: [
+      {
+        id: "rules",
+        heading: "The rules before you touch anything",
+        paragraphs: [
+          "Read the mechanics first; the event punishes improvisation more than ignorance. The shape of the window:",
+        ],
+        table: {
+          columns: ["Rule", "Detail"],
+          rows: [
+            ["Separate attempts", "5 free Signature Weapon exchanges + 5 free Skill exchanges — 10 total"],
+            ["Window", "Runs 14 days, with attempt counters that can reset weekly — trust the timer in your event screen, not your memory"],
+            ["Cooldown", "None. Swaps resolve instantly, so testing setups back-to-back is free once the attempt is spent"],
+            ["The lockout", "Heroes promoted from SR to SSR cannot be source or target — the one hard exception to the open roster"],
+            ["Everything else", "Any standard SSR hero, any faction, any class. The roster is your oyster"],
+          ],
+        },
+        callout: {
+          kind: "warn",
+          title: "After the free ten, it costs real money",
+          text: "Additional exchanges past the free attempts are priced in premium currency. There is no scenario where swap #11 is better value than simply banking materials for the next window — plan all ten on paper before you confirm the first one.",
+        },
+      },
+      {
+        id: "swap-order",
+        heading: "The swap order that matters",
+        paragraphs: [
+          "Ten attempts feel generous right up until you've spent four of them \u201ctidying up.\u201d Run the order instead:",
+        ],
+        bullets: [
+          "1. Main march first — move level-15 signature weapons and 35+ skill levels off secondary and bench heroes onto your primary carry. Power rating and arena rank move the same day.",
+          "2. Fix the middle-tier spread — one hero at skill level 40 is worth more than two heroes at 20. Strip the sub-DPS skills and stack them onto your hyper-carry or highest-impact enabler.",
+          "3. Then the second march — leftover swaps move an unused level-10 weapon onto your secondary tank or support: a multi-million power bump that costs zero new resources.",
+        ],
+      },
+      {
+        id: "targets",
+        heading: "Who actually deserves the weapons",
+        paragraphs: [
+          "Bigger numbers are not the same as better lineups. A signature weapon only earns its slot on a hero your marches actually run — which in practice means the core five and the second march, in that order. Before every swap, ask whether the receiving hero leads troops your formation needs, not whether the power preview is green.",
+          "The tier list is the reference point for who those heroes are this patch; the faction guide explains why a strong hero leading mismatched troops still underperforms a weaker hero in the right seat. Swap within that logic and the exchange prints power. Swap against it and you've spent a free attempt making your march worse.",
+        ],
+        callout: {
+          kind: "tip",
+          title: "Dead capital check",
+          text: "Scan the bench for any signature weapon above level 10 and any skill above 30 sitting on a hero you haven't fielded in two weeks. That's not a roster — that's storage. The exchange converts storage into combat.",
+        },
+      },
+      {
+        id: "mistakes",
+        heading: "Rookie mistakes before you press confirm",
+        bullets: [
+          "Swapping for the bigger preview number without checking march synergy — the classic.",
+          "Burning attempts in the first hour. Write the ten swaps down first; the event runs two weeks and the attempts don't refund.",
+          "Forgetting the weekly counter resets — a reset you didn't plan for is free swaps you never spend.",
+          "Leaving attempts unspent when the window closes. An expired free swap is the most expensive swap in the game.",
+          "Paying premium currency for attempt eleven-plus because the plan was sloppy with the first ten.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Ten free swaps per window — five weapons, five skills — over 14 days, with possible weekly counter resets.",
+      "Order: main carry first, fix the skill spread second (40 on one beats 20 on two), second march last.",
+      "Heroes promoted from SR to SSR are locked out of both sides of every exchange.",
+      "No cooldown and no undo — instant swaps still deserve a written plan.",
+      "Swaps past the free ten cost premium currency; there is never a good reason to reach for them.",
+    ],
+    faq: [
+      {
+        q: "How many free exchanges do I get in the Skill & Weapon Exchange?",
+        a: "Five Signature Weapon exchanges and five Skill exchanges — ten free swaps total — inside a 14-day window, with attempt counters that may reset weekly. Check the event screen's timer for your exact resets.",
+      },
+      {
+        q: "Can I swap between any heroes?",
+        a: "Any standard SSR hero regardless of faction or class. The one hard exclusion is heroes promoted from SR to SSR, who cannot serve as either the source or the target of a swap.",
+      },
+      {
+        q: "Is there a cooldown on exchanges?",
+        a: "No — swaps resolve instantly with no cooldown. The constraint is the attempt count, not the speed, so take the time to plan each one.",
+      },
+      {
+        q: "What happens after the ten free attempts?",
+        a: "Further exchanges cost premium currency. The value is poor enough that the correct play is almost always to stop and wait for the next window.",
+      },
+      {
+        q: "Which heroes should receive my signature weapons?",
+        a: "The heroes your marches actually run — your core five first, then the second march's tank or support. Consult the tier list for the current order and the faction guide before finalizing.",
+      },
+    ],
+    relatedTools: [
+      { href: "/tier-list", label: "Hero Tier List", note: "Who deserves the weapons" },
+      { href: "/guides/f2p-gem-flow", label: "F2P Gem Flow", note: "The premium currency you're not spending on swaps" },
+      { href: "/guides/faction-matching-full-map", label: "Faction Matching", note: "Why the seat matters as much as the hero" },
+    ],
+  },
+
+  /* ============================== G12 ============================== */
+  "hero-talents-guide": {
+    slug: "hero-talents-guide",
+    seoTitle: "Tiles Survive Hero Talents Guide: Lv.4 Priorities",
+    seoDescription:
+      "Hero Talents at Lv.4 are a 25\u201335% multiplicative boost per hero. The core-five upgrade order, the cheapest material channels, and the windows that pay double.",
+    intro: [
+      "Hero Talents are the quiet endgame multiplier: a per-hero tree whose level-4 cap turned it from a nice-to-have into a 25\u201335% multiplicative combat boost per maxed hero. Across a five-hero march, that is the difference between trading blows and ending conversations.",
+      "The system's only real trap is generosity. Talent materials are scarce, the climb from Lv.3 to Lv.4 runs two to three weeks per hero even for well-resourced accounts, and every point scattered across a bench hero is a point your core five never see. This guide is the focused path: who gets materials, in what order, from where, and when.",
+    ],
+    sections: [
+      {
+        id: "focus-rule",
+        heading: "The focus rule: five heroes, no exceptions",
+        paragraphs: [
+          "The competitive core is the proven march — Rosie, Nikola and Tarzan holding the front with Tara and Layla behind them. Those five convert talent materials into combat power at a rate no secondary hero touches, and the gap is not close.",
+          "So the rule is absolute: no non-core hero receives a single talent material until all five core heroes stand at Lv.4. Splitting investment across a wider roster feels productive and measures poorly — scattered accounts lose to concentrated ones in arena brackets and cross-server fights with depressing consistency, because the concentrated account brought five multipliers and the scattered one brought fractions.",
+        ],
+        callout: {
+          kind: "meta",
+          title: "Why focus beats spread",
+          text: "Talent returns are multiplicative on each hero's total output. A 30% boost on a hero you field is worth more than three 10% boosts on heroes you don't — and the matchmaking reads aggregate power either way. Concentration wins the fight the scoreboard actually scores.",
+        },
+      },
+      {
+        id: "order",
+        heading: "The upgrade order",
+        paragraphs: [
+          "Complete heroes, don't sample them: max one hero's tree to Lv.4 before touching the next. The order within the five:",
+        ],
+        table: {
+          columns: ["Priority", "Hero", "Why here"],
+          rows: [
+            ["1", "Rosie", "The primary damage engine — talents amplify her AoE carry pattern and self-sustain, and she returns the most combat per material spent"],
+            ["2", "Tara or Nikola", "Choose by your march's weakness: Tara's team defense if raids are bleeding you, Nikola's shield persistence if the front line folds"],
+            ["3", "Layla", "Frontline sustain — her talents raise base HP and amplify group healing, which decides long attrition fights"],
+            ["4", "Tarzan", "Backline punishment pays only after the damage and survival foundations exist; his talents finish the march, they don't carry it"],
+          ],
+        },
+      },
+      {
+        id: "farming",
+        heading: "Where the materials come from, ranked",
+        paragraphs: [
+          "Three channels supply talent materials, and they are not equal. Ranked by cost efficiency:",
+        ],
+        bullets: [
+          "Event rankings — Turbo Turtle, Ghoulion Pursuit and Arcadian Conquest pay the biggest batches to top participants, and the only hidden cost is the discipline you already have. Consistent event participation is the cheapest talent income in the game.",
+          "Daily alliance work — donations, boss rallies and group research generate a steady free stream. An inactive alliance quietly starves this channel; if yours is silent, that's a talent problem too.",
+          "Event-window bundles — the only purchases worth considering, and only inside discounted event windows. Permanent store packs are consistently poor value for premium currency; skip them without ceremony.",
+        ],
+      },
+      {
+        id: "timing",
+        heading: "Bank and burst — the same doctrine again",
+        paragraphs: [
+          "Talent materials follow the same law as gear scraps: spend them when the calendar pays twice. Event windows score your talent-node activations as event points, so a batch of activations that was always going to happen should happen inside a scoring window — upgrades plus milestone rewards from the same materials.",
+          "Quiet weeks are for accumulation, and the discipline is identical to the Turbo Turtle loop: bank in the valleys, spend on the peaks, and never activate talent nodes on a random Tuesday when Wednesday's window would have paid for them.",
+        ],
+        callout: {
+          kind: "tip",
+          title: "This is the second time you've read this rule",
+          text: "Gear materials double-dip through Turbo Turtle; talent materials double-dip through their scoring windows. The event calendar guide maps all of them — one doctrine, several currencies.",
+        },
+      },
+      {
+        id: "lv4-mechanics",
+        heading: "What Lv.4 actually buys",
+        bullets: [
+          "Exclusive skill enhancements unlocked at Lv.4 — the source of the 25\u201335% average power uplift over Lv.3 builds.",
+          "Two to three weeks of focused materials to take a single hero from Lv.3 to Lv.4, even for well-resourced competitive accounts.",
+          "Two to three months to max all five core heroes — if resources stay concentrated. Any off-meta detour extends the clock directly.",
+          "Talents and signature weapons multiply side by side rather than competing: finish the core weapons first, then farm talents on top of them.",
+        ],
+        callout: {
+          kind: "warn",
+          title: "The Lv.4 cap changed the meta, not the rule",
+          text: "Before the cap raise, spreading talents was merely suboptimal. After it, a scattered account isn't just weaker — it's two to three weeks behind per hero on the strongest multiplier in the game. Focus was good advice; it is now the whole advice.",
+        },
+      },
+      {
+        id: "alliance",
+        heading: "Run it alliance-wide",
+        paragraphs: [
+          "Talent focus is also an alliance policy. Officers who share this order — five core heroes, one at a time, banked between windows — raise the rally power of the entire roster, because mass PvP is a sum of concentrated cores. Alliances full of scattered builds lose to alliances of five-hero cores with the same total spend.",
+          "Put the order in your war room, make it boring, and let every member copy it. Doctrine beats improvisation at every scale this game offers.",
+        ],
+      },
+    ],
+    takeaways: [
+      "Lv.4 talents are a 25\u201335% multiplicative combat boost per hero — the biggest per-hero multiplier outside gear tiers.",
+      "All materials to the core five — Rosie, Nikola, Tarzan, Tara, Layla — until every one stands at Lv.4.",
+      "Order: Rosie, then Tara or Nikola by weakness, then Layla, then Tarzan. Complete heroes; don't sample them.",
+      "Materials: event rankings first, alliance dailies second, event-window bundles only — never permanent packs.",
+      "Activate inside scoring windows, bank between them — the same double-dip doctrine as every other currency.",
+    ],
+    faq: [
+      {
+        q: "What are Hero Talents in Tiles Survive?",
+        a: "A late-game per-hero progression tree. Each talent level strengthens the hero's kit, and Lv.4 unlocks exclusive skill enhancements worth an average 25\u201335% power uplift over Lv.3 builds.",
+      },
+      {
+        q: "Which heroes should get talent materials first?",
+        a: "The core five — Rosie, Nikola, Tarzan, Tara and Layla — starting with Rosie. Hold all other investment until all five reach Lv.4; scattered materials measurably weaken your marches.",
+      },
+      {
+        q: "How long does it take to max a hero's talents to Lv.4?",
+        a: "Two to three weeks of focused materials per hero from Lv.3, and roughly two to three months for all five core heroes on a concentrated account.",
+      },
+      {
+        q: "Do talents compete with signature weapons?",
+        a: "No — they multiply alongside each other. Finish your core heroes' signature weapons first, then build talents on top; both scale the same marches.",
+      },
+      {
+        q: "Where do I farm talent materials?",
+        a: "High placements in Turbo Turtle, Ghoulion Pursuit and Arcadian Conquest pay the largest batches; daily alliance donations, boss rallies and group research provide the steady base. Only buy bundles inside discounted event windows.",
+      },
+    ],
+    relatedTools: [
+      { href: "/tier-list", label: "Hero Tier List", note: "The five heroes that earn your materials" },
+      { href: "/guides/event-calendar-compounding", label: "Event Calendar Guide", note: "The windows that score activations" },
+      { href: "/war-room", label: "Arcadian War Room", note: "Broadcast the upgrade order to your alliance" },
+    ],
+  },
+
   /* __APPEND_MORE_GUIDES__ */
 };

@@ -162,4 +162,43 @@ export const guides: Guide[] = [
     icon: "flame",
     image: IMG.snow,
   },
+  {
+    id: "g10",
+    slug: "turbo-turtle-event-guide",
+    title: "Turbo Turtle: The Double-Dip Economy",
+    excerpt:
+      "The gear event that punishes impulse spenders. Bank scraps and speedups, burst the window, and turn one Alloy crate a week into a compounding gear engine.",
+    category: "Events",
+    level: "VETERAN",
+    readTime: "11 min",
+    updated: "Oct 18, 2026",
+    icon: "anvil",
+    image: IMG.furnace,
+  },
+  {
+    id: "g11",
+    slug: "skill-weapon-exchange-guide",
+    title: "Skill & Weapon Exchange: 10 Free Swaps",
+    excerpt:
+      "Five weapon swaps, five skill swaps, fourteen days. Strip the bench and stack the main march — the rules, the lockouts and the exact swap order.",
+    category: "Heroes",
+    level: "VETERAN",
+    readTime: "9 min",
+    updated: "Oct 18, 2026",
+    icon: "sliders",
+    image: IMG.plains,
+  },
+  {
+    id: "g12",
+    slug: "hero-talents-guide",
+    title: "Hero Talents to Lv.4: The Focus Doctrine",
+    excerpt:
+      "Lv.4 talents are a 25–35% multiplicative boost per hero — if you stop spreading materials. The core-five order, the farm channels, the paying windows.",
+    category: "Heroes",
+    level: "COMMANDER",
+    readTime: "13 min",
+    updated: "Oct 18, 2026",
+    icon: "book",
+    image: IMG.island,
+  },
 ];
