@@ -20,7 +20,8 @@ export type GuideCategory =
   | "Heroes"
   | "Gear"
   | "Alliance"
-  | "Events";
+  | "Events"
+  | "Pets";
 
 export const guideCategories: GuideCategory[] = [
   "Beginner",
@@ -29,6 +30,7 @@ export const guideCategories: GuideCategory[] = [
   "Gear",
   "Alliance",
   "Events",
+  "Pets",
 ];
 
 const IMG = {
@@ -145,6 +147,19 @@ export const guides: Guide[] = [
     readTime: "10 min",
     updated: "Sep 15, 2026",
     icon: "trophy",
+    image: IMG.snow,
+  },
+  {
+    id: "g9",
+    slug: "pet-system-guide",
+    title: "The Pet System: Eggs, Marks & Best Pets",
+    excerpt:
+      "Seven companions, three egg tiers, one 100% transfer rate to chase. Hatch odds, Pet Marks math and the priority ladder — why Starhorn earns your first 700 marks.",
+    category: "Pets",
+    level: "VETERAN",
+    readTime: "14 min",
+    updated: "Oct 18, 2026",
+    icon: "flame",
     image: IMG.snow,
   },
 ];

@@ -43,7 +43,7 @@ export default function GuidesCarousel() {
             eyebrow="Start here // survival codex"
             title="Guides forged"
             accent="in the field."
-            description="Eight complete, patch-2.6.0 strategy guides — from your first fog run to cross-server conquest. Written for gamers, by officers who hold the tile."
+            description="Nine complete, patch-2.6 strategy guides — from your first fog run to the new Pet System — from your first fog run to cross-server conquest. Written for gamers, by officers who hold the tile."
             className="mb-0"
           />
 

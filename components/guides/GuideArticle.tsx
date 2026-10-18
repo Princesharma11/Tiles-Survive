@@ -300,7 +300,7 @@ export default function GuideArticle({
                 href="/guides"
                 className="mt-6 inline-block rounded-2xl border-[3px] border-ink bg-gradient-to-b from-gold to-flame px-5 py-2.5 font-display text-sm font-extrabold text-ink shadow-[0_3px_0_0_#2d2a26] transition-transform hover:-translate-y-0.5"
               >
-                📖 All 8 field guides
+                📖 All {guides.length} field guides
               </Link>
             </section>
           </div>

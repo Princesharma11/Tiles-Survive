@@ -880,5 +880,210 @@ export const GUIDE_CONTENT: Record<string, GuideContent> = {
     ],
   },
 
+  /* ============================== G9 ============================== */
+  "pet-system-guide": {
+    slug: "pet-system-guide",
+    seoTitle: "Tiles Survive Pet System Guide: Eggs, Marks & Best Pets",
+    seoDescription:
+      "The full Pet System playbook: egg tiers and hatch odds, Pet Marks training math, every launch pet's skills, and which companion earns your marks first.",
+    intro: [
+      "Version 2.6.100 handed every Chief a second roster to manage. Pets look like settlement decoration — a seal, a raccoon, a deer made of starlight — but under the fur they are two power systems stapled together: an account-wide stat engine that flows into every hero you own, and a free combat slot that rides each march without displacing a single hero.",
+      "This is the full playbook for that system: how the egg economy funnels, what each egg tier can and cannot hatch, how Pet Marks and training stages convert duplicates into permanent stat transfer, and which of the seven launch companions deserves your resources first. Numbers are from game version 2.6.200 — the system shipped in mid-September 2026 and is already on an active content cadence.",
+    ],
+    sections: [
+      {
+        id: "state-gate",
+        heading: "First: why you can't see the Pet System yet",
+        paragraphs: [
+          "The Pet System rolls out by State, not by update. v2.6.100 delivered the code, but each State unlocks the feature as its own progression allows — and when yours qualifies, pets appear on their own. There is nothing to activate, buy or rebuild. If your client is current and the pet content is still missing, your State simply isn't there yet.",
+          "Two implications. One: don't burn time hunting for a hidden unlock — there isn't one. Two: when pets arrive, they arrive for everyone in your State at once, which makes egg competition real for the first weeks. Set your intel-mission routine the day the system shows up.",
+        ],
+        callout: {
+          kind: "tip",
+          title: "Rollouts reward the prepared",
+          text: "v2.6.200 already layered new pet tasks on top of the launch set. This system is expanding, and every future pet release compounds on the collection bonuses you bank today. Build the egg habit early even if the roster looks small.",
+        },
+      },
+      {
+        id: "egg-funnel",
+        heading: "The egg funnel: intel missions, Workbench nests, three tiers",
+        paragraphs: [
+          "Pets begin as eggs dropped by pet-related Intel Missions. Hatch them in an open nest at the Workbench and the timer does the rest. Egg storage has no cap, so there is never a reason to skip an egg — bank them and batch your hatches.",
+          "What most Chiefs miss is that eggs come in tiers, and the tiers are hard gates. Normal Pet Eggs physically cannot produce a Starhorn — the dash in the table below is a wall, not bad luck. Rare Pet Eggs spread across the whole roster. Precious Pet Eggs are the Starhorn slot machine: half of every Precious egg is the deer.",
+        ],
+        table: {
+          columns: ["Pet", "Role", "Normal Egg", "Rare Egg", "Precious Egg"],
+          rows: [
+            ["Snowball", "Attacker", "22.2%", "10%", "—"],
+            ["Dodo", "Support", "22.2%", "10%", "—"],
+            ["Buckler", "Defender", "22.2%", "10%", "—"],
+            ["Fluffy", "Support", "11.1%", "20%", "16.7%"],
+            ["Ironhead", "Attacker", "11.1%", "20%", "16.7%"],
+            ["Shadow", "Attacker", "11.1%", "20%", "16.7%"],
+            ["Starhorn", "Defender", "—", "10%", "50%"],
+          ],
+        },
+        bullets: [
+          "Hatch odds are from game version 2.6.200; \"—\" means the pet is not in that egg's pool at all.",
+          "Unfinished pet intel missions refresh the next day — a skipped mission is a skipped egg.",
+          "Completed missions with unclaimed rewards sit for up to 3 days, then rot. Claim before the timer, not after.",
+          "Instant-hatch boosts are the tempo tool: spend them on Rare and Precious eggs, and let Normal eggs run their natural timers.",
+        ],
+        callout: {
+          kind: "warn",
+          title: "The dash in Starhorn's row is the whole meta",
+          text: "Every Normal egg you hatch is marks for the cheap trio or the mid band — which is not waste, since duplicates are the training currency. But no volume of Normal eggs will ever produce the SSR. Starhorn enters your life through Rare eggs (10%) and Precious eggs (50%), so treat every higher-tier egg as the scarce resource it is.",
+        },
+      },
+      {
+        id: "roster",
+        heading: "The seven launch companions — and what their kits do",
+        paragraphs: [
+          "Roles first: Attackers lead with offense, Defenders with mitigation, Supports with healing and utility. Every documented base skill fires at battle start, so pet selection is really opening-tempo selection — what do you want to happen in the first ten seconds of the fight?",
+        ],
+        table: {
+          columns: ["Pet", "Species", "Role", "Opening skill (battle start)"],
+          rows: [
+            ["Snowball", "Baby seal", "Attacker", "Deals water damage equal to 500% of Pet Attack to 1 random enemy hero"],
+            ["Dodo", "Raccoon", "Support", "Utility opener — full kit still being documented"],
+            ["Buckler", "Turtle", "Defender", "Defensive opener — full kit still being documented"],
+            ["Fluffy", "Sheep", "Support", "Heals front-row allies for 100% of Pet Attack every 2s for 10s"],
+            ["Ironhead", "Wild boar", "Attacker", "Offensive opener — full kit still being documented"],
+            ["Shadow", "Shadow hound", "Attacker", "Marks 1 random enemy: +20% damage taken for 10s"],
+            ["Starhorn", "Starlight deer", "Defender", "Front-row DEF +20% and back-row ATK +8% for 10s"],
+          ],
+        },
+      },
+      {
+        id: "two-tracks",
+        heading: "Leveling and training are two different games",
+        paragraphs: [
+          "Feeding raises a pet's level (cap 100) and its raw ATK, DEF and HP. Feed items come in +50, +100, +200 and +500 EXP sizes, and the curve bites early: even the cheapest pets in the roster ask roughly 302,000 EXP to walk from level 1 to 85, and a single mid-level Starhorn step (44 to 45) eats 2,600. Starhorn is the most expensive pet per level in the lineup; the seal, raccoon and turtle share the cheapest curve, with the sheep, boar and hound in between.",
+          "Training is where the account-wide money is. Duplicates melt into that pet's exclusive Pet Marks, and marks buy training stages. Each stage raises the pet's Hero Bonus Rate — the share of its stats that flows into every hero you own, deployed or not. Starhorn's observed ladder runs from 25% at hatch to a flat 100% at stage 5:",
+        ],
+        table: {
+          columns: ["Training stage", "Hero Bonus Rate", "Marks for the stage"],
+          rows: [
+            ["0 (freshly hatched)", "25%", "—"],
+            ["1", "40%", "100"],
+            ["2", "55%", "200"],
+            ["3", "70%", "400"],
+            ["4", "85%", "cost not yet fully documented"],
+            ["5", "100%", "700 (the stage 4 to 5 push alone)"],
+          ],
+        },
+        bullets: [
+          "Read that table as a multiplier, not a list — stage 5 quadruples the stat flow of a freshly hatched pet.",
+          "The tracks compound: levels grow the stat pool, training decides how much of it reaches your heroes. A level-60 pet at stage 3 out-contributes a level-90 pet at stage 0.",
+        ],
+        callout: {
+          kind: "meta",
+          title: "Marks are exclusive per pet",
+          text: "Snowball duplicates produce Snowball marks, not Starhorn marks — you cannot farm cheap duplicates and feed them to the deer. Every pet's training is funded by its own copies, which is why egg-tier discipline beats egg quantity. And note the two-track split: the Bonus Rate applies account-wide, but the stage skills in the next section only pay while that pet is actually fielded.",
+        },
+      },
+      {
+        id: "stage-skills",
+        heading: "Stage skills: the permanent modifiers",
+        paragraphs: [
+          "Beyond the opening skill, each pet carries three more skills locked behind training stages 2, 4 and 5. Starhorn's set is the profile: +3% Health for deployed heroes at stage 2, −2.5% skill damage taken at stage 4, and +10% pet stats at stage 5. The cheaper pets get smaller versions of the same shape — Snowball's stage-5 self-buff is +5%, the mid band's is +7.5%.",
+          "Read those numbers for what they are: permanent team-wide modifiers that stack with your gear and research. A fully trained pet is a walking gear set that also happens to open the fight.",
+        ],
+        bullets: [
+          "Shadow: +1.5% deployed Attack (stage 2), +7.5% Attack versus targets under 35% Health (stage 4).",
+          "Fluffy: +2.5% deployed Health (stage 2), +3% Healing Effect (stage 4).",
+          "Snowball: +1% deployed Attack (stage 2), +5% Attack versus targets under 25% Health (stage 4).",
+          "All stage skills apply only to the team the pet is assigned to — the account-wide benefit is the Bonus Rate itself.",
+        ],
+      },
+      {
+        id: "battle-rules",
+        heading: "How pets deploy: one per team, and no sharing",
+        bullets: [
+          "Each team brings exactly one pet, in its own slot — no hero is ever displaced.",
+          "A pet can only serve one team at a time. Five march queues want five different raised pets; there is no Starhorn-for-everyone.",
+          "The opening skill fires automatically at battle start — pet choice is opening-tempo choice.",
+        ],
+        paragraphs: [
+          "The one-pet-per-team rule is the quiet endgame design. Early on you are raising one good pet; the moment you run multiple queues — gathering defense, arena, rallies — you need a bench. That is when the mid band stops being duplicate fodder and becomes your second and third deployments.",
+          "The kits also read like they were drawn against the 40/30/30 doctrine: guards eat the damage, damage sits behind. Starhorn's opener is literally \"front-row Defense +20%, back-row Attack +8%\" — the formation, buffed. Fluffy heals the front row every two seconds, which is exactly the lane guards bleed from. If your marches follow the standard split, the pet meta is already solved for you.",
+        ],
+      },
+      {
+        id: "priority",
+        heading: "The priority ladder: where your marks go first",
+        paragraphs: [
+          "Starhorn first. The kit is universal — every formation has a front row to armor and a back row to sharpen — and the SSR stat ceiling plus the +10% stage-5 self-buff make it the strongest long-term sink. It is also the scarcest pet in the game: locked out of Normal eggs, a 10% Rare pull, half of every Precious egg. When a Precious egg lands, that thud you hear is your main pet arriving.",
+          "But \"first\" means first, not \"only until finished\". Stage 5 costs 700 marks for the final push alone — a months-long project. The efficient line: push Starhorn to stage 2 or 3 (300 to 700 cumulative marks), then let trickle income finish the ladder while you start a second pet.",
+        ],
+        bullets: [
+          "Rally and focus-fire account: Shadow. The +20% damage-taken mark turns a coordinated rally's opening burst into a kill order, and stage 4's +7.5% Attack against sub-35% targets finishes what the mark started.",
+          "Sustain and garrison account: Fluffy. A heal-over-time on the front row every two seconds is worth more effective Health than most gear substats, and the stage-2 +2.5% Health applies to every deployment it rides.",
+          "Fresh account, thin roster: Snowball. It hatches from 22% of every Normal egg, feeds on the cheapest EXP curve in the game, and a 500%-Attack opener still chunks a random hero's bar at any level. It is the workhorse you raise on the way to the deer.",
+        ],
+        callout: {
+          kind: "warn",
+          title: "Don't spread marks thin",
+          text: "Every mark spent on pet number six is a mark not spent raising the stat flow of pet number one. Concentrate until your main pet clears stage 2 or 3, then — and only then — start the second project. And never train a pet you never deploy: the stage skills only pay while that specific pet rides a team.",
+        },
+      },
+      {
+        id: "collection",
+        heading: "Resonance, Radiant Forms and the Sanctuary",
+        paragraphs: [
+          "Three collection systems sit on top of the combat loop. Pet Resonance pays bonuses for owning the right combinations of pets — collection-gated and deployment-independent. Radiant Forms are the transformation capstone: a pet developed far enough evolves into a visibly different, stronger version of itself. And the Pet Sanctuary is the settlement home where you interact with your companions, rename them and unlock color variants.",
+          "The strategic read: the system wants both depth and breadth. Depth — one pet, maxed — wins your battles. Breadth — a full roster — wins your Resonance tiers and raises the floor of the account-wide stat engine. The cheap trio is free breadth, since every Normal egg eventually completes it, so let the cheap collection happen in the background while your marks stay concentrated.",
+        ],
+      },
+      {
+        id: "spend",
+        heading: "Spend discipline: what the in-game pet offers actually do",
+        paragraphs: [
+          "Two pet-focused offers rotate in-game: a Hatchling Weekly Pass built around daily drip — a higher-rarity egg, a feed item and an instant-hatch boost every day — and a Weekly Pet Egg Pack that front-loads a batch of eggs and boosts at once. Neither is required to play the system: the intel-mission loop is the entire engine, and it is free.",
+          "If you do pick up pet offers, you are buying tempo, not stats. The instant-hatch boost is the only component you cannot farm, and it is worth the most pointed at Precious eggs. If you never spend at all, nothing changes — your real bottleneck is mission discipline, not currency.",
+        ],
+        callout: {
+          kind: "meta",
+          title: "Pet Journey is the free reward track",
+          text: "Hatching milestones pay out through the Pet Journey track as your collection grows. Between Journey rewards, Resonance tiers and the account-wide Bonus Rate, every egg — even the fourth duplicate seal — is progress. There are no dead pulls in this system, only slow ones.",
+        },
+      },
+    ],
+    takeaways: [
+      "Pets are two systems in one: an account-wide stat engine (the Hero Bonus Rate) and a free extra combat slot per team.",
+      "Egg tiers are hard gates — Normal eggs can never hatch Starhorn, while Precious eggs are 50% Starhorn.",
+      "Training stages take the Bonus Rate from 25% to 100%: the biggest multiplier in the system. Marks are per-pet and come only from duplicates.",
+      "Priority: Starhorn first, then a second pet by need — Shadow for focus fire, Fluffy for sustain, Snowball as the budget workhorse.",
+      "One pet per team and no sharing, so a five-queue account needs a five-pet bench. Concentrate marks to stage 2-3 before diversifying.",
+    ],
+    faq: [
+      {
+        q: "How do I get pets in Tiles Survive?",
+        a: "Complete pet-related Intel Missions for Pet Eggs, then hatch them in an open nest at the Workbench. Unfinished missions refresh daily and unclaimed rewards persist for three days — run the loop every day.",
+      },
+      {
+        q: "Why isn't the Pet System in my game yet?",
+        a: "It unlocks State by State as progression allows. There is no manual activation — when your State qualifies, the system appears on its own.",
+      },
+      {
+        q: "Can a pet replace a hero in my formation?",
+        a: "No. Pets ride in their own slot — each team brings one pet alongside the full hero formation, and each pet can only be assigned to a single team at a time.",
+      },
+      {
+        q: "Do pets I'm not using still give bonuses?",
+        a: "Yes. Every pet you own transfers a share of its stats to all heroes through its Hero Bonus Rate, whether deployed or not. The stage skills, by contrast, only apply to the team the pet is fielded with.",
+      },
+      {
+        q: "What is the best pet in Tiles Survive?",
+        a: "Starhorn, the SSR Defender. Its opener grants front-row Defense +20% and back-row Attack +8%, it has the highest stat ceiling of the launch roster, and its training ladder runs all the way to a 100% Hero Bonus Rate. Push it to training stage 2-3 before starting a second project.",
+      },
+    ],
+    relatedTools: [
+      { href: "/tier-list", label: "Hero Tier List", note: "The five slots your pet rides behind" },
+      { href: "/guides/march-math-40-30-30", label: "March Math 40/30/30", note: "The doctrine Starhorn's kit was built for" },
+      { href: "/war-room", label: "Arcadian War Room", note: "Call pet assignments to every march" },
+    ],
+  },
+
   /* __APPEND_MORE_GUIDES__ */
 };
