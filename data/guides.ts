@@ -48,7 +48,7 @@ export const guides: Guide[] = [
   {
     id: "g1",
     slug: "first-7-days",
-    title: "The First 7 Days: Fog, Power & Food",
+    title: "Tiles Survive First 7 Days: Fog, Power & Food",
     excerpt:
       "The opening week decides your ceiling. Clear fog in rings, keep the Power Plant one upgrade ahead, and never let a survivor sit idle.",
     category: "Beginner",
@@ -61,7 +61,7 @@ export const guides: Guide[] = [
   {
     id: "g2",
     slug: "march-math-40-30-30",
-    title: "March Math: The 40/30/30 Doctrine",
+    title: "Tiles Survive Troop Guide: The 40/30/30 Doctrine",
     excerpt:
       "Guards eat damage, Gunners grind the midline, Marksmen burst from the back. The proven competitive split — and when to break it on purpose.",
     category: "Troops",
@@ -74,7 +74,7 @@ export const guides: Guide[] = [
   {
     id: "g3",
     slug: "faction-matching-full-map",
-    title: "Faction Matching: Stalwart to Rover, Fully Mapped",
+    title: "Tiles Survive Faction Guide: Every Counter Mapped",
     excerpt:
       "Stalwart beats Aeronaut beats Mariner beats Rover beats Stalwart. A matched hero leading matching troops stacks stats — the full cycle map inside.",
     category: "Heroes",
@@ -87,7 +87,7 @@ export const guides: Guide[] = [
   {
     id: "g4",
     slug: "behemoth-slot-cooldowns",
-    title: "Behemoth Slot Math: Cooldowns Beat Stat Lines",
+    title: "Tiles Survive Behemoth Guide: Cooldowns Beat Stats",
     excerpt:
       "Your Behemoth is a fifth squad member that reshapes combat tempo through skill cooldown reduction. We simulated 40k fights to prove the curve.",
     category: "Heroes",
@@ -100,7 +100,7 @@ export const guides: Guide[] = [
   {
     id: "g5",
     slug: "chief-gear-reforge-discipline",
-    title: "Chief Gear Reforge: When to Lock a Substat",
+    title: "Tiles Survive Reforge Guide: When to Lock a Substat",
     excerpt:
       "Account-wide gear means a greedy reroll taxes every hero you own. The exact quality-tier breakpoints where locking beats gambling.",
     category: "Gear",
@@ -113,7 +113,7 @@ export const guides: Guide[] = [
   {
     id: "g6",
     slug: "rally-etiquette",
-    title: "Rally Etiquette: Don't Get Muted in State Chat",
+    title: "Tiles Survive Rally Etiquette: Don't Get Muted",
     excerpt:
       "Rally caps, join windows, reinforce priority — and the six messages that get officers demoted. A survival guide for alliance politics.",
     category: "Alliance",
@@ -126,7 +126,7 @@ export const guides: Guide[] = [
   {
     id: "g7",
     slug: "event-calendar-compounding",
-    title: "Oil Clash → Arcadian Conquest: The Compounding Calendar",
+    title: "Tiles Survive Event Guide: The Compounding Calendar",
     excerpt:
       "Oil Clash, Turbulent Tides, Arcadian Conquest — each rewards different spending. Bank resources 30–60 days out and every window compounds.",
     category: "Events",
@@ -139,7 +139,7 @@ export const guides: Guide[] = [
   {
     id: "g8",
     slug: "f2p-gem-flow",
-    title: "F2P Gem Flow: Where Every Diamond Goes",
+    title: "Tiles Survive F2P Guide: Where Every Gem Goes",
     excerpt:
       "The zero-spend gem pipeline, ranked by return per diamond. Spoiler: it isn't the recruitment banner you think.",
     category: "Beginner",
@@ -152,7 +152,7 @@ export const guides: Guide[] = [
   {
     id: "g9",
     slug: "pet-system-guide",
-    title: "The Pet System: Eggs, Marks & Best Pets",
+    title: "Tiles Survive Pet Guide: Eggs, Marks & Best Pets",
     excerpt:
       "Seven companions, three egg tiers, one 100% transfer rate to chase. Hatch odds, Pet Marks math and the priority ladder — why Starhorn earns your first 700 marks.",
     category: "Pets",
@@ -165,7 +165,7 @@ export const guides: Guide[] = [
   {
     id: "g10",
     slug: "turbo-turtle-event-guide",
-    title: "Turbo Turtle: The Double-Dip Economy",
+    title: "Tiles Survive Turbo Turtle Guide: Double-Dip Economy",
     excerpt:
       "The gear event that punishes impulse spenders. Bank scraps and speedups, burst the window, and turn one Alloy crate a week into a compounding gear engine.",
     category: "Events",
@@ -178,7 +178,7 @@ export const guides: Guide[] = [
   {
     id: "g11",
     slug: "skill-weapon-exchange-guide",
-    title: "Skill & Weapon Exchange: 10 Free Swaps",
+    title: "Tiles Survive Weapon Exchange Guide: 10 Free Swaps",
     excerpt:
       "Five weapon swaps, five skill swaps, fourteen days. Strip the bench and stack the main march — the rules, the lockouts and the exact swap order.",
     category: "Heroes",
@@ -191,7 +191,7 @@ export const guides: Guide[] = [
   {
     id: "g12",
     slug: "hero-talents-guide",
-    title: "Hero Talents to Lv.4: The Focus Doctrine",
+    title: "Tiles Survive Hero Talents Guide: The Lv.4 Order",
     excerpt:
       "Lv.4 talents are a 25–35% multiplicative boost per hero — if you stop spreading materials. The core-five order, the farm channels, the paying windows.",
     category: "Heroes",
@@ -204,7 +204,7 @@ export const guides: Guide[] = [
   {
     id: "g13",
     slug: "precision-blueprint-guide",
-    title: "Precision Blueprints: The Rally Power Engine",
+    title: "Tiles Survive Blueprint Guide: +7M Rally Power",
     excerpt:
       "The account-wide layer that adds up to 7 million rally power: five rarity tiers, promotion math, every free farm channel, and the Turbo Turtle rule for every burn.",
     category: "Gear",
@@ -217,7 +217,7 @@ export const guides: Guide[] = [
   {
     id: "g14",
     slug: "arcadia-conquest-guide",
-    title: "Arcadia Conquest: The Saturday Siege Playbook",
+    title: "Tiles Survive Arcadia Conquest Guide: 90 Minutes to Governor",
     excerpt:
       "90 minutes of occupation wins the crown. Zone timelines, Pillbox tower math, three-track scoring, the hospital gambit and the tactics that let mid-spend alliances beat whales.",
     category: "Events",
