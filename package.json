@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "TitanTilesSurvive \u2014 command intelligence companion web app for the 4X strategy game Tiles Survive!",
+  "description": "TitanTilesSurvive — command intelligence companion web app for the 4X strategy game Tiles Survive!",
   "engines": {
     "node": ">=20"
   },
@@ -20,6 +20,7 @@
     "@fontsource/chakra-petch": "^5.3.0",
     "@react-three/drei": "^10.0.0",
     "@react-three/fiber": "^9.0.0",
+    "@vercel/analytics": "^2.0.1",
     "framer-motion": "^12.0.0",
     "next": "^15.5.0",
     "react": "~19.2.0",
