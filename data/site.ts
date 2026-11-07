@@ -9,7 +9,7 @@ export const site = {
   name: "TitanTilesSurvive",
   tagline: "Stop Guessing. Start Conquering.",
   description:
-    "Tiles Survive guides and tools: 12 deep strategy walkthroughs, the live hero tier list, troop ratio optimizer, gear reforge simulator and the Arcadian War Room.",
+    "Tiles Survive guides and tools: 13 deep strategy walkthroughs, the live hero tier list, troop ratio optimizer, gear reforge simulator and the Arcadian War Room.",
   url: "https://titantilessurvive.com",
   patch: "PATCH 2.6.0",
   season: "SEASON 6 // ARCADIAN CONQUEST",
@@ -18,7 +18,7 @@ export const site = {
 export const heroStats = [
   { value: 4, suffix: "", label: "LIVE TOOLS" },
   { value: 40, suffix: "+", label: "HERO PROFILES" },
-  { value: 12, suffix: "", label: "FIELD GUIDES" },
+  { value: 13, suffix: "", label: "FIELD GUIDES" },
 ] as const;
 
 export const tickerItems = [

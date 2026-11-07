@@ -201,4 +201,17 @@ export const guides: Guide[] = [
     icon: "book",
     image: IMG.island,
   },
+  {
+    id: "g13",
+    slug: "precision-blueprint-guide",
+    title: "Precision Blueprints: The Rally Power Engine",
+    excerpt:
+      "The account-wide layer that adds up to 7 million rally power: five rarity tiers, promotion math, every free farm channel, and the Turbo Turtle rule for every burn.",
+    category: "Gear",
+    level: "COMMANDER",
+    readTime: "12 min",
+    updated: "Nov 8, 2026",
+    icon: "crosshair",
+    image: IMG.archipelago,
+  },
 ];

@@ -1458,5 +1458,154 @@ export const GUIDE_CONTENT: Record<string, GuideContent> = {
     ],
   },
 
+  /* ============================== G13 ============================== */
+  "precision-blueprint-guide": {
+    slug: "precision-blueprint-guide",
+    seoTitle: "Tiles Survive Precision Blueprint Guide & Best Tips",
+    seoDescription:
+      "The Precision Blueprint playbook: five rarity tiers and promotion math, every free farm channel, and why every burn belongs inside Turbo Turtle.",
+    intro: [
+      "Hero gear makes one hero stronger. Precision Blueprints make every march you join stronger. The system sits underneath your gear progression as a second, account-wide layer that scales rally power directly — and accounts that work it steadily report adding up to seven million power to their rally contribution while their rivals wonder where the gap came from.",
+      "This is the full walkthrough: what the collections actually do, the two-currency economy that gates every upgrade, the rarity ladder and its promotion math, every free farming channel in the game, and the one timing rule that separates a good blueprint account from a great one.",
+    ],
+    sections: [
+      {
+        id: "what-it-is",
+        heading: "The layer under your gear",
+        paragraphs: [
+          "Precision Blueprints live outside the hero gear and chief gear systems entirely. You will not find them in the reforge studio or the gear workshop — they live in your profile's Hero Collections, organized as collections with distinct stat profiles. Some lean into attack, others into health, troop capacity or secondary modifiers, which means collection choice is a build decision, not a completionist checkbox.",
+          "The payoff is breadth. Every point of blueprint stat applies to every rally you join, so the system compounds across your whole alliance's combat output — exactly the shape that decides cross-server PvP and Kingdom-versus-Kingdom engagements, where your rally contribution is measured against accounts that optimized this layer months ago.",
+        ],
+        callout: {
+          kind: "meta",
+          title: "Why it feels weak before it feels strong",
+          text: "The early levels look like rounding errors, which is why most players ignore the system for weeks. The curve is back-loaded: base stats jump materially at every rarity promotion, and the collections stack. The accounts that started early are the ones adding millions of rally power later.",
+        },
+      },
+      {
+        id: "two-currencies",
+        heading: "Two currencies, one bottleneck",
+        paragraphs: [
+          "Blueprint upgrades are paid in two materials, and confusing them is the first mistake. Precision Blueprints carry the collection progression itself; General Parts power the other side of the cost. Both are consumed on every upgrade, which means your real constraint is whichever stockpile runs dry first — a full blueprint bank with zero parts advances nothing.",
+          "The deeper problem: General Parts are not blueprint-exclusive. They are also the currency that promotes chief gear through its top rarity tiers toward Alloy. Every part you route into blueprints is a part your chief gear promotion waits for, and vice versa. That is a genuine allocation decision, and it deserves a deliberate answer rather than whichever menu you opened last.",
+        ],
+        callout: {
+          kind: "warn",
+          title: "Chief gear and blueprints drink from the same bottle",
+          text: "Decide your order before the shortage decides it for you. A reasonable default: get your chief gear to the tier your main march needs, then push the blueprint collections that buff the stat your marches are actually short on. Flip-flopping between them mid-promotion is how accounts end up bottlenecked on both.",
+        },
+      },
+      {
+        id: "tiers",
+        heading: "Five tiers, fifteen levels, one big jump",
+        paragraphs: [
+          "The ladder is strict and legible. Five rarity tiers, fifteen levels inside each tier, and a promotion gate at level 15 that carries you into the next tier at level 1:",
+        ],
+        table: {
+          columns: ["Rarity", "Color", "Position"],
+          rows: [
+            ["Common", "Gray", "Where every account starts"],
+            ["Uncommon", "Green", "First promotion target"],
+            ["Rare", "Blue", "Mid ladder"],
+            ["Epic", "Purple", "The tier where the stats get real"],
+            ["Legendary", "Gold", "The ceiling"],
+          ],
+        },
+        bullets: [
+          "Standard leveling runs about 30 blueprints per level — cheap, steady, safe to do on impulse.",
+          "The promotion jump at level 15 is the expensive line item: up to roughly 150 blueprints plus a serious General-parts bill — around 3,000 parts for the pushes toward the top tiers.",
+          "After promotion the level display resets to 1, but nothing is lost: the tier's base stats are substantially stronger and per-level costs drop back to the cheap baseline.",
+          "A completed Epic-tier collection is worth roughly 4,000 attack, health and troop capacity across your active rallies — the moment the system stops looking optional.",
+        ],
+      },
+      {
+        id: "using-it",
+        heading: "Using the system in-game",
+        bullets: [
+          "Open your profile (top-left) and find Hero Collections — the blueprint view lives there.",
+          "No blueprints yet? The Craft button generates your starter Gray-rarity set.",
+          "Read each collection's stat profile before committing: attack-weighted sets for offensive marches, health and troop-capacity sets for sustain and garrison work.",
+          "Before every upgrade session, check both stockpiles — blueprints and General Parts — against the cost of the next promotion, not just the next level.",
+        ],
+        paragraphs: [
+          "The operational rule is simple: level within a tier whenever it's convenient, but treat every promotion jump as a planned purchase. Promotions are where the cost spikes and where the stats jump — arriving at level 15 without the 100-plus blueprints banked means stalling exactly at the moment the system pays.",
+        ],
+      },
+      {
+        id: "farming",
+        heading: "Every free source, ranked by reliability",
+        bullets: [
+          "First kill of the day — your first roaming-infected kill each day is a guaranteed 3 precision blueprints. It is the most dependable tap in the game; never miss it.",
+          "Roaming infected generally — the stamina loop that already pays speedups and materials also feeds your blueprint bank. Lower-level targets are fine; volume beats level.",
+          "Partner Paradise — the strongest event source: daily tasks and alliance rallies mint event coins, the wheel's progress chests drop 3 blueprints each, and the major milestones pay a 20-blueprint lump.",
+          "Kingdom-versus-Kingdom weekly chests — for servers in the KvK phase, the weekly high-tier chests add 3 more; most other chests skew toward General Parts, which you also need.",
+          "Arcadia battles — damage milestones and leaderboard placements pay blueprint-bearing chests for endgame accounts.",
+          "The Recycling Center — once your SSR heroes push toward 10 stars in the Wall of Honor, duplicate fragments become exchange currency for Precision Blueprints and Reforge Hammers.",
+          "Blueprint chests — hoard the unopened ones daily play awards you and convert in bulk when a promotion is a few blueprints short. Split-second openings are how banks evaporate.",
+        ],
+      },
+      {
+        id: "timing",
+        heading: "The Turbo Turtle rule",
+        paragraphs: [
+          "Upgrading the moment materials arrive feels productive and is the most expensive habit in the system. Turbo Turtle's task list scores the consumption of gear scraps, general parts and precision blueprints — the same spends you were going to make anyway, paying event points and milestone chests on top.",
+          "So the golden rule: blueprints and parts rest outside event windows and burn inside them. Concentrate level-ups and promotion jumps into the Turbo Turtle window — ideally the Thursday-Friday stretch where Turbo Turtle and Power Play score simultaneously — and every material pays twice: once in rally stats, once in event rewards.",
+        ],
+        callout: {
+          kind: "tip",
+          title: "You already know this doctrine",
+          text: "Bank in the valleys, spend on the peaks. Gear scraps follow this law through Turbo Turtle, talent materials follow it through their scoring windows, and blueprints are no different. The event calendar guide maps all of the windows in one place.",
+        },
+      },
+      {
+        id: "checklist",
+        heading: "The blueprint checklist",
+        table: {
+          columns: ["Cadence", "Do this"],
+          rows: [
+            ["Daily", "First-kill bonus (3 blueprints), clear the stamina bar on roaming infected, run Partner Paradise tasks for wheel coins"],
+            ["Weekly", "Spin the Partner Paradise wheel through its milestones, claim KvK weekly chests if your server is in the phase"],
+            ["Event window", "All level-ups and every promotion jump happen inside Turbo Turtle — never outside it"],
+            ["Late game", "Recycle surplus duplicate fragments into blueprints and hammers once Wall of Honor star-pushes leave you fragment-rich"],
+          ],
+        },
+      },
+    ],
+    takeaways: [
+      "Precision Blueprints scale every march you join — an account-wide rally layer worth up to ~7 million power when optimized.",
+      "Upgrades need both blueprints AND General Parts, and General Parts also gate chief-gear promotions — allocate deliberately.",
+      "Five tiers, fifteen levels each; levels cost ~30, promotions up to ~150 blueprints plus a ~3,000-part bill, and the stats jump at every promotion.",
+      "Free income: daily first kill (3), the infected stamina loop, Partner Paradise, KvK chests, Arcadia, the Recycling Center.",
+      "Burn inside Turbo Turtle only — same materials, double payout. Hoard unopened chests for promotion shortfalls.",
+    ],
+    faq: [
+      {
+        q: "What are Precision Blueprints in Tiles Survive?",
+        a: "An account-wide progression layer that scales rally power directly. Upgrading blueprint collections boosts every march you join — unlike hero gear, which strengthens one hero at a time.",
+      },
+      {
+        q: "How do I unlock Precision Blueprints?",
+        a: "Open your profile, find Hero Collections, and use the Craft button to generate your starter Gray-rarity blueprints. From there it is a matter of feeding the system materials.",
+      },
+      {
+        q: "How much do blueprint upgrades cost?",
+        a: "Standard levels run about 30 blueprints each. The promotion at level 15 — the jump to the next rarity tier — costs up to roughly 150 blueprints plus a significant General Parts bill.",
+      },
+      {
+        q: "What is the fastest way to farm Precision Blueprints?",
+        a: "Never miss the first roaming-infected kill of the day (3 guaranteed), run the stamina loop on infected generally, and push the Partner Paradise wheel and milestones when the event is live.",
+      },
+      {
+        q: "Should I upgrade blueprints outside Turbo Turtle?",
+        a: "No. Turbo Turtle scores blueprint and part consumption as event points, so the same upgrades pay twice inside the window. Bank materials between events and burn them during it.",
+      },
+    ],
+    relatedTools: [
+      { href: "/guides/turbo-turtle-event-guide", label: "Turbo Turtle Guide", note: "The window every burn belongs to" },
+      { href: "/gear-reforge", label: "Gear Reforge Calculator", note: "The other General Parts destination" },
+      { href: "/tier-list", label: "Hero Tier List", note: "The marches your rallies run" },
+    ],
+  },
+
   /* __APPEND_MORE_GUIDES__ */
 };
