@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import AtmosphereBackground from "@/components/layout/AtmosphereBackground";
@@ -72,6 +73,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-body bg-cream text-ink">
+        {/* Google tag (GTM-WQVQ4S7K) — the single instance for every page. */}
+        <Script
+          id="gtm-loader"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-WQVQ4S7K"
+          strategy="beforeInteractive"
+          async
+        />
+        <Script id="gtm-datalayer" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          `}
+        </Script>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:border-[3px] focus:border-ink focus:bg-ember focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:font-bold focus:text-white"
