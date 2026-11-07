@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Tiles Survive Guides & Walkthroughs",
   alternates: { canonical: "/guides" },
   description:
-    "13 deep Tiles Survive guides: the first-7-days playbook, 40/30/30 march math, faction counters, pet system, hero talents, Turbo Turtle and the event calendar.",
+    "14 deep Tiles Survive guides: the first-7-days playbook, 40/30/30 march math, faction counters, pet system, hero talents, Turbo Turtle and the event calendar.",
 };
 
 const listLd = {

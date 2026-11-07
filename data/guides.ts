@@ -214,4 +214,17 @@ export const guides: Guide[] = [
     icon: "crosshair",
     image: IMG.archipelago,
   },
+  {
+    id: "g14",
+    slug: "arcadia-conquest-guide",
+    title: "Arcadia Conquest: The Saturday Siege Playbook",
+    excerpt:
+      "90 minutes of occupation wins the crown. Zone timelines, Pillbox tower math, three-track scoring, the hospital gambit and the tactics that let mid-spend alliances beat whales.",
+    category: "Events",
+    level: "COMMANDER",
+    readTime: "16 min",
+    updated: "Nov 8, 2026",
+    icon: "radar",
+    image: IMG.plains,
+  },
 ];

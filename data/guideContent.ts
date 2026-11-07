@@ -1607,5 +1607,180 @@ export const GUIDE_CONTENT: Record<string, GuideContent> = {
     ],
   },
 
+  /* ============================== G14 ============================== */
+  "arcadia-conquest-guide": {
+    slug: "arcadia-conquest-guide",
+    seoTitle: "Tiles Survive Arcadia Conquest Guide: Strategy & Tips",
+    seoDescription:
+      "The full Arcadian Conquest playbook: win conditions, zone and teleport rules, Pillbox tower math, three-track scoring, the march formation, and Governor rewards.",
+    intro: [
+      "Every Saturday, the whole map collapses toward one point. Arcadian Conquest is the three-hour siege at the center of the Tiles Survive week — the alliance that controls the Arcadia Fortress when the dust settles appoints the Governor, and everyone else spends seven days living under their rules.",
+      "Alliances lose this event for two reasons: they treat it as a power contest instead of a point-and-position contest, and they learn the zone rules by dying to them. This is the complete playbook — win conditions, the teleport timeline, the Pillbox tower math that decides the center, all three score streams, the formation that survives the grid, and the week-around-Saturday prep that wins it before it starts.",
+    ],
+    sections: [
+      {
+        id: "win-conditions",
+        heading: "How you actually win",
+        paragraphs: [
+          "The objective is occupation, not elimination. Hold the central Arcadia Fortress for a cumulative 90 minutes and the event ends on the spot — the clock accumulates across every stint your alliance holds the center, not one unbroken sitting. If nobody reaches 90 minutes inside the three-hour siege, the longest cumulative hold takes the crown.",
+          "Read those two sentences again, because they shape everything else: an alliance that holds the center in six smart fifteen-minute windows beats an alliance that held it once for eighty. Fortunes flip constantly, and the score streams below mean the losing alliances are still fighting for real placement the entire time.",
+        ],
+      },
+      {
+        id: "zone-rules",
+        heading: "The zone timeline you must memorize",
+        paragraphs: [
+          "The Alert Zone around the fortress runs on a fixed server-side schedule, and the alliances that get wiped in the opening minutes almost always misread it:",
+        ],
+        table: {
+          columns: ["When", "What happens"],
+          rows: [
+            ["T-minus 60 min", "The map purge — every settlement inside the Alert Zone is force-teleported to a random location. Move out early or lose your spot"],
+            ["T-minus 50 min onward", "Teleporting INTO the Alert Zone becomes free for the rest of the event"],
+            ["The moment you port in", "Peace Flares are disabled — shields drop instantly and cannot be reactivated inside the zone. You are a live target from the second you land"],
+          ],
+        },
+        callout: {
+          kind: "warn",
+          title: "Your shield does not survive the border",
+          text: "A shield activated before porting in vanishes the moment you land in the Alert Zone. Port in as part of the blockade plan, never as a tourist — inside the zone, your only armor is position and your allies.",
+        },
+      },
+      {
+        id: "towers",
+        heading: "The Pillbox Towers decide the center",
+        paragraphs: [
+          "The four corner towers are not side objectives — they are siege engines aimed at whoever holds the fortress. When an enemy alliance occupies the center, any tower your alliance holds fires on their garrison, deleting 2% of the troops inside Arcadia with every strike. And the fire accelerates: a tower held unbroken starts on a four-minute cooldown and ramps toward one strike every minute.",
+          "Run the math on that. A tower held for half the event at full ramp is chewing through the center's garrison faster than most alliances can heal it — without a single one of your marches dying. Two or three towers working together grind down even a whale garrison that would eat any direct rally you throw at it.",
+          "The catch runs both ways: troops garrisoned in a tower take roughly 2% casualties per attack against it, and garrisoned troops cannot heal. Towers are leverage, but they are also a slow bleed — which is why garrison rotation (below) is not optional.",
+        ],
+        callout: {
+          kind: "meta",
+          title: "The beginner's mistake is charging the center",
+          text: "New alliances pour everything into Arcadia in the first ten minutes and wonder why the holder's garrison never shrinks. The center falls to tower pressure and timing, not to frontal courage. Take the corners, let the zaps work, and strike the center when the garrison is already bleeding.",
+        },
+      },
+      {
+        id: "scoring",
+        heading: "Three score streams, one ranking",
+        bullets: [
+          "Occupation points — the stable core: 10,000 points for every 60 seconds your alliance holds the fortress or any Pillbox Tower. Position pays by the minute.",
+          "Kill points — wiping enemy marches and garrisons, scaling with the tier of the soldiers destroyed.",
+          "Casualty points — yes, your own losses score. Points scale with the tier of troops you lose, so high-tier contact pays whether you're slaying or dying.",
+        ],
+        paragraphs: [
+          "That third stream is where the famous \u201ctroop washing\u201d tactic comes from: alliances deliberately feed high-tier squads into constant contact to clear personal milestones fast. It works — and it is also how alliances enter the endgame with overflowing hospitals and an empty frontline. The endgame is where occupation is actually won, and it is the worst possible moment to be out of army.",
+          "The reward curve got steeper, too: Battle Stage progress rewards for Arcadian Conquest and State Clash now include 20 hours of universal speedups as standard milestones — banked early, those feed straight back into your healing loop while the siege is still running.",
+        ],
+        callout: {
+          kind: "warn",
+          title: "Wash, don't drown",
+          text: "Casualty points are a supplement, not a strategy. Keep high-tier troops in genuine contact all event — that scores all three streams at once — but save the deliberate sacrifice plays for mid-event, never the final thirty minutes.",
+        },
+      },
+      {
+        id: "formation",
+        heading: "The march that survives the grid",
+        paragraphs: [
+          "Single-target lineups and unoptimized comps become free merits in a siege. The core five that holds up under this pressure is the proven march: Rosie, Nikola and Tarzan anchoring the front, with Tara and Layla supporting from behind.",
+          "Nikola is the fortress — his self-shielding kit gives him effective extra health bars to absorb opening rotations. Rosie is the win condition, deep in the back row: her AoE splash and self-sustain scale the longer a fight runs, which is exactly what a siege is. Tarzan punishes through the enemy line to reach their fragile backline. Tara's global defense buff multiplies everyone's survivability, and Layla keeps the front standing through attrition.",
+        ],
+        bullets: [
+          "Front row (Nikola, Tarzan): build HP% and DEF% — they exist to absorb the enemy's opening rotation.",
+          "Back row (Rosie, Tara, Layla): ATK% and Crit on Rosie and Tarzan's damage lines; every DEF% slot you can find on Tara to widen her global buff.",
+          "Stack Tara's passive with the signature weapons' team defense and the whole march starts eating rallies that should have killed it.",
+        ],
+        callout: {
+          kind: "tip",
+          title: "Tony owns the garrison",
+          text: "For holding towers and the fortress itself, area-of-effect defenders beat single-target duelists. Tony's splash damage and Pulse Mark — which amplifies the splash damage marked attackers take from consecutive skills — make him the garrison carry of the current era. Pair him with current-generation AoE commanders inside the walls.",
+        },
+      },
+      {
+        id: "tactics",
+        heading: "Four veteran tactics",
+        bullets: [
+          "The meat-wall blockade — your whales port into the inner ring closest to Arcadia to minimize reinforcement time; every free-to-play member packs their city tightly around them. A solid ring of settlements forces enemy rallies into long circular routes and buys your defenders minutes.",
+          "The ghost zap — if the enemy has an unkillable whale garrison in the center, don't feed it. Send one cheap, fast unit to flip an undefended corner tower: the instant it turns your color, the 2% zap hits the fortress garrison. Abandon it, let them retake, flip it again. Small alliances melt whale defenses this way all Saturday.",
+          "Garrison cycling — garrisoned troops cannot heal, so damaged defenders must rotate out the moment they hit moderate health while a fresh squad slides in. Under-filled garrisons and wounded stubbornness lose towers faster than enemy power does.",
+          "Shift rotations — divide the alliance into three squads: an apex rally squad to chain-open heavy rallies, a garrison squad of high-DEF accounts to instantly fill captured positions, and a mobile intercept squad of active players to hunt solo marches and run ghost zaps.",
+        ],
+        paragraphs: [
+          "All four of these are coordination problems, not power problems — which is exactly what the War Room was built to solve. Assign the squads, sync the tower timers and broadcast the rotations from one link before Saturday, and a mid-spend alliance performs like a top-tier one.",
+        ],
+      },
+      {
+        id: "hospital",
+        heading: "The hospital gambit",
+        paragraphs: [
+          "Saturday is an attrition war, and your Hospital capacity is the hard floor between wounded troops and permanent deaths. The play runs in three phases.",
+          "Before Saturday: max your Hospital and Enlistment Office to your Power Plant ceiling, and clear the Hospital completely — an empty bed count walking in is the whole foundation. During the battle: don't heal on reflex. Keep fighting with reserves and let the Hospital fill; once it's full, subsequent lightly-wounded troops flow into the Enlistment Office as your second reserve pool. At the endgame: spend the resource bank to recall every soldier from both buildings at once — your active troop count and power spike in an instant, right when the final thirty minutes demand it.",
+        ],
+        callout: {
+          kind: "warn",
+          title: "Overflow is permanent",
+          text: "The moment your Hospital is full AND your Enlistment Office is full, further casualties die for real and drain your account's power permanently. The gambit has a floor — watch the capacity meters in the last hour.",
+        },
+      },
+      {
+        id: "governor",
+        heading: "What the crown is worth",
+        paragraphs: [
+          "The winning alliance's leader appoints the Server Governor, and the office runs the state for the next seven days: state-wide buffs like Fast Gathering, the power to assign titles that buff allies or debuff rivals, reward packs for your members, and exclusive settlement and march skins with real combat stats. It is a full week of leverage, which is why Saturday never cools down.",
+          "During State Clash league weeks — weeks one through three and five through seven — the stakes scale past your server: the state with the most league points earns the right to invade the rival server's Arcadia, which makes coordination between your state's top four alliances a matter of home defense, not pride.",
+        ],
+      },
+      {
+        id: "checklist",
+        heading: "The week-around-Saturday checklist",
+        table: {
+          columns: ["When", "Do this"],
+          rows: [
+            ["Wed-Thu", "Spend inside the overlapping event windows, train high-tier troops, bank rally-capacity packs"],
+            ["Friday evening", "Clear the Hospital completely, check defensive gear, lock relocation coordinates with officers"],
+            ["T-minus 60 min", "Be OUT of the Alert Zone or eat the forced random teleport"],
+            ["T-minus 50 min", "Port back in as the blockade — whales inner ring, everyone else packed around them"],
+            ["Battle (3 hours)", "Towers first, rotations on schedule, ghost zaps on stale whale garrisons, Hospital filling not draining"],
+            ["Final 30 min", "Mass-recall Hospital and Enlistment reserves, final coordinated push, lock down the 90-minute hold"],
+          ],
+        },
+      },
+    ],
+    takeaways: [
+      "Win by cumulative occupation: 90 minutes of center control ends the event instantly; otherwise the longest hold takes it.",
+      "Port out by T-minus 60, port back at T-minus 50 — and never expect a shield to survive the Alert Zone border.",
+      "Pillbox Towers delete 2% of the center garrison per strike, ramping from a 4-minute to a 1-minute cooldown — the corners beat the center.",
+      "Score all three streams: occupation by the minute, kills by tier, and your own casualties — but keep the sacrifice plays out of the endgame.",
+      "Empty Hospital Friday, fill it during, mass-recall both pools for the final push — and never let overflow turn wounded into dead.",
+    ],
+    faq: [
+      {
+        q: "How do you win Arcadian Conquest in Tiles Survive?",
+        a: "Hold the central Arcadia Fortress for a cumulative 90 minutes — the event ends the moment your alliance crosses that threshold. If nobody does within the three-hour siege, the longest cumulative hold wins and appoints the Server Governor.",
+      },
+      {
+        q: "When is Arcadian Conquest?",
+        a: "Every Saturday. Preparation runs Tuesday through Friday — troop training, rally-capacity packs and a completely cleared Hospital — so the day itself is execution and emergency spending only.",
+      },
+      {
+        q: "What do the Pillbox Towers do?",
+        a: "While an enemy alliance holds the fortress, each tower your alliance occupies automatically deletes 2% of their center garrison per strike. The firing cooldown ramps from four minutes down to one minute the longer you hold the tower unbroken.",
+      },
+      {
+        q: "Can you heal troops while garrisoning a tower or the fortress?",
+        a: "No — garrisoned troops cannot heal, and they take roughly 2% casualties per attack against their tower. That's why disciplined garrison cycling (rotating wounded defenders out, fresh squads in) decides whether towers stay yours.",
+      },
+      {
+        q: "What does the winning alliance get?",
+        a: "The leader appoints the Server Governor for seven days: state-wide buffs like Fast Gathering, title assignment for buffs and debuffs, reward packs for members, and exclusive combat-stat skins.",
+      },
+    ],
+    relatedTools: [
+      { href: "/war-room", label: "Arcadian War Room", note: "Run squad rotations and tower timers from one link" },
+      { href: "/guides/rally-etiquette", label: "Rally Etiquette", note: "The alliance habits Saturday exposes" },
+      { href: "/tier-list", label: "Hero Tier List", note: "The five heroes in the siege march" },
+    ],
+  },
+
   /* __APPEND_MORE_GUIDES__ */
 };

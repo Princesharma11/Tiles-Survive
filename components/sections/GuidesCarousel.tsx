@@ -43,7 +43,7 @@ export default function GuidesCarousel() {
             eyebrow="Start here // the strategy library"
             title="Tiles Survive guides"
             accent="forged in the field."
-            description="Thirteen complete, patch-2.6 strategy guides — from your first fog run to the Pet System and cross-server conquest. Written for gamers, by officers who hold the tile."
+            description="Fourteen complete, patch-2.6 strategy guides — from your first fog run to the Pet System and cross-server conquest. Written for gamers, by officers who hold the tile."
             className="mb-0"
           />
 
